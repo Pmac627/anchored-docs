@@ -84,12 +84,12 @@ It prints `STE word source: pack (Issue 9: 876 approved, 1318 unapproved)` when 
 ### If you do not have the pack
 
 1. Register at https://www.asd-ste100.org and request the specification through the site's official form. It is free of charge. ASD emails a link to the PDF (Issue 9, January 2025, 434 pages). Save it as `ASD-STE100_ISSUE9.pdf`.
-2. Get the STE generator kit (`ste-generator-kit.zip`). It contains no content from the specification, only the extraction scripts and the handwritten checklist, conventions, and reference linter.
+2. Get the [STE Generator Kit](https://github.com/Pmac627/ste-generator-kit). It contains no content from the specification, only the extraction scripts and the handwritten checklist, conventions, and reference linter.
 3. Generate the pack, on Linux or macOS with Python 3.10+:
 
    ```bash
    pip install pdfplumber
-   unzip ste-generator-kit.zip && cd ste-generator-kit
+   git clone https://github.com/Pmac627/ste-generator-kit.git && cd ste-generator-kit
    STE_PDF=/path/to/ASD-STE100_ISSUE9.pdf STE_WORK=/tmp/ste ./run_all.sh
    ```
 
