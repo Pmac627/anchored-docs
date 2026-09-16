@@ -2,11 +2,13 @@
 
 `anchored-docs` is an agent-agnostic skill for keeping a repository's developer documentation true to its code.
 
-It combines three parts:
+It combines three required parts:
 
 - [Ripwire](https://github.com/redhat-et/ripwire) checks documentation anchors against the repository and identifies the documentation affected by a code change.
 - [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/) guides clear, controlled technical prose.
-- Open Knowledge Format, OKF, frontmatter records each document's provenance, verification state, and current status.
+- [Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format) (OKF) frontmatter records each document's provenance, verification state, and current status.
+
+An optional fourth part, [qmd](https://github.com/tobi/qmd), a local hybrid search engine over markdown, finds documentation gaps that Ripwire's symbol index cannot: areas the code clearly has but no doc discusses in any words. It never verifies anything and the skill runs fully without it. See "What it does" below.
 
 The skill treats documentation as a maintained engineering artifact. It reads the code before it writes a claim, links documentation to concrete symbols and paths, checks those links, and reports what it verified.
 
@@ -31,6 +33,7 @@ Ripwire can be called through its CLI or optional MCP server. The choice is an a
 - Records sources, verification evidence, and document state in OKF frontmatter.
 - Marks a document `STATUS: STALE` when it cannot be reconciled with the code.
 - Produces a self-report that states which files were read, what documentation changed, and the Ripwire and STE results.
+- When [qmd](https://github.com/tobi/qmd) is installed, checks a freshly bootstrapped bundle for conceptual coverage gaps, and finds documentation for a change on request, beyond what Ripwire's symbol index and the declared source map cover.
 
 ## Contents
 
@@ -65,8 +68,11 @@ For a host that cannot discover skills automatically, attach the archive or prov
 | Python 3 | Runs `docs_check.py` and `ste_check.py`. | Yes |
 | ASD-STE100 agent pack | Provides the official dictionary and complete word checks. | Recommended |
 | Project `docs/` directory | Target for normal delta maintenance. | Required for delta mode |
+| [qmd](https://github.com/tobi/qmd) | Finds documentation coverage gaps by meaning, not declared anchors. | Optional |
 
 Without the ASD-STE100 agent pack, the checker uses a limited built-in list and reports that rule 1.1 is partial. The skill can still run, but it cannot claim complete dictionary coverage.
+
+Without qmd, the skill runs exactly as documented above; bootstrap mode skips its coverage check and delta mode's on-request lookup is simply unavailable. Neither affects Ripwire verification or the self-report's `Docs-Updated` result.
 
 ## ASD-STE100 content and terminology
 
@@ -82,6 +88,8 @@ The skill has two distinct checks:
 2. The STE checker enforces mechanical rules and flags likely style issues, but does not prove prose is clear or complete.
 
 For that reason, the workflow requires the agent to read the relevant code before writing. When the code and document cannot be reconciled with confidence, the correct result is a visible stale marker, not an invented update.
+
+qmd is not a third check. It finds candidate documentation by meaning, the way a search engine does, and never verifies a claim. A qmd result is a lead for the agent to read and confirm, exactly like a Ripwire mention; it carries no weight in `Docs-Updated`, `Docs-Drift`, or any pass/fail outcome.
 
 ## License recommendation
 
