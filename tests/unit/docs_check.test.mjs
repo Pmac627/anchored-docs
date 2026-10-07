@@ -61,6 +61,34 @@ test('back-links are checked even when the repo sits under a folder named build,
   }
 });
 
+test('back-links in .mjs files are checked, as ste_check.mjs already reads .mjs comments', () => {
+  // 2.0.0 listed .js but not .mjs, so a Node ESM repo (the skill's own scripts included) reported 0 back-links.
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'docs', 'index.md'), '# Index\n\n* [T](t.md)\n');
+    writeFileSync(join(repo, 'docs', 't.md'), DOC);
+    writeFileSync(join(repo, 'src', 'good.mjs'), '/**\n * Good.\n * @see ../docs/t.md\n */\nexport function good() {}\n');
+    writeFileSync(join(repo, 'src', 'bad.mjs'), '/**\n * Bad.\n * @see ../docs/missing.md\n */\nexport function bad() {}\n');
+    const r = run(repo, 'links', 'docs');
+    assert.equal(r.code, 1);
+    assert.match(r.out, /src[\\/]bad\.mjs: back-link target missing: \.\.\/docs\/missing\.md/);
+    assert.doesNotMatch(r.out, /good\.mjs/);
+    assert.match(r.out, /links: 2 docs, 2 code back-links, 1 findings/);
+  });
+});
+
+test('back-links in .cjs, .mts, and .cts files are checked too', () => {
+  for (const ext of ['.cjs', '.mts', '.cts']) {
+    withRepo([], (repo) => {
+      writeFileSync(join(repo, 'docs', 'index.md'), '# Index\n\n* [T](t.md)\n');
+      writeFileSync(join(repo, 'docs', 't.md'), DOC);
+      writeFileSync(join(repo, 'src', `bad${ext}`), '/**\n * Bad.\n * @see ../docs/missing.md\n */\nfunction bad() {}\n');
+      const r = run(repo, 'links', 'docs');
+      assert.equal(r.code, 1, ext);
+      assert.match(r.out, new RegExp(`src[\\\\/]bad\\${ext}: back-link target missing`), ext);
+    });
+  }
+});
+
 test('source files inside a build folder under the repo are still skipped', () => {
   withRepo([], (repo) => {
     mkdirSync(join(repo, 'src', 'build'));

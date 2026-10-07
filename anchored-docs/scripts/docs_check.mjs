@@ -36,7 +36,8 @@ const ISO_RE = /^\p{Nd}{4}-\p{Nd}{2}-\p{Nd}{2}(?:[T ]\p{Nd}{2}:\p{Nd}{2}(?::\p{N
 const NWS = `[^${WHITESPACE}]`;
 const LINK_RE = new RegExp(`(?<!!)\\[[^\\]]*\\]\\(([^)${WHITESPACE}#]+)(?:#[^)]*)?\\)`, 'gu');
 const BACKLINK_RE = new RegExp(`(?:seealso[${WHITESPACE}]+href="([^"]+)"|@see[${WHITESPACE}]+(${NWS}+)|See(?: also)?:[${WHITESPACE}]+(${NWS}+))`, 'gu');
-const SOURCE_EXT = ['.cs', '.cpp', '.cc', '.cxx', '.h', '.hpp', '.c', '.py', '.ts', '.tsx', '.js', '.jsx'];
+// Same source extensions as SOURCE_EXT in ste_check.mjs, so a file whose comments are checked also has its back-links checked.
+const SOURCE_EXT = ['.cs', '.cpp', '.cc', '.cxx', '.h', '.hpp', '.c', '.py', '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.mts', '.cts'];
 const SKIP_PARTS = new Set(['node_modules', 'build', 'bin', 'obj', 'third_party', '.git', 'dist']);
 
 const lines = [];

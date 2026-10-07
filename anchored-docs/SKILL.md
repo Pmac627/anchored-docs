@@ -287,6 +287,8 @@ Breaking changes:
 
 Behavior:
 - Output matches 1.2.0 on a 41-case parity corpus, apart from the renamed files. The Node scripts also match the Python scripts on 2.5 MB of unrelated prose and source comments.
+- Fixed: `docs_check.mjs links` did not read `.mjs` files, so it found no code back-links in a Node.js repository that uses ES modules. After this change, it reads the same source files as `ste_check.mjs`.
+- New: `ste_check.mjs` and `docs_check.mjs` also read `.cjs`, `.mts`, and `.cts` files. They check the doc comments and the back-links in these files with the JavaScript and TypeScript rules.
 - Fixed: the code back-link scan skipped every source file when the repository sat under a folder named `build`, `bin`, `obj`, `dist`, `node_modules`, `third_party`, or `.git`. It now looks only at folders inside the repository.
 - Fixed: `docs_check.mjs affected` matched case-sensitively on Linux and macOS and case-insensitively on Windows. It is now case-sensitive everywhere. The `okf` check of `sources` globs is also case-sensitive on Windows and macOS now.
 - Fixed in the port before release: on Windows, `ste_check.mjs` checked `index.md` and `log.md`. It skips them on every system, as 1.2.0 did.

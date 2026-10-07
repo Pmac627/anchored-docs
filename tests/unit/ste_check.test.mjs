@@ -31,6 +31,20 @@ function withRepo(fn) {
 
 const PASSIVE = 'The data was created by the job.\n';
 
+test('doc comments are checked in .mjs, .cjs, .mts, and .cts files, as in .js and .ts', () => {
+  withRepo((repo) => {
+    mkdirSync(join(repo, 'src'));
+    for (const ext of ['.js', '.mjs', '.cjs', '.ts', '.mts', '.cts']) {
+      writeFileSync(join(repo, 'src', `a${ext}`), `/** ${PASSIVE.trim()} */\nexport const a = 1;\n`);
+    }
+    const r = run(repo, 'src');
+    for (const ext of ['.js', '.mjs', '.cjs', '.ts', '.mts', '.cts']) {
+      assert.match(r.out, new RegExp(`a\\${ext}:1: \\[H\\] 3\\.6`), ext);
+    }
+    assert.match(r.out, /ste_check: 6 files/);
+  });
+});
+
 test('index.md and log.md are never checked, with native path separators', () => {
   withRepo((repo) => {
     mkdirSync(join(repo, 'docs', 'flows'));

@@ -25,7 +25,7 @@ const ORG_GLOSSARY_DEFAULT_STR = resolve(HERE, '..', 'references', 'org-glossary
 // 19 computer science and ICT; TV 2 computer processes and applications. Override: STE_TECH_CATEGORIES="tn:6,7,15,19 tv:2".
 const DEFAULT_TECH_CATEGORIES = () => new Map([['tn', new Set([6, 7, 15, 19])], ['tv', new Set([2])]]);
 const PLACEHOLDERS = new Set(['code', 'path', 'url', 'paren', 'quote', 'image']);
-const SOURCE_EXT = new Map([['.cs', 'cs'], ['.cpp', 'cpp'], ['.cc', 'cpp'], ['.cxx', 'cpp'], ['.h', 'cpp'], ['.hpp', 'cpp'], ['.c', 'cpp'], ['.py', 'py'], ['.ts', 'ts'], ['.tsx', 'ts'], ['.js', 'ts'], ['.jsx', 'ts'], ['.mjs', 'ts']]);
+const SOURCE_EXT = new Map([['.cs', 'cs'], ['.cpp', 'cpp'], ['.cc', 'cpp'], ['.cxx', 'cpp'], ['.h', 'cpp'], ['.hpp', 'cpp'], ['.c', 'cpp'], ['.py', 'py'], ['.ts', 'ts'], ['.tsx', 'ts'], ['.js', 'ts'], ['.jsx', 'ts'], ['.mjs', 'ts'], ['.cjs', 'ts'], ['.mts', 'ts'], ['.cts', 'ts']]);
 const PROC_CAP = 20;
 const DESC_CAP = 25;
 const PARA_CAP = 6;
