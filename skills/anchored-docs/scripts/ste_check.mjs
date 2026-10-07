@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expandUser, findDocsRoot, findOrgGlossary, loadGlossaries, parseGlossaryFile, readDoc, GlossaryError, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
-import { WHITESPACE, valueText, strip, stripChars, readText, splitlines, writeReport, replacePaths, FileReadError } from './_compat.mjs';
+import { WHITESPACE, valueText, strip, stripChars, readText, splitlines, writeReport, replacePaths, escapeControls, FileReadError } from './_compat.mjs';
 import { comparePaths, exists, isDir, isFile, pathParts, purePath, fileSuffix, rglobAll, sortPaths } from './_fs.mjs';
 import { APPROVED_ING, FUNCTION_WORDS, IMPERATIVE_VERBS, PASSIVE_PARTICIPLES, PHRASAL, STEP_OK_STARTS, USAGE } from './_ste_data.mjs';
 
@@ -593,7 +593,7 @@ function checkPath(p, rep, unapproved, lex, glossaryCache) {
 
 const out = [];
 const print = (s = '') => out.push(s);
-const eprint = (s) => process.stderr.write(s + '\n');
+const eprint = (s) => process.stderr.write(escapeControls(s) + '\n');
 const pad4 = (n) => String(n).padStart(4);
 
 function glossaryReport(root) {

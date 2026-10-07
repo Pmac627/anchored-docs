@@ -183,3 +183,14 @@ test('CRLF documents give the same findings as LF documents', () => {
     assert.equal(run(repo, 'okf', 'docs').code, 0);
   });
 });
+
+test('control characters from a doc appear as escapes in the report, never raw', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'src', 'a.cs'), 'class A {}\n');
+    writeFileSync(join(repo, 'docs', 't.md'), DOC.replace('status: stable', 'status: "\x1b[2J\x1b]8;;http://x\x07bad"'));
+    const r = run(repo, 'okf', 'docs');
+    assert.equal(r.code, 1);
+    assert.match(r.out, /\\x1b\[2J\\x1b\]8;;http:\/\/x\\x07bad/);
+    assert.doesNotMatch(r.out + r.err, /[\x00-\x08\x0b-\x1f\x7f]/);
+  });
+});

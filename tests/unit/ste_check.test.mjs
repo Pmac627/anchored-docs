@@ -96,3 +96,12 @@ test('STE_AGENT_PACK expands a leading ~/ and ~\\ to the home folder', () => {
     rmSync(home, { recursive: true, force: true });
   }
 });
+
+test('control characters that ste_check repeats from its input appear as escapes, never raw', () => {
+  withRepo((repo) => {
+    const env = { ...Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.startsWith('STE_'))), STE_AGENT_PACK: join(HERE, '..', 'fixtures', 'synthetic-pack') };
+    const r = spawnSync(process.execPath, [SCRIPT, '--lookup', 'x\x1b[2Jy'], { cwd: repo, env, encoding: 'utf8' });
+    assert.match(r.stdout, /x\\x1b\[2Jy/);
+    assert.doesNotMatch(r.stdout + r.stderr, /[\x00-\x08\x0b-\x1f\x7f]/);
+  });
+});

@@ -4,7 +4,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve } from 'node:path';
 import { loadGlossaries, readDoc, GlossaryError, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
-import { WHITESPACE, padCodePoints, formatValue, valueText, strip, readText, writeReport, FileReadError } from './_compat.mjs';
+import { WHITESPACE, padCodePoints, formatValue, valueText, strip, readText, writeReport, escapeControls, FileReadError } from './_compat.mjs';
 import { comparePaths, exists, isDir, isFile, listDir, pathParts, fileSuffix, resolvePath, rglobExt, sortPaths } from './_fs.mjs';
 import { fnmatchcase, globExists, parseIso } from './_glob.mjs';
 
@@ -401,7 +401,7 @@ try {
     print(`docs_check: ${e.message}`);
   } else {
     print(`docs_check: unexpected error: ${e?.message ?? e}`);
-    process.stderr.write(`${e?.stack ?? e}\n`);
+    process.stderr.write(`${escapeControls(String(e?.stack ?? e))}\n`);
   }
   code = 2;
 }

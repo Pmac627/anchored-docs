@@ -78,7 +78,22 @@ export function writeReport(text) {
   process.stdout.on('error', (e) => {
     if (e.code !== 'EPIPE') throw e;
   });
-  process.stdout.write(text);
+  process.stdout.write(escapeControls(text));
+}
+
+// C0 and C1 controls other than tab and line feed, DEL, and the bidirectional overrides and isolates.
+const CONTROL = /[\x00-\x08\x0b-\x1f\x7f-\x9f‪-‮⁦-⁩]/g;
+
+/**
+ * Shows each control character as an escape (ESC becomes "\x1b", U+202E becomes "‮"). The reports
+ * repeat text from docs and code; a raw escape sequence there could change the terminal, or hide or reorder
+ * text, for the person or agent that reads the report.
+ */
+export function escapeControls(text) {
+  return text.replace(CONTROL, (c) => {
+    const n = c.charCodeAt(0);
+    return n <= 0xff ? `\\x${n.toString(16).padStart(2, '0')}` : `\\u${n.toString(16).padStart(4, '0')}`;
+  });
 }
 
 const NON_PRINTABLE = /[\p{C}\p{Zl}\p{Zp}\p{Zs}]/u;
