@@ -271,7 +271,8 @@ function cmdAffected(docs, files) {
   for (const [code, dlist] of readMap(docs)) {
     for (const raw of files) {
       const f = raw.replaceAll('\\', '/');
-      if (fnmatchcase(f, code) || fnmatchcase(f, code.replaceAll('**', '*')) || (code.endsWith('/**') && f.startsWith(code.slice(0, -3) + '/'))) {
+      // fnmatchcase reads "**" as "*", and "*" also matches "/", so "src/**" matches "src/a/b.cs" here.
+      if (fnmatchcase(f, code) || (code.endsWith('/**') && f.startsWith(code.slice(0, -3) + '/'))) {
         for (const d of dlist) {
           if (!hits.has(d)) hits.set(d, new Set());
           hits.get(d).add(f);

@@ -63,3 +63,7 @@ test('globExists finds nothing under a root that does not exist, "**" included',
     rmSync(td, { recursive: true, force: true });
   }
 });
+
+test('sortPaths puts a folder before the paths inside it', () => {
+  assert.deepEqual(sortPaths([join('a', 'b'), 'a', join('a', 'b', 'c')]), ['a', join('a', 'b'), join('a', 'b', 'c')]);
+});

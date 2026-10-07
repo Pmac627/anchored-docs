@@ -6,7 +6,7 @@ import { spawnSync } from 'node:child_process';
 import { cpSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, join, sep } from 'node:path';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SCRIPT = join(HERE, '..', '..', 'skills', 'anchored-docs', 'scripts', 'ste_check.mjs');
@@ -103,5 +103,33 @@ test('control characters that ste_check repeats from its input appear as escapes
     const r = spawnSync(process.execPath, [SCRIPT, '--lookup', 'x\x1b[2Jy'], { cwd: repo, env, encoding: 'utf8' });
     assert.match(r.stdout, /x\\x1b\[2Jy/);
     assert.doesNotMatch(r.stdout + r.stderr, /[\x00-\x08\x0b-\x1f\x7f]/);
+  });
+});
+
+test('let\'s, ste-ok: all, blockquotes, lettered lists, and Unicode word boundaries are read as in 1.x', () => {
+  withRepo((repo) => {
+    writeFileSync(join(repo, 'docs', 'a.md'), [
+      '# A',
+      '',
+      "Let's open the file.",                                            // 3: contraction
+      '',
+      '<!-- ste-ok: all -->',
+      'The data was created by the job.',                                // 6: every rule waived
+      '',
+      '> This means that the value is wrong.',                           // 8: the quote marker is removed first
+      '',
+      'a. Open the valve and then close the cover of the unit with the four bolts that hold the cover on the frame of the pump.',
+      '',                                                                // 10: a lettered item is a procedure step
+      "The élet's value is correct.",                              // 12: no word boundary inside a word
+      '',
+    ].join('\n'));
+    const r = run(repo, 'docs');
+    const at = (line) => r.out.split('\n').filter((l) => new RegExp(`a\\.md:${line}: `).test(l));
+    assert.deepEqual(at(3), [`docs${sep}a.md:3: [M] 4.2: contraction "Let's"`]);
+    assert.deepEqual(at(6), []);
+    assert.match(r.out, /, 1 waived,/);
+    assert.match(at(8).join('\n'), /\[H\] GR-4: sentence starts with a bare "This"/);
+    assert.match(at(10).join('\n'), /\[M\] 5\.1: 25 words \(max 20\)/);
+    assert.deepEqual(at(12), []);
   });
 });

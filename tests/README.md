@@ -58,6 +58,12 @@ Each suite compares a module with the recorded 1.2.0 results, so a failure means
 was mutation-checked: eight deliberate breakages (comment handling, whitespace rules, newline handling, key
 characters, line numbers, glossary origin, relative paths, value quoting) were each caught.
 
+For 2.0.1, 17 more breakages of the scripts were tried, each against the unit tests alone: path-depth order, each
+skipped vendor folder, the `--repo` argument, image links, `process:` actors, the frontmatter start, the Unicode
+word boundary, `let's`, `ste-ok: all`, `.mjs` files, non-ASCII digits, blockquotes, and lettered lists. The tests
+catch all of them but one. That one changes the `stale` limit from `>` to `>=`; the two differ only when a doc's age
+equals the limit to the millisecond, so no test without a fake clock can see it.
+
 Two kinds of test sit outside that rule. Tests for new 2.0 behavior (a JSON syntax error names the file, a
 1.x `_glossary.yaml` with no JSON twin produces a notice, an unreadable file stops the run with exit 2 and a
 message that names it) have no 1.x counterpart by design. `docs_check.test.mjs` and `ste_check.test.mjs` run the

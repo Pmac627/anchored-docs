@@ -216,3 +216,42 @@ test('map --check gives the _map.yaml notice too, not only affected', () => {
     assert.match(r.out, /notice: found _map\.yaml; anchored-docs 2\.0 reads _map\.json/);
   });
 });
+
+test('every generated or vendor folder under the repo is skipped by the back-link scan', () => {
+  for (const name of ['node_modules', 'build', 'bin', 'obj', 'third_party', '.git', 'dist']) {
+    withRepo([], (repo) => {
+      mkdirSync(join(repo, 'src', name));
+      writeFileSync(join(repo, 'docs', 'index.md'), '# Index\n\n* [T](t.md)\n');
+      writeFileSync(join(repo, 'docs', 't.md'), DOC);
+      writeFileSync(join(repo, 'src', name, 'gen.cs'), '/// <seealso href="docs/missing.md"/>\nclass G {}\n');
+      assert.equal(run(repo, 'links', 'docs').code, 0, name);
+    });
+  }
+});
+
+test('--repo and its value are not read as changed files by affected', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'docs', '_map.json'), JSON.stringify({ map: [{ code: '*', docs: ['docs/t.md'] }] }));
+    const r = run(repo, 'affected', 'docs', '--repo', repo, 'src/a.cs');
+    assert.equal(r.out, 'docs/t.md: src/a.cs\n');
+  });
+});
+
+test('an image is not a link: a missing image target is not a broken link', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'src', 'a.cs'), 'class A {}\n');
+    writeFileSync(join(repo, 'docs', 'index.md'), '# Index\n\n* [T](t.md)\n');
+    writeFileSync(join(repo, 'docs', 't.md'), DOC + '\n![diagram](img/missing.png)\n');
+    const r = run(repo, 'links', 'docs');
+    assert.equal(r.code, 0, r.out);
+  });
+});
+
+test('a process: actor is a valid OKF actor', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'src', 'a.cs'), 'class A {}\n');
+    writeFileSync(join(repo, 'docs', 't.md'), DOC.replace('by: claude/1.0', 'by: process:nightly-docs'));
+    const r = run(repo, 'okf', 'docs');
+    assert.equal(r.code, 0, r.out);
+  });
+});
