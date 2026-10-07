@@ -1,0 +1,16 @@
+{
+  "id": "ste-glossary-report",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "--glossary-report",
+        "docs"
+      ],
+      "code": 0,
+      "stdout": "org glossary: <FIXTURES>/glossary/org-glossary.yaml (4 terms)\nproject glossary: docs/_glossary.yaml (7 terms)\neffective glossary terms: 8\n  CONFLICT: project glossary approves \"tripwire\", which the org glossary lists as an unapproved synonym of \"ripwire\"\n  CONFLICT: project glossary lists org term \"gate\" as an unapproved synonym of \"checkpointer\"\n  CONFLICT: project glossary redefines org term \"ripwire\" with a different meaning (org: \"the code-structure tool\"; project: \"a different meaning for the same word\"). Use a different name for the project's item.\n  notice: project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)\n  notice: project glossary repeats org term \"ingest\" (redundant; delete it, or move its synonyms to the org glossary)\nproject terms no doc names in a code span: 4\n  checkpointer\n  reserve\n  tripwire\n  worker\ncode-span names not in the glossary (top 40 by count):\n     2  submitasync\n     1  callapi\n     1  orderservice\n     1  rankgraphteleport\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

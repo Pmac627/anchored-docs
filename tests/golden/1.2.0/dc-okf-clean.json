@@ -1,0 +1,16 @@
+{
+  "id": "dc-okf-clean",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "okf",
+        "docs"
+      ],
+      "code": 0,
+      "stdout": "okf: 4 concept docs, 0 findings\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

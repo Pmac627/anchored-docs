@@ -1,0 +1,15 @@
+{
+  "id": "ste-missing-path",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "nope.md"
+      ],
+      "code": 2,
+      "stdout": "",
+      "stderr": "ste_check: no such path nope.md\n"
+    }
+  ],
+  "files": {}
+}

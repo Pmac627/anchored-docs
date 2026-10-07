@@ -1,0 +1,16 @@
+{
+  "id": "dc-stale-clean",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "stale",
+        "docs"
+      ],
+      "code": 0,
+      "stdout": "stale: 0 findings\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

@@ -1,0 +1,16 @@
+{
+  "id": "dc-okf-flawed",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "okf",
+        "docs"
+      ],
+      "code": 1,
+      "stdout": "decisions/0001-use-queue.md: Decision has no date: key (ripwire will count its drift as live rot)\nflows/empty-frontmatter.md: frontmatter did not parse\nflows/generated-scalar.md: generated must be a { by, at } mapping\nflows/ingest.md: generated.by is not an OKF actor: not an actor\nflows/ingest.md: generated.at is not ISO 8601: yesterday\nflows/ingest.md: verified entry malformed: {'by': 'nobody', 'at': '2026-01-10T10:00:00Z'}\nflows/ingest.md: sources resource matches no file: src/missing/**\nflows/ingest.md: sources entry without resource: {'id': 'b'}\nflows/no-frontmatter.md: no frontmatter\nflows/ranking.md: missing description\nflows/ranking.md: status must be draft|stable|deprecated, got finished\nflows/ranking.md: diataxis must be one of ['explanation', 'how-to', 'reference', 'tutorial']\nflows/stale-callout-only.md: missing verified\nflows/stale-callout-only.md: STATUS: STALE callout but no stale_after in frontmatter\nflows/stale-no-callout.md: stale_after set but body has no STATUS: STALE callout\nindex.md: only okf_version is allowed in a root index frontmatter\nokf: 15 concept docs, 16 findings\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

@@ -1,0 +1,15 @@
+{
+  "id": "ste-pack-src",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "src"
+      ],
+      "code": 1,
+      "stdout": "docs/_glossary.yaml:1: [H] 1.8: glossary: project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)\ndocs/_glossary.yaml:1: [H] 1.8: glossary: project glossary repeats org term \"ingest\" (redundant; delete it, or move its synonyms to the org glossary)\ndocs/_glossary.yaml:1: [M] 1.8: glossary conflict: project glossary approves \"tripwire\", which the org glossary lists as an unapproved synonym of \"ripwire\"\ndocs/_glossary.yaml:1: [M] 1.8: glossary conflict: project glossary lists org term \"gate\" as an unapproved synonym of \"checkpointer\"\ndocs/_glossary.yaml:1: [M] 1.8: glossary conflict: project glossary redefines org term \"ripwire\" with a different meaning (org: \"the code-structure tool\"; project: \"a different meaning for the same word\"). Use a different name for the project's item.\nsrc/Api/Controllers/OrdersController.cs:3: [H] 1.5: 1 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): routes\nsrc/Api/Controllers/OrdersController.cs:3: [M] 1.1: \"Handles\": write \"manage, process\"\nsrc/Orders/OrderService.cs:3: [H] 1.5: 3 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): an, class, retry\nsrc/Orders/OrderService.cs:3: [M] 1.1: \"Submits\" is not approved (v); write send\nsrc/Orders/OrderService.cs:9: [M] 1.1: \"Submits\" is not approved (v); write send\nsrc/Orders/OrderValidator.cs:3: [H] 3.6: possible passive voice: \"is not done\"\nsrc/Orders/OrderValidator.cs:3: [H] 1.5: 2 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): an, fields\nsrc/engine/rank.cpp:3: [H] 1.5: 1 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): ranks\nsrc/node_modules/skip/skip.js:1: [H] 3.6: possible passive voice: \"be skipped\"\nsrc/node_modules/skip/skip.js:1: [H] 1.5: 4 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): back-link, must, scan, skipped\nsrc/tools/ingest.py:2: [H] 3.6: possible passive voice: \"is not locked\"\nsrc/tools/ingest.py:2: [H] 1.5: 7 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): also, into, locked, see, store, remove, rows\nsrc/web/client.ts:1: [H] 1.5: 2 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): reply, returns\n\nste_check: 7 files, 16 sentences, 6 mechanical, 12 heuristic (1.5=7, 1.8=2, 3.6=3), 0 waived, dictionary=pack\nDocs-STE: fail(6 mechanical)\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

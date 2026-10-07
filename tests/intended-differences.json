@@ -1,0 +1,41 @@
+{
+  "comment": "Text changes that 2.0 makes on purpose. Each rule is applied to the 1.x golden before it is compared with Node output. Add a rule only with a reason; an unexplained difference is a bug in the port.",
+  "rules": [
+    {
+      "pattern": "org-glossary\\.yaml",
+      "replace": "org-glossary.json",
+      "reason": "2.0 stores the organization glossary as JSON"
+    },
+    {
+      "pattern": "_glossary\\.yaml",
+      "replace": "_glossary.json",
+      "reason": "2.0 stores the project glossary as JSON"
+    },
+    {
+      "pattern": "_map\\.yaml",
+      "replace": "_map.json",
+      "reason": "2.0 stores the derived map as JSON"
+    },
+    {
+      "pattern": "docs_check\\.py",
+      "replace": "docs_check.mjs",
+      "reason": "scripts are Node ES modules"
+    },
+    {
+      "pattern": "ste_check\\.py",
+      "replace": "ste_check.mjs",
+      "reason": "scripts are Node ES modules"
+    },
+    {
+      "pattern": "^ {43}(?=\\S)",
+      "flags": "gm",
+      "replace": "                                            ",
+      "reason": "the script name gained one character (.py to .mjs), so wrapped usage lines shift one column to stay aligned"
+    },
+    {
+      "pattern": "3\\.4/3\\.2 complex tenses",
+      "replace": "3.4 complex tenses",
+      "reason": "rule 3.2 was listed in the 1.x usage text but the code never emitted it"
+    }
+  ]
+}

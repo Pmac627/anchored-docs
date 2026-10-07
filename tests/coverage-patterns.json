@@ -1,0 +1,310 @@
+[
+  {
+    "id": "okf-no-frontmatter",
+    "pattern": "no frontmatter"
+  },
+  {
+    "id": "okf-did-not-parse",
+    "pattern": "frontmatter did not parse"
+  },
+  {
+    "id": "okf-missing-key",
+    "pattern": ": missing (description|verified)"
+  },
+  {
+    "id": "okf-bad-status",
+    "pattern": "status must be draft\\|stable\\|deprecated, got"
+  },
+  {
+    "id": "okf-bad-diataxis",
+    "pattern": "diataxis must be one of"
+  },
+  {
+    "id": "okf-generated-by",
+    "pattern": "generated\\.by is not an OKF actor"
+  },
+  {
+    "id": "okf-generated-at",
+    "pattern": "generated\\.at is not ISO 8601"
+  },
+  {
+    "id": "okf-generated-scalar",
+    "pattern": "generated must be a \\{ by, at \\} mapping"
+  },
+  {
+    "id": "okf-verified-malformed",
+    "pattern": "verified entry malformed"
+  },
+  {
+    "id": "okf-source-no-resource",
+    "pattern": "sources entry without resource"
+  },
+  {
+    "id": "okf-source-no-match",
+    "pattern": "sources resource matches no file"
+  },
+  {
+    "id": "okf-stale-no-callout",
+    "pattern": "stale_after set but body has no STATUS: STALE callout"
+  },
+  {
+    "id": "okf-callout-no-stale-after",
+    "pattern": "STATUS: STALE callout but no stale_after"
+  },
+  {
+    "id": "okf-decision-no-date",
+    "pattern": "Decision has no date: key"
+  },
+  {
+    "id": "okf-root-index-key",
+    "pattern": "only okf_version is allowed in a root index"
+  },
+  {
+    "id": "okf-summary-clean",
+    "pattern": "okf: \\d+ concept docs, 0 findings"
+  },
+  {
+    "id": "links-broken",
+    "pattern": "broken link"
+  },
+  {
+    "id": "links-into-tickets",
+    "pattern": "links into docs/tickets/"
+  },
+  {
+    "id": "links-orphan",
+    "pattern": "orphan \\(no inbound link\\)"
+  },
+  {
+    "id": "links-index-file",
+    "pattern": "does not list \\S+\\.md"
+  },
+  {
+    "id": "links-index-dir",
+    "pattern": "does not list \\S+/\\n"
+  },
+  {
+    "id": "links-backlink-missing",
+    "pattern": "back-link target missing"
+  },
+  {
+    "id": "links-summary-clean",
+    "pattern": "links: \\d+ docs, \\d+ code back-links, 0 findings"
+  },
+  {
+    "id": "map-wrote",
+    "pattern": "map: wrote docs/_map\\.yaml"
+  },
+  {
+    "id": "map-out-of-date",
+    "pattern": "map: _map\\.yaml is out of date"
+  },
+  {
+    "id": "map-matches",
+    "pattern": "map: _map\\.yaml matches sources"
+  },
+  {
+    "id": "stale-marker",
+    "pattern": "STATUS: STALE \\(stale_after="
+  },
+  {
+    "id": "stale-never-verified",
+    "pattern": "never verified"
+  },
+  {
+    "id": "stale-old",
+    "pattern": "last verified \\d{4}-\\d{2}-\\d{2} \\(> \\d+ days\\)"
+  },
+  {
+    "id": "stale-draft",
+    "pattern": "still draft \\(generated"
+  },
+  {
+    "id": "stale-clean",
+    "pattern": "stale: 0 findings"
+  },
+  {
+    "id": "affected-hit",
+    "pattern": "^docs/\\S+\\.md: src/"
+  },
+  {
+    "id": "affected-none",
+    "pattern": "affected: no doc's sources match"
+  },
+  {
+    "id": "glossary-conflict-approves",
+    "pattern": "CONFLICT: project glossary approves"
+  },
+  {
+    "id": "glossary-conflict-unapproved",
+    "pattern": "CONFLICT: project glossary lists org term"
+  },
+  {
+    "id": "glossary-conflict-meaning",
+    "pattern": "CONFLICT: project glossary redefines org term"
+  },
+  {
+    "id": "glossary-notice-repeat",
+    "pattern": "notice: project glossary repeats org term"
+  },
+  {
+    "id": "glossary-terms-table",
+    "pattern": "^  ingest\\s+verb"
+  },
+  {
+    "id": "ste-1.1-builtin",
+    "pattern": "\\[M\\] 1\\.1: \\\"prior to\\\": write"
+  },
+  {
+    "id": "ste-1.1-wordlist",
+    "pattern": "is not in the STE dictionary or the glossary"
+  },
+  {
+    "id": "ste-1.1-pack",
+    "pattern": "is not approved \\(v\\); write"
+  },
+  {
+    "id": "ste-1.5-unknown",
+    "pattern": "\\[H\\] 1\\.5: \\d+ words not in the STE dictionary"
+  },
+  {
+    "id": "ste-1.7",
+    "pattern": "\\[H\\] 1\\.7:"
+  },
+  {
+    "id": "ste-1.8-conflict",
+    "pattern": "\\[M\\] 1\\.8: glossary conflict"
+  },
+  {
+    "id": "ste-1.8-repeat",
+    "pattern": "\\[H\\] 1\\.8: glossary: project glossary repeats"
+  },
+  {
+    "id": "ste-1.11",
+    "pattern": "\\[M\\] 1\\.11:"
+  },
+  {
+    "id": "ste-2.1",
+    "pattern": "\\[H\\] 2\\.1: possible noun cluster"
+  },
+  {
+    "id": "ste-3.4-progressive",
+    "pattern": "\\[H\\] 3\\.4: progressive tense"
+  },
+  {
+    "id": "ste-3.4-perfect",
+    "pattern": "\\[H\\] 3\\.4: perfect tense"
+  },
+  {
+    "id": "ste-3.5",
+    "pattern": "\\[H\\] 3\\.5:"
+  },
+  {
+    "id": "ste-3.6",
+    "pattern": "\\[H\\] 3\\.6: possible passive voice"
+  },
+  {
+    "id": "ste-4.2",
+    "pattern": "\\[M\\] 4\\.2: contraction"
+  },
+  {
+    "id": "ste-5.1",
+    "pattern": "\\[M\\] 5\\.1: \\d+ words \\(max 20\\)"
+  },
+  {
+    "id": "ste-5.2",
+    "pattern": "\\[H\\] 5\\.2: two instructions"
+  },
+  {
+    "id": "ste-5.3",
+    "pattern": "\\[H\\] 5\\.3: step does not start with an imperative"
+  },
+  {
+    "id": "ste-6.1",
+    "pattern": "\\[M\\] 6\\.1: \\d+ words \\(max 25\\)"
+  },
+  {
+    "id": "ste-6.6",
+    "pattern": "\\[M\\] 6\\.6: paragraph has"
+  },
+  {
+    "id": "ste-8.1",
+    "pattern": "\\[M\\] 8\\.1: semicolon"
+  },
+  {
+    "id": "ste-9.3",
+    "pattern": "\\[H\\] 9\\.3: phrasal verb"
+  },
+  {
+    "id": "ste-GR-4",
+    "pattern": "\\[H\\] GR-4:"
+  },
+  {
+    "id": "ste-GR-6",
+    "pattern": "\\[M\\] GR-6: Latin abbreviation"
+  },
+  {
+    "id": "ste-waived",
+    "pattern": ", [1-9]\\d* waived,"
+  },
+  {
+    "id": "ste-src-comment-checked",
+    "pattern": "^src/\\S+\\.(cs|cpp|py|ts):\\d+: \\["
+  },
+  {
+    "id": "ste-pass-partial",
+    "pattern": "Docs-STE: pass \\(1\\.1 partial\\)"
+  },
+  {
+    "id": "ste-fail",
+    "pattern": "Docs-STE: fail\\(\\d+ mechanical\\)"
+  },
+  {
+    "id": "ste-status-none",
+    "pattern": "STE word source: none"
+  },
+  {
+    "id": "ste-status-wordlist",
+    "pattern": "This is a plain word list"
+  },
+  {
+    "id": "ste-status-pack",
+    "pattern": "STE word source: pack \\(Issue 9"
+  },
+  {
+    "id": "ste-lookup-approved",
+    "pattern": "\\(n\\): approved\\. Forms:"
+  },
+  {
+    "id": "ste-lookup-not-approved",
+    "pattern": "NOT approved\\. Write:"
+  },
+  {
+    "id": "ste-lookup-category",
+    "pattern": "Also listed as a technical-category example in"
+  },
+  {
+    "id": "ste-lookup-unknown",
+    "pattern": "== zzzz\\n  not in the dictionary"
+  },
+  {
+    "id": "ste-lookup-needs-pack",
+    "pattern": "--lookup needs the ASD-STE100 agent pack"
+  },
+  {
+    "id": "ste-glossary-report-unused",
+    "pattern": "project terms no doc names in a code span"
+  },
+  {
+    "id": "ste-missing-path",
+    "pattern": "ste_check: no such path"
+  },
+  {
+    "id": "usage-docs-check",
+    "pattern": "docs_check\\.py: structural checks"
+  },
+  {
+    "id": "usage-ste-check",
+    "pattern": "ste_check\\.py: ASD-STE100"
+  }
+]

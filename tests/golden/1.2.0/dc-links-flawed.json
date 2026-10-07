@@ -1,0 +1,16 @@
+{
+  "id": "dc-links-flawed",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "links",
+        "docs"
+      ],
+      "code": 1,
+      "stdout": "flows/ingest.md: broken link nope.md\nflows/ingest.md: links into docs/tickets/: ../tickets/scratch.md\noverview.md: links into docs/tickets/: tickets/scratch.md\ndecisions/0001-use-queue.md: orphan (no inbound link)\nflows/empty-frontmatter.md: orphan (no inbound link)\nflows/generated-scalar.md: orphan (no inbound link)\nflows/ingest.md: orphan (no inbound link)\nflows/no-frontmatter.md: orphan (no inbound link)\nflows/orphan-flow.md: orphan (no inbound link)\nflows/stale-callout-only.md: orphan (no inbound link)\nflows/stale-flow.md: orphan (no inbound link)\nflows/stale-no-callout.md: orphan (no inbound link)\nguides/deploy.md: orphan (no inbound link)\ndecisions/index.md: does not list 0001-use-queue.md\nflows/index.md: does not list empty-frontmatter.md\nflows/index.md: does not list generated-scalar.md\nflows/index.md: does not list ingest.md\nflows/index.md: does not list no-frontmatter.md\nflows/index.md: does not list orphan-flow.md\nflows/index.md: does not list stale-callout-only.md\nflows/index.md: does not list stale-flow.md\nflows/index.md: does not list stale-no-callout.md\nindex.md: does not list decisions/\nindex.md: does not list guides/\nsrc/Api/Controllers/OrdersController.cs: back-link target missing: docs/flows/missing-flow.md\nsrc/tools/ingest.py: back-link target missing: docs/flows/gone.md\nlinks: 19 docs, 6 code back-links, 26 findings\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

@@ -1,0 +1,106 @@
+# word	alternative	rule	note
+utilize	use	1.1
+leverage	use	1.1
+employ	use	1.1
+prior to	before	1.1
+in order to	to	1.1
+ensure	make sure that	1.1
+verify	make sure that	1.1	verb; "do a check" for the noun
+perform	do	1.1
+execute	run, do	1.1	unless a technical verb in your glossary
+commence	start	1.1
+initiate	start	1.1
+begin	start	1.1
+terminate	stop	1.1
+cease	stop	1.1
+retrieve	get	1.1
+obtain	get	1.1
+fetch	get	1.1	unless a technical verb in your glossary (git fetch)
+acquire	get	1.1
+modify	change	1.1	"modification" is a technical noun
+alter	change	1.1
+indicate	show	1.1
+demonstrate	show	1.1
+require	need, be necessary	1.1
+necessitate	need	1.1
+additionally	also	1.1
+furthermore	also	1.1
+moreover	also	1.1
+subsequently	then	1.1
+thereafter	then	1.1
+approximately	about	1.1
+attempt	try	1.1
+endeavor	try	1.1
+currently	now	1.1
+presently	now	1.1
+assist	help	1.1
+facilitate	help, make easier	1.1
+accomplish	do, complete	1.1
+achieve	get, do	1.1
+sufficient	enough	1.1
+insufficient	not enough	1.1
+adequate	enough	1.1
+numerous	many	1.1
+multiple	many, more than one	1.1
+various	different	1.1
+individual	each, one	1.1
+optimal	best	1.1
+optimum	best	1.1
+appropriate	correct, applicable	1.1
+inappropriate	incorrect	1.1
+mandatory	necessary	1.1	approved only in the safety sense
+essential	necessary	1.1
+imperative	necessary	1.1
+crucial	important	1.1
+vital	important	1.1
+significant	large, important	1.1
+substantial	large	1.1
+majority	most	1.1
+minority	few	1.1
+whilst	while	1.1
+amongst	among	1.1
+upon	on	1.1
+via	through, with	1.1
+per	for each	1.1
+regarding	about	1.1
+concerning	about	1.1
+pertaining to	about	1.1
+in terms of	for, about	1.1
+with respect to	for, about	1.1
+irrespective of	without regard to	1.1
+notwithstanding	but	1.1
+however	but	1.1
+nevertheless	but	1.1
+therefore	thus, so	1.1
+hence	thus	1.1
+consequently	as a result	1.1
+utilization	use	1.1
+functionality	function	1.1
+implementation	code, the way it does it	1.1	unless a technical noun in your glossary
+instantiate	create, make	1.1	unless a technical verb in your glossary
+invoke	call	1.1
+trigger	start, cause	1.1	unless a technical noun in your glossary
+handle	manage, process	1.1	verb; "handle" is a technical noun
+spawn	start, create	1.1
+kill	stop	1.1
+abort	stop	1.1	technical verb in computer contexts is permitted
+gracefully	correctly, without errors	1.1
+robust	strong, reliable	1.1
+seamless	continuous	1.1
+straightforward	simple	1.1
+trivial	simple	1.1
+non-trivial	complex	1.1
+appear	seem, show	1.1
+seem	is likely to be	1.1
+ideally	best, if possible	1.1
+basically	usually, in most cases	1.1
+simply	only	1.1
+merely	only	1.1
+just	only	1.1
+quite	very	1.1
+rather	somewhat, instead	1.1
+somewhat	a little	1.1
+etc	and so on	GR-6
+e.g.	for example	GR-6
+i.e.	that is	GR-6
+vs	against	GR-6

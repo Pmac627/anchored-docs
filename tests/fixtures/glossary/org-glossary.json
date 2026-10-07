@@ -1,0 +1,27 @@
+{
+  "technical_nouns": [
+    {
+      "term": "ripwire",
+      "meaning": "the code-structure tool",
+      "unapproved": [
+        "tripwire"
+      ]
+    },
+    {
+      "term": "gate",
+      "unapproved": [
+        "checkpoint"
+      ]
+    },
+    {
+      "term": "queue",
+      "meaning": "a first-in first-out buffer of messages"
+    }
+  ],
+  "technical_verbs": [
+    {
+      "term": "ingest",
+      "meaning": "read data into a store"
+    }
+  ]
+}

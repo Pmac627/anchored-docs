@@ -1,0 +1,37 @@
+{
+  "technical_nouns": [
+    {
+      "term": "worker",
+      "meaning": "the process that reads the queue",
+      "unapproved": [
+        "consumer"
+      ]
+    },
+    {
+      "term": "queue",
+      "meaning": "a first-in first-out buffer of messages"
+    },
+    {
+      "term": "tripwire"
+    },
+    {
+      "term": "checkpointer",
+      "unapproved": [
+        "gate"
+      ]
+    },
+    {
+      "term": "ripwire",
+      "meaning": "a different meaning for the same word"
+    }
+  ],
+  "technical_verbs": [
+    {
+      "term": "ingest",
+      "meaning": "read data into a store"
+    },
+    {
+      "term": "reserve"
+    }
+  ]
+}

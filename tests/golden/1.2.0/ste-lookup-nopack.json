@@ -1,0 +1,16 @@
+{
+  "id": "ste-lookup-nopack",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "--lookup",
+        "order"
+      ],
+      "code": 2,
+      "stdout": "",
+      "stderr": "ste_check --lookup needs the ASD-STE100 agent pack. Run ste_check.py --status.\n"
+    }
+  ],
+  "files": {}
+}

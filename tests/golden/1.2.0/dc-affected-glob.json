@@ -1,0 +1,18 @@
+{
+  "id": "dc-affected-glob",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "affected",
+        "docs",
+        "src/Orders/OrderValidator.cs",
+        "src/engine/rank.cpp"
+      ],
+      "code": 0,
+      "stdout": "docs/architecture.md: src/Orders/OrderValidator.cs\ndocs/flows/order-fulfillment.md: src/Orders/OrderValidator.cs\ndocs/flows/ranking.md: src/engine/rank.cpp\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

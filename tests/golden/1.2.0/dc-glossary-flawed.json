@@ -1,0 +1,16 @@
+{
+  "id": "dc-glossary-flawed",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "glossary",
+        "docs"
+      ],
+      "code": 1,
+      "stdout": "org glossary:     <FIXTURES>/glossary/org-glossary.yaml  (4 terms)\nproject glossary: <REPO>/docs/_glossary.yaml  (7 terms)\neffective:        8 terms, 3 unapproved synonyms\nCONFLICT: project glossary approves \"tripwire\", which the org glossary lists as an unapproved synonym of \"ripwire\"\nCONFLICT: project glossary lists org term \"gate\" as an unapproved synonym of \"checkpointer\"\nCONFLICT: project glossary redefines org term \"ripwire\" with a different meaning (org: \"the code-structure tool\"; project: \"a different meaning for the same word\"). Use a different name for the project's item.\nnotice: project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)\nnotice: project glossary repeats org term \"ingest\" (redundant; delete it, or move its synonyms to the org glossary)\nglossary: 3 conflicts, 2 notices\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

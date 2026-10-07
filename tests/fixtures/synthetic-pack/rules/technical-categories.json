@@ -1,0 +1,13 @@
+{
+  "technical_noun_categories": [
+    {"number": 6, "title": "Systems and components", "examples": ["server", "queue", "worker", "controller", "cache", "mermaid"]},
+    {"number": 7, "title": "Mathematical and engineering terms", "examples": ["graph", "node", "teleport", "timeout"]},
+    {"number": 15, "title": "Documents and standards", "examples": ["glossary", "frontmatter", "bundle"]},
+    {"number": 19, "title": "Computer science and ICT", "examples": ["function", "validator", "api", "json", "yaml"]},
+    {"number": 3, "title": "Hardware items", "examples": ["bracket", "valve"]}
+  ],
+  "technical_verb_categories": [
+    {"number": 2, "title": "Computer processes and applications", "examples": ["ingest", "parse", "render", "reserve"]},
+    {"number": 5, "title": "Mechanical actions", "examples": ["weld", "drill"]}
+  ]
+}
