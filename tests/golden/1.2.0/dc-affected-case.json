@@ -1,0 +1,17 @@
+{
+  "id": "dc-affected-case",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "affected",
+        "docs",
+        "SRC/Orders/OrderService.cs"
+      ],
+      "code": 0,
+      "stdout": "affected: no doc's sources match the changed files\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

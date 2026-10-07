@@ -1,0 +1,12 @@
+# The ASD-STE100 PDF and the agent pack derived from it are copyrighted by ASD. Keep them out of this
+# repository wherever a copy lands, not only at the skill's references/ path (see anchored-docs/.gitignore).
+*.pdf
+**/asd-ste100-agent-pack/*
+!anchored-docs/references/asd-ste100-agent-pack/HOW-TO-INSTALL.md
+# Pack files that only a real pack has. tests/fixtures/synthetic-pack is invented and stays tracked.
+ste-dictionary.json
+ste-rules.json
+ste-rules-summary.md
+approved-wordlist.md
+approved-words.tsv
+unapproved-lookup.tsv

@@ -1,0 +1,13 @@
+{
+  "id": "dc-usage-no-args",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [],
+      "code": 2,
+      "stdout": "docs_check.py: structural checks for the docs/ OKF bundle.\n\n  docs_check.py okf <docs>                 frontmatter conformance (OKF v0.2 + this skill's required keys)\n  docs_check.py links <docs>               internal links, index completeness, orphans, code back-links, tickets contamination\n  docs_check.py map <docs> [--check]       regenerate docs/_map.yaml from sources (or compare with --check)\n  docs_check.py stale <docs> [--days N]    STATUS: STALE docs, stale_after in the past, verified older than N days (default 90)\n  docs_check.py affected <docs> <file>...  docs whose sources match the given changed files\n  docs_check.py glossary <docs> [--terms]  the two glossary levels (org: <skill>/references/org-glossary.yaml or\n                                           $STE_ORG_GLOSSARY; project: <docs>/_glossary.yaml), their conflicts, and\n                                           with --terms every effective term with its origin\n\nExit 0 clean, 1 findings, 2 usage. Repo root is the parent of <docs> unless --repo is given.\n\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

@@ -1,0 +1,4738 @@
+{
+ "capturedFrom": "anchored-docs 1.2.0 _fm.py, PyYAML forced off",
+ "yamlSubset": [
+  {
+   "name": "empty",
+   "input": "",
+   "output": {
+    "__map": []
+   }
+  },
+  {
+   "name": "only-blank-lines",
+   "input": "\n\n  \n",
+   "output": {
+    "__map": []
+   }
+  },
+  {
+   "name": "scalars",
+   "input": "a: hello\nb: 'single'\nc: \"double\"\nd: ~\ne: null\nf: true\ng: False\nh: 42\ni: 2026-01-10T10:00:00Z\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "hello"
+     ],
+     [
+      "b",
+      "single"
+     ],
+     [
+      "c",
+      "double"
+     ],
+     [
+      "d",
+      null
+     ],
+     [
+      "e",
+      null
+     ],
+     [
+      "f",
+      true
+     ],
+     [
+      "g",
+      false
+     ],
+     [
+      "h",
+      "42"
+     ],
+     [
+      "i",
+      "2026-01-10T10:00:00Z"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "empty-value-no-block",
+   "input": "a:\nb: x\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      {
+       "__map": []
+      }
+     ],
+     [
+      "b",
+      "x"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "empty-value-then-end",
+   "input": "a:\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      {
+       "__map": []
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "name": "single-char-quote",
+   "input": "a: \"\nb: '\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "\""
+     ],
+     [
+      "b",
+      "'"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "quoted-with-colon-and-hash",
+   "input": "a: \"x: y # z\"\nb: 'p # q'\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "x: y # z"
+     ],
+     [
+      "b",
+      "p # q"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "comment-forms",
+   "input": "# full line\na: 1 # trailing\nb: x#notcomment\nc: \"q#q\" # after\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "1"
+     ],
+     [
+      "b",
+      "x#notcomment"
+     ],
+     [
+      "c",
+      "q#q"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "apostrophe-swallows-hash",
+   "input": "title: Don't # stop\nnext: ok\n",
+   "output": {
+    "__map": [
+     [
+      "title",
+      "Don't # stop"
+     ],
+     [
+      "next",
+      "ok"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "inline-list",
+   "input": "a: [x, y, \"z, w\"]\nb: []\nc: [ ]\nd: [[1, 2], [3]]\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      [
+       "x",
+       "y",
+       "z, w"
+      ]
+     ],
+     [
+      "b",
+      []
+     ],
+     [
+      "c",
+      []
+     ],
+     [
+      "d",
+      [
+       [
+        "1",
+        "2"
+       ],
+       [
+        "3"
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "inline-map",
+   "input": "g: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nh: {}\ni: { a: 1, b: [x, y], c: { d: 2 } }\n",
+   "output": {
+    "__map": [
+     [
+      "g",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "h",
+      {
+       "__map": []
+      }
+     ],
+     [
+      "i",
+      {
+       "__map": [
+        [
+         "a",
+         "1"
+        ],
+        [
+         "b",
+         [
+          "x",
+          "y"
+         ]
+        ],
+        [
+         "c",
+         {
+          "__map": [
+           [
+            "d",
+            "2"
+           ]
+          ]
+         }
+        ]
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "name": "inline-map-quoted-comma",
+   "input": "g: { by: \"a, b\", at: 'c: d' }\n",
+   "output": {
+    "__map": [
+     [
+      "g",
+      {
+       "__map": [
+        [
+         "by",
+         "a, b"
+        ],
+        [
+         "at",
+         "c: d"
+        ]
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "name": "inline-map-part-without-colon",
+   "input": "g: { orphan, a: 1 }\n",
+   "output": {
+    "__map": [
+     [
+      "g",
+      {
+       "__map": [
+        [
+         "a",
+         "1"
+        ]
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "name": "block-list-scalars",
+   "input": "items:\n  - one\n  - two words\n  - \"three\"\n",
+   "output": {
+    "__map": [
+     [
+      "items",
+      [
+       "one",
+       "two words",
+       "three"
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "block-list-maps",
+   "input": "sources:\n  - id: a\n    resource: src/a/**\n  - id: b\n    resource: src/b.cs\n",
+   "output": {
+    "__map": [
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "a"
+         ],
+         [
+          "resource",
+          "src/a/**"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "id",
+          "b"
+         ],
+         [
+          "resource",
+          "src/b.cs"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "block-list-flow-maps",
+   "input": "verified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n  - { by: claude/1.0, at: 2026-01-10T10:00:00Z }\n",
+   "output": {
+    "__map": [
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "by",
+          "claude/1.0"
+         ],
+         [
+          "at",
+          "2026-01-10T10:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "block-list-mixed",
+   "input": "x:\n  - plain\n  - id: a\n    r: 1\n  - [p, q]\n  - { k: v }\n",
+   "output": {
+    "__map": [
+     [
+      "x",
+      [
+       "plain",
+       {
+        "__map": [
+         [
+          "id",
+          "a"
+         ],
+         [
+          "r",
+          "1"
+         ]
+        ]
+       },
+       [
+        "p",
+        "q"
+       ],
+       {
+        "__map": [
+         [
+          "k",
+          "v"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "block-list-dash-only",
+   "input": "x:\n  -\n  - a\n",
+   "output": {
+    "__map": [
+     [
+      "x",
+      [
+       "a"
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "block-list-not-indented",
+   "input": "sources:\n- id: a\n  resource: b\n- id: c\n",
+   "output": {
+    "__map": [
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "a"
+         ],
+         [
+          "resource",
+          "b"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "id",
+          "c"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "block-list-colon-in-value",
+   "input": "x:\n  - see: http://example.com/a\n  - url: https://x.y/z\n",
+   "output": {
+    "__map": [
+     [
+      "x",
+      [
+       {
+        "__map": [
+         [
+          "see",
+          "http://example.com/a"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "url",
+          "https://x.y/z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "block-map",
+   "input": "meta:\n  a: 1\n  b: two\n",
+   "output": {
+    "__map": [
+     [
+      "meta",
+      {
+       "__map": [
+        [
+         "a",
+         "1"
+        ],
+        [
+         "b",
+         "two"
+        ]
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "name": "block-map-then-key",
+   "input": "meta:\n  a: 1\nafter: z\n",
+   "output": {
+    "__map": [
+     [
+      "meta",
+      {
+       "__map": [
+        [
+         "a",
+         "1"
+        ]
+       ]
+      }
+     ],
+     [
+      "after",
+      "z"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "block-empty-between-keys",
+   "input": "a:\n\n\nb:\n  - x\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      {
+       "__map": []
+      }
+     ],
+     [
+      "b",
+      [
+       "x"
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "tabs",
+   "input": "x:\n\t- a\n\t- b\n",
+   "output": {
+    "__map": [
+     [
+      "x",
+      [
+       "a",
+       "b"
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "crlf-input",
+   "input": "a: 1\r\nb:\r\n  - x\r\n  - y\r\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "1"
+     ],
+     [
+      "b",
+      [
+       "x",
+       "y"
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "cr-only-input",
+   "input": "a: 1\rb: 2\r",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "1"
+     ],
+     [
+      "b",
+      "2"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "unicode-line-separator",
+   "input": "a: one b: two\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "one"
+     ],
+     [
+      "b",
+      "two"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "form-feed-separator",
+   "input": "a: one\fb: two\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "one"
+     ],
+     [
+      "b",
+      "two"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "key-forms",
+   "input": "stale-after: x\nunder_score: y\nCamel: z\n9digit: no\nKey With Spaces: no\n-lead: no\n",
+   "output": {
+    "__map": [
+     [
+      "stale-after",
+      "x"
+     ],
+     [
+      "under_score",
+      "y"
+     ],
+     [
+      "Camel",
+      "z"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "unicode-keys-and-values",
+   "input": "título: café\nclaveñ: ü\néclair: no\n",
+   "output": {
+    "__map": [
+     [
+      "título",
+      "café"
+     ],
+     [
+      "claveñ",
+      "ü"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "key-without-space",
+   "input": "a:b\nhttp://x.y\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "b"
+     ],
+     [
+      "http",
+      "//x.y"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "trailing-spaces",
+   "input": "a:    value   \nb:\t tab\t\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "value"
+     ],
+     [
+      "b",
+      "tab"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "top-level-list",
+   "input": "- a\n- b\n",
+   "output": {
+    "__map": []
+   }
+  },
+  {
+   "name": "duplicate-keys",
+   "input": "a: 1\na: 2\nb: 3\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "2"
+     ],
+     [
+      "b",
+      "3"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "indented-top-level-key",
+   "input": "  a: 1\nb: 2\n",
+   "output": {
+    "__map": [
+     [
+      "b",
+      "2"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "nbsp-and-bom-whitespace",
+   "input": "a: value \nb:﻿x\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "value"
+     ],
+     [
+      "b",
+      "﻿x"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "value-with-brackets-not-list",
+   "input": "a: [x\nb: y]\nc: {x\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "[x"
+     ],
+     [
+      "b",
+      "y]"
+     ],
+     [
+      "c",
+      "{x"
+     ]
+    ]
+   }
+  },
+  {
+   "name": "quote-mismatch",
+   "input": "a: \"open\nb: 'mixed\"\n",
+   "output": {
+    "__map": [
+     [
+      "a",
+      "\"open"
+     ],
+     [
+      "b",
+      "'mixed\""
+     ]
+    ]
+   }
+  },
+  {
+   "name": "nested-list-in-item-unsupported",
+   "input": "m:\n  - code: src/**\n    docs:\n      - docs/a.md\n      - docs/b.md\n",
+   "output": {
+    "__map": [
+     [
+      "m",
+      [
+       {
+        "__map": [
+         [
+          "code",
+          "src/**"
+         ],
+         [
+          "docs",
+          null
+         ]
+        ]
+       },
+       "docs/a.md",
+       "docs/b.md"
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "name": "long-realistic-frontmatter",
+   "input": "type: Flow\ntitle: Order fulfillment\ndescription: How an order moves.\ndiataxis: explanation\nstatus: stable\nstale_after: 2026-02-01T00:00:00Z\nsources:\n  - id: service\n    resource: src/Orders/OrderService.cs\n  - id: area\n    resource: src/Orders/**\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: claude/1.0, at: 2026-01-10T10:00:00Z }\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n",
+   "output": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Order fulfillment"
+     ],
+     [
+      "description",
+      "How an order moves."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "stale_after",
+      "2026-02-01T00:00:00Z"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "service"
+         ],
+         [
+          "resource",
+          "src/Orders/OrderService.cs"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "id",
+          "area"
+         ],
+         [
+          "resource",
+          "src/Orders/**"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "claude/1.0"
+         ],
+         [
+          "at",
+          "2026-01-10T10:00:00Z"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   }
+  }
+ ],
+ "splitFrontmatter": [
+  {
+   "input": "",
+   "output": [
+    null,
+    "",
+    1
+   ]
+  },
+  {
+   "input": "no frontmatter\n",
+   "output": [
+    null,
+    "no frontmatter\n",
+    1
+   ]
+  },
+  {
+   "input": "---\na: 1\n---\nbody\n",
+   "output": [
+    "a: 1",
+    "body\n",
+    3
+   ]
+  },
+  {
+   "input": "---\na: 1\n---",
+   "output": [
+    "a: 1",
+    "",
+    3
+   ]
+  },
+  {
+   "input": "---\na: 1\n---\n\nbody\n",
+   "output": [
+    "a: 1",
+    "\nbody\n",
+    3
+   ]
+  },
+  {
+   "input": "---\n---\nbody\n",
+   "output": [
+    null,
+    "---\n---\nbody\n",
+    1
+   ]
+  },
+  {
+   "input": "---\n\n---\nbody\n",
+   "output": [
+    "",
+    "body\n",
+    3
+   ]
+  },
+  {
+   "input": "---  \na: 1\n---  \nbody",
+   "output": [
+    "a: 1",
+    "body",
+    3
+   ]
+  },
+  {
+   "input": "---\r\na: 1\r\n---\r\nbody\r\n",
+   "output": [
+    null,
+    "---\r\na: 1\r\n---\r\nbody\r\n",
+    1
+   ]
+  },
+  {
+   "input": "--- \na: 1\n--- trailing\nbody\n",
+   "output": [
+    "a: 1",
+    "trailing\nbody\n",
+    3
+   ]
+  },
+  {
+   "input": "---\na: 1\nb: 2\nc: 3\n---\nline1\nline2\n",
+   "output": [
+    "a: 1\nb: 2\nc: 3",
+    "line1\nline2\n",
+    5
+   ]
+  },
+  {
+   "input": "text\n---\na: 1\n---\n",
+   "output": [
+    null,
+    "text\n---\na: 1\n---\n",
+    1
+   ]
+  },
+  {
+   "input": "---\na: 1\n----\nbody\n---\n",
+   "output": [
+    "a: 1",
+    "-\nbody\n---\n",
+    3
+   ]
+  },
+  {
+   "input": "﻿---\na: 1\n---\nbody\n",
+   "output": [
+    null,
+    "﻿---\na: 1\n---\nbody\n",
+    1
+   ]
+  }
+ ],
+ "readDoc": [
+  {
+   "name": "fixture/repo-clean/docs/decisions/0001-use-queue.md",
+   "inputBase64": "LS0tCnR5cGU6IERlY2lzaW9uCmRhdGU6IDIwMjYtMDEtMTAKdGl0bGU6ICIwMDAxOiB1c2UgYSBxdWV1ZSIKZGVzY3JpcHRpb246IE9yZGVycyBnbyB0aHJvdWdoIGEgcXVldWUuCmRpYXRheGlzOiBleHBsYW5hdGlvbgpzdGF0dXM6IHN0YWJsZQpzb3VyY2VzOgogIC0gaWQ6IGV2aWRlbmNlCiAgICByZXNvdXJjZTogc3JjL09yZGVycy9PcmRlclNlcnZpY2UuY3MKZ2VuZXJhdGVkOiB7IGJ5OiBjbGF1ZGUvMS4wLCBhdDogMjAyNi0wMS0xMFQxMDowMDowMFogfQp2ZXJpZmllZDoKICAtIHsgYnk6IGh1bWFuOnBhdCwgYXQ6IDIwOTktMDEtMDFUMDA6MDA6MDBaIH0KLS0tCiMgMDAwMTogdXNlIGEgcXVldWUKClRoZSB0ZWFtIGNob3NlIGEgcXVldWUuIFRoZSBxdWV1ZSBob2xkcyB0aGUgb3JkZXIgdW50aWwgdGhlIHdvcmtlciBpcyByZWFkeS4K",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Decision"
+     ],
+     [
+      "date",
+      "2026-01-10"
+     ],
+     [
+      "title",
+      "0001: use a queue"
+     ],
+     [
+      "description",
+      "Orders go through a queue."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "evidence"
+         ],
+         [
+          "resource",
+          "src/Orders/OrderService.cs"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# 0001: use a queue\n\nThe team chose a queue. The queue holds the order until the worker is ready.\n",
+   "start": 14,
+   "text": "---\ntype: Decision\ndate: 2026-01-10\ntitle: \"0001: use a queue\"\ndescription: Orders go through a queue.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: evidence\n    resource: src/Orders/OrderService.cs\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# 0001: use a queue\n\nThe team chose a queue. The queue holds the order until the worker is ready.\n"
+  },
+  {
+   "name": "fixture/repo-clean/docs/decisions/index.md",
+   "inputBase64": "IyBEZWNpc2lvbnMKCiogW1VzZSBhIHF1ZXVlXSgwMDAxLXVzZS1xdWV1ZS5tZCkgLSBvcmRlcnMgZ28gdGhyb3VnaCBhIHF1ZXVlCg==",
+   "fm": {
+    "__map": []
+   },
+   "body": "# Decisions\n\n* [Use a queue](0001-use-queue.md) - orders go through a queue\n",
+   "start": 1,
+   "text": "# Decisions\n\n* [Use a queue](0001-use-queue.md) - orders go through a queue\n"
+  },
+  {
+   "name": "fixture/repo-clean/docs/flows/index.md",
+   "inputBase64": "IyBGbG93cwoKKiBbT3JkZXIgZnVsZmlsbG1lbnRdKG9yZGVyLWZ1bGZpbGxtZW50Lm1kKSAtIGZyb20gY2xpZW50IHRvIHdhcmVob3VzZQoqIFtJbmdlc3RdKGluZ2VzdC5tZCkgLSBob3cgYSBmaWxlIGVudGVycyB0aGUgc3RvcmUK",
+   "fm": {
+    "__map": []
+   },
+   "body": "# Flows\n\n* [Order fulfillment](order-fulfillment.md) - from client to warehouse\n* [Ingest](ingest.md) - how a file enters the store\n",
+   "start": 1,
+   "text": "# Flows\n\n* [Order fulfillment](order-fulfillment.md) - from client to warehouse\n* [Ingest](ingest.md) - how a file enters the store\n"
+  },
+  {
+   "name": "fixture/repo-clean/docs/flows/ingest.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IEluZ2VzdApkZXNjcmlwdGlvbjogSG93IGEgZmlsZSBlbnRlcnMgdGhlIHN0b3JlLgpkaWF0YXhpczogZXhwbGFuYXRpb24Kc3RhdHVzOiBzdGFibGUKc291cmNlczoKICAtIGlkOiBpbmdlc3QKICAgIHJlc291cmNlOiBzcmMvdG9vbHMvaW5nZXN0LnB5CmdlbmVyYXRlZDogeyBieTogY2xhdWRlLzEuMCwgYXQ6IDIwMjYtMDEtMTBUMTA6MDA6MDBaIH0KdmVyaWZpZWQ6CiAgLSB7IGJ5OiBodW1hbjpwYXQsIGF0OiAyMDk5LTAxLTAxVDAwOjAwOjAwWiB9Ci0tLQojIEluZ2VzdAoKVGhlIGZ1bmN0aW9uIGBpbmdlc3RgIHJlYWRzIGEgZmlsZS4gVGhlIGZ1bmN0aW9uIHJldHVybnMgdGhlIHBhdGggb2YgdGhlIGZpbGUuCg==",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Ingest"
+     ],
+     [
+      "description",
+      "How a file enters the store."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "ingest"
+         ],
+         [
+          "resource",
+          "src/tools/ingest.py"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Ingest\n\nThe function `ingest` reads a file. The function returns the path of the file.\n",
+   "start": 13,
+   "text": "---\ntype: Flow\ntitle: Ingest\ndescription: How a file enters the store.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: ingest\n    resource: src/tools/ingest.py\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Ingest\n\nThe function `ingest` reads a file. The function returns the path of the file.\n"
+  },
+  {
+   "name": "fixture/repo-clean/docs/flows/order-fulfillment.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IE9yZGVyIGZ1bGZpbGxtZW50CmRlc2NyaXB0aW9uOiBIb3cgYW4gb3JkZXIgbW92ZXMgZnJvbSB0aGUgY2xpZW50IHRvIHRoZSB3YXJlaG91c2UuCmRpYXRheGlzOiBleHBsYW5hdGlvbgpzdGF0dXM6IHN0YWJsZQpzb3VyY2VzOgogIC0gaWQ6IHNlcnZpY2UKICAgIHJlc291cmNlOiBzcmMvT3JkZXJzL09yZGVyU2VydmljZS5jcwpnZW5lcmF0ZWQ6IHsgYnk6IGNsYXVkZS8xLjAsIGF0OiAyMDI2LTAxLTEwVDEwOjAwOjAwWiB9CnZlcmlmaWVkOgogIC0geyBieTogaHVtYW46cGF0LCBhdDogMjA5OS0wMS0wMVQwMDowMDowMFogfQotLS0KIyBPcmRlciBmdWxmaWxsbWVudAoKVGhlIGNsaWVudCBjYWxscyBgU2VuZGAgb24gYE9yZGVyU2VydmljZWAuIFRoZSBzZXJ2aWNlIHNlbmRzIHRoZSBvcmRlciB0byB0aGUgcXVldWUuIFRoZSB3b3JrZXIgcmVhZHMgdGhlIHF1ZXVlLiBUaGUgd29ya2VyIHNlbmRzIHRoZSBvcmRlciB0byB0aGUgd2FyZWhvdXNlLgo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Order fulfillment"
+     ],
+     [
+      "description",
+      "How an order moves from the client to the warehouse."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "service"
+         ],
+         [
+          "resource",
+          "src/Orders/OrderService.cs"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Order fulfillment\n\nThe client calls `Send` on `OrderService`. The service sends the order to the queue. The worker reads the queue. The worker sends the order to the warehouse.\n",
+   "start": 13,
+   "text": "---\ntype: Flow\ntitle: Order fulfillment\ndescription: How an order moves from the client to the warehouse.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: service\n    resource: src/Orders/OrderService.cs\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Order fulfillment\n\nThe client calls `Send` on `OrderService`. The service sends the order to the queue. The worker reads the queue. The worker sends the order to the warehouse.\n"
+  },
+  {
+   "name": "fixture/repo-clean/docs/index.md",
+   "inputBase64": "LS0tCm9rZl92ZXJzaW9uOiAiMC4yIgotLS0KIyBEb2N1bWVudGF0aW9uIGluZGV4CgojIyBDb3JlCgoqIFtPdmVydmlld10ob3ZlcnZpZXcubWQpIC0gd2hhdCB0aGUgc3lzdGVtIGRvZXMKCiMjIEZsb3dzCgoqIFtGbG93c10oZmxvd3MvKSAtIGVuZC10by1lbmQgcGF0aHMgdGhyb3VnaCB0aGUgc3lzdGVtCgojIyBEZWNpc2lvbnMKCiogW0RlY2lzaW9uc10oZGVjaXNpb25zLykgLSBjaG9pY2VzIGFuZCB0aGVpciByZWFzb25zCg==",
+   "fm": {
+    "__map": [
+     [
+      "okf_version",
+      "0.2"
+     ]
+    ]
+   },
+   "body": "# Documentation index\n\n## Core\n\n* [Overview](overview.md) - what the system does\n\n## Flows\n\n* [Flows](flows/) - end-to-end paths through the system\n\n## Decisions\n\n* [Decisions](decisions/) - choices and their reasons\n",
+   "start": 3,
+   "text": "---\nokf_version: \"0.2\"\n---\n# Documentation index\n\n## Core\n\n* [Overview](overview.md) - what the system does\n\n## Flows\n\n* [Flows](flows/) - end-to-end paths through the system\n\n## Decisions\n\n* [Decisions](decisions/) - choices and their reasons\n"
+  },
+  {
+   "name": "fixture/repo-clean/docs/log.md",
+   "inputBase64": "IyBMb2cKCiMjIDIwMjYtMDEtMTAKCioqSW5pdGlhbGl6YXRpb24qKjogdGhlIGJ1bmRsZSB3YXMgY3JlYXRlZC4K",
+   "fm": {
+    "__map": []
+   },
+   "body": "# Log\n\n## 2026-01-10\n\n**Initialization**: the bundle was created.\n",
+   "start": 1,
+   "text": "# Log\n\n## 2026-01-10\n\n**Initialization**: the bundle was created.\n"
+  },
+  {
+   "name": "fixture/repo-clean/docs/overview.md",
+   "inputBase64": "LS0tCnR5cGU6IE92ZXJ2aWV3CnRpdGxlOiBPcmRlcnMgc3lzdGVtIG92ZXJ2aWV3CmRlc2NyaXB0aW9uOiBXaGF0IHRoZSBvcmRlcnMgc3lzdGVtIGRvZXMuCmRpYXRheGlzOiBleHBsYW5hdGlvbgpzdGF0dXM6IHN0YWJsZQpzb3VyY2VzOgogIC0gaWQ6IG9yZGVycwogICAgcmVzb3VyY2U6IHNyYy9PcmRlcnMvKioKZ2VuZXJhdGVkOiB7IGJ5OiBjbGF1ZGUvMS4wLCBhdDogMjAyNi0wMS0xMFQxMDowMDowMFogfQp2ZXJpZmllZDoKICAtIHsgYnk6IGh1bWFuOnBhdCwgYXQ6IDIwOTktMDEtMDFUMDA6MDA6MDBaIH0KLS0tCiMgT3ZlcnZpZXcKClRoZSBzeXN0ZW0gYWNjZXB0cyBvcmRlcnMgZnJvbSBjdXN0b21lcnMuIFRoZSBzZXJ2aWNlIGNoZWNrcyBlYWNoIG9yZGVyLiBUaGUgc2VydmljZSBzZW5kcyB0aGUgb3JkZXIgdG8gdGhlIHF1ZXVlLgo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Overview"
+     ],
+     [
+      "title",
+      "Orders system overview"
+     ],
+     [
+      "description",
+      "What the orders system does."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "orders"
+         ],
+         [
+          "resource",
+          "src/Orders/**"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Overview\n\nThe system accepts orders from customers. The service checks each order. The service sends the order to the queue.\n",
+   "start": 13,
+   "text": "---\ntype: Overview\ntitle: Orders system overview\ndescription: What the orders system does.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: orders\n    resource: src/Orders/**\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Overview\n\nThe system accepts orders from customers. The service checks each order. The service sends the order to the queue.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/architecture.md",
+   "inputBase64": "LS0tCnR5cGU6IEFyY2hpdGVjdHVyZQp0aXRsZTogQXJjaGl0ZWN0dXJlCmRlc2NyaXB0aW9uOiBUaGUgY29udGFpbmVyIHZpZXcgb2YgdGhlIG9yZGVycyBzeXN0ZW0uCmRpYXRheGlzOiBleHBsYW5hdGlvbgpzdGF0dXM6IGRyYWZ0CnNvdXJjZXM6CiAgLSBpZDogb3JkZXJzCiAgICByZXNvdXJjZTogc3JjL09yZGVycy8qKgogIC0gaWQ6IHNwZWMKICAgIHJlc291cmNlOiBodHRwczovL2V4YW1wbGUuY29tL3NwZWMKZ2VuZXJhdGVkOiB7IGJ5OiBjbGF1ZGUvMS4wLCBhdDogMjAyNi0wMS0xMFQxMDowMDowMFogfQp2ZXJpZmllZDoKICAtIHsgYnk6IGNsYXVkZS8xLjAsIGF0OiAyMDI2LTAxLTEwVDEwOjAwOjAwWiB9Ci0tLQojIEFyY2hpdGVjdHVyZQoKVGhlIEFQSSBzZW5kcyBlYWNoIG9yZGVyIHRvIHRoZSBxdWV1ZS4gVGhlIHdvcmtlciByZWFkcyB0aGUgcXVldWUuCgpgYGBtZXJtYWlkCmZsb3djaGFydCBMUgogIEFwaSAtLT4gUXVldWUgLS0+IFdvcmtlcgpgYGAK",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Architecture"
+     ],
+     [
+      "title",
+      "Architecture"
+     ],
+     [
+      "description",
+      "The container view of the orders system."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "draft"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "orders"
+         ],
+         [
+          "resource",
+          "src/Orders/**"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "id",
+          "spec"
+         ],
+         [
+          "resource",
+          "https://example.com/spec"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "claude/1.0"
+         ],
+         [
+          "at",
+          "2026-01-10T10:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Architecture\n\nThe API sends each order to the queue. The worker reads the queue.\n\n```mermaid\nflowchart LR\n  Api --> Queue --> Worker\n```\n",
+   "start": 15,
+   "text": "---\ntype: Architecture\ntitle: Architecture\ndescription: The container view of the orders system.\ndiataxis: explanation\nstatus: draft\nsources:\n  - id: orders\n    resource: src/Orders/**\n  - id: spec\n    resource: https://example.com/spec\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: claude/1.0, at: 2026-01-10T10:00:00Z }\n---\n# Architecture\n\nThe API sends each order to the queue. The worker reads the queue.\n\n```mermaid\nflowchart LR\n  Api --> Queue --> Worker\n```\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/decisions/0001-use-queue.md",
+   "inputBase64": "LS0tCnR5cGU6IERlY2lzaW9uCnRpdGxlOiAiMDAwMTogdXNlIGEgcXVldWUiCmRlc2NyaXB0aW9uOiBPcmRlcnMgZ28gdGhyb3VnaCBhIHF1ZXVlLgpkaWF0YXhpczogZXhwbGFuYXRpb24Kc3RhdHVzOiBzdGFibGUKc291cmNlczoKICAtIGlkOiBldmlkZW5jZQogICAgcmVzb3VyY2U6IHNyYy9PcmRlcnMvT3JkZXJTZXJ2aWNlLmNzCmdlbmVyYXRlZDogeyBieTogY2xhdWRlLzEuMCwgYXQ6IDIwMjYtMDEtMTBUMTA6MDA6MDBaIH0KdmVyaWZpZWQ6CiAgLSB7IGJ5OiBodW1hbjpwYXQsIGF0OiAyMDk5LTAxLTAxVDAwOjAwOjAwWiB9Ci0tLQojIDAwMDE6IHVzZSBhIHF1ZXVlCgpUaGUgdGVhbSBjaG9zZSBhIHF1ZXVlLiBBIHF1ZXVlIGhvbGRzIHRoZSBvcmRlciB1bnRpbCB0aGUgd29ya2VyIGlzIHJlYWR5Lgo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Decision"
+     ],
+     [
+      "title",
+      "0001: use a queue"
+     ],
+     [
+      "description",
+      "Orders go through a queue."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "evidence"
+         ],
+         [
+          "resource",
+          "src/Orders/OrderService.cs"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# 0001: use a queue\n\nThe team chose a queue. A queue holds the order until the worker is ready.\n",
+   "start": 13,
+   "text": "---\ntype: Decision\ntitle: \"0001: use a queue\"\ndescription: Orders go through a queue.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: evidence\n    resource: src/Orders/OrderService.cs\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# 0001: use a queue\n\nThe team chose a queue. A queue holds the order until the worker is ready.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/decisions/0002-use-json.md",
+   "inputBase64": "LS0tCnR5cGU6IERlY2lzaW9uCmRhdGU6IDIwMjYtMDEtMTIKdGl0bGU6ICIwMDAyOiB1c2UgSlNPTiIKZGVzY3JpcHRpb246IERhdGEgZmlsZXMgYXJlIEpTT04uCmRpYXRheGlzOiBleHBsYW5hdGlvbgpzdGF0dXM6IHN0YWJsZQpzb3VyY2VzOgogIC0gaWQ6IGV2aWRlbmNlCiAgICByZXNvdXJjZTogc3JjL3dlYi9jbGllbnQudHMKZ2VuZXJhdGVkOiB7IGJ5OiBjbGF1ZGUvMS4wLCBhdDogMjAyNi0wMS0xMlQxMDowMDowMFogfQp2ZXJpZmllZDoKICAtIHsgYnk6IGh1bWFuOnBhdCwgYXQ6IDIwOTktMDEtMDFUMDA6MDA6MDBaIH0KLS0tCiMgMDAwMjogdXNlIEpTT04KClRoZSB0ZWFtIGNob3NlIEpTT04gZm9yIHRoZSBkYXRhIGZpbGVzLgo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Decision"
+     ],
+     [
+      "date",
+      "2026-01-12"
+     ],
+     [
+      "title",
+      "0002: use JSON"
+     ],
+     [
+      "description",
+      "Data files are JSON."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "evidence"
+         ],
+         [
+          "resource",
+          "src/web/client.ts"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-12T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# 0002: use JSON\n\nThe team chose JSON for the data files.\n",
+   "start": 14,
+   "text": "---\ntype: Decision\ndate: 2026-01-12\ntitle: \"0002: use JSON\"\ndescription: Data files are JSON.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: evidence\n    resource: src/web/client.ts\ngenerated: { by: claude/1.0, at: 2026-01-12T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# 0002: use JSON\n\nThe team chose JSON for the data files.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/decisions/index.md",
+   "inputBase64": "IyBEZWNpc2lvbnMKCiogW1VzZSBKU09OXSgwMDAyLXVzZS1qc29uLm1kKSAtIGRhdGEgZmlsZXMgYXJlIEpTT04K",
+   "fm": {
+    "__map": []
+   },
+   "body": "# Decisions\n\n* [Use JSON](0002-use-json.md) - data files are JSON\n",
+   "start": 1,
+   "text": "# Decisions\n\n* [Use JSON](0002-use-json.md) - data files are JSON\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/empty-frontmatter.md",
+   "inputBase64": "LS0tCi0tLQojIEVtcHR5IGZyb250bWF0dGVyCgpUaGUgYmxvY2sgYWJvdmUgaGFzIG5vIGtleXMuCg==",
+   "fm": {
+    "__map": []
+   },
+   "body": "---\n---\n# Empty frontmatter\n\nThe block above has no keys.\n",
+   "start": 1,
+   "text": "---\n---\n# Empty frontmatter\n\nThe block above has no keys.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/generated-scalar.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IEdlbmVyYXRlZCBzY2FsYXIKZGVzY3JpcHRpb246IFRoZSBnZW5lcmF0ZWQga2V5IGlzIGEgcGxhaW4gZGF0ZSBpbnN0ZWFkIG9mIGEgbWFwcGluZy4KZGlhdGF4aXM6IGV4cGxhbmF0aW9uCnN0YXR1czogc3RhYmxlCnNvdXJjZXM6CiAgLSBpZDogb3JkZXJzCiAgICByZXNvdXJjZTogc3JjL09yZGVycy8qKgpnZW5lcmF0ZWQ6IDIwMjYtMDEtMDEKdmVyaWZpZWQ6CiAgLSB7IGJ5OiBodW1hbjpwYXQsIGF0OiAyMDk5LTAxLTAxVDAwOjAwOjAwWiB9Ci0tLQojIEdlbmVyYXRlZCBzY2FsYXIKClRoZSBrZXkgYWJvdmUgaXMgYSBzY2FsYXIuCg==",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Generated scalar"
+     ],
+     [
+      "description",
+      "The generated key is a plain date instead of a mapping."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "orders"
+         ],
+         [
+          "resource",
+          "src/Orders/**"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      "2026-01-01"
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Generated scalar\n\nThe key above is a scalar.\n",
+   "start": 13,
+   "text": "---\ntype: Flow\ntitle: Generated scalar\ndescription: The generated key is a plain date instead of a mapping.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: orders\n    resource: src/Orders/**\ngenerated: 2026-01-01\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Generated scalar\n\nThe key above is a scalar.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/index.md",
+   "inputBase64": "IyBGbG93cwoKKiBbT3JkZXIgZnVsZmlsbG1lbnRdKG9yZGVyLWZ1bGZpbGxtZW50Lm1kKSAtIGZyb20gY2xpZW50IHRvIHdhcmVob3VzZQoqIFtSYW5raW5nXShyYW5raW5nLm1kKSAtIGhvdyB0aGUgZ3JhcGggaXMgcmFua2VkCg==",
+   "fm": {
+    "__map": []
+   },
+   "body": "# Flows\n\n* [Order fulfillment](order-fulfillment.md) - from client to warehouse\n* [Ranking](ranking.md) - how the graph is ranked\n",
+   "start": 1,
+   "text": "# Flows\n\n* [Order fulfillment](order-fulfillment.md) - from client to warehouse\n* [Ranking](ranking.md) - how the graph is ranked\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/ingest.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IEluZ2VzdApkZXNjcmlwdGlvbjogSG93IGEgZmlsZSBlbnRlcnMgdGhlIHN0b3JlLgpkaWF0YXhpczogaG93LXRvCnN0YXR1czogc3RhYmxlCnNvdXJjZXM6CiAgLSBpZDogYQogICAgcmVzb3VyY2U6IHNyYy9taXNzaW5nLyoqCiAgLSBpZDogYgpnZW5lcmF0ZWQ6IHsgYnk6IG5vdCBhbiBhY3RvciwgYXQ6IHllc3RlcmRheSB9CnZlcmlmaWVkOgogIC0geyBieTogbm9ib2R5LCBhdDogMjAyNi0wMS0xMFQxMDowMDowMFogfQotLS0KIyBJbmdlc3QKClRoZSBmdW5jdGlvbiBgaW5nZXN0YCByZWFkcyBhIGZpbGUuIFNlZSB0aGUgW2Jyb2tlbiBsaW5rXShub3BlLm1kKSBhbmQgdGhlIFt0aWNrZXRdKC4uL3RpY2tldHMvc2NyYXRjaC5tZCkuCg==",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Ingest"
+     ],
+     [
+      "description",
+      "How a file enters the store."
+     ],
+     [
+      "diataxis",
+      "how-to"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "a"
+         ],
+         [
+          "resource",
+          "src/missing/**"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "id",
+          "b"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "not an actor"
+        ],
+        [
+         "at",
+         "yesterday"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "nobody"
+         ],
+         [
+          "at",
+          "2026-01-10T10:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Ingest\n\nThe function `ingest` reads a file. See the [broken link](nope.md) and the [ticket](../tickets/scratch.md).\n",
+   "start": 14,
+   "text": "---\ntype: Flow\ntitle: Ingest\ndescription: How a file enters the store.\ndiataxis: how-to\nstatus: stable\nsources:\n  - id: a\n    resource: src/missing/**\n  - id: b\ngenerated: { by: not an actor, at: yesterday }\nverified:\n  - { by: nobody, at: 2026-01-10T10:00:00Z }\n---\n# Ingest\n\nThe function `ingest` reads a file. See the [broken link](nope.md) and the [ticket](../tickets/scratch.md).\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/no-frontmatter.md",
+   "inputBase64": "IyBObyBmcm9udG1hdHRlcgoKVGhpcyBwYWdlIGhhcyBubyBmcm9udG1hdHRlciBibG9jay4K",
+   "fm": {
+    "__map": []
+   },
+   "body": "# No frontmatter\n\nThis page has no frontmatter block.\n",
+   "start": 1,
+   "text": "# No frontmatter\n\nThis page has no frontmatter block.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/order-fulfillment.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IE9yZGVyIGZ1bGZpbGxtZW50CmRlc2NyaXB0aW9uOiBIb3cgYW4gb3JkZXIgbW92ZXMgZnJvbSB0aGUgY2xpZW50IHRvIHRoZSB3YXJlaG91c2UuCmRpYXRheGlzOiBleHBsYW5hdGlvbgpzdGF0dXM6IHN0YWJsZQpzb3VyY2VzOgogIC0gaWQ6IHNlcnZpY2UKICAgIHJlc291cmNlOiBzcmMvT3JkZXJzL09yZGVyU2VydmljZS5jcwogIC0gaWQ6IGFyZWEKICAgIHJlc291cmNlOiBzcmMvT3JkZXJzLyoqCmdlbmVyYXRlZDogeyBieTogY2xhdWRlLzEuMCwgYXQ6IDIwMjYtMDEtMTBUMTA6MDA6MDBaIH0KdmVyaWZpZWQ6CiAgLSB7IGJ5OiBodW1hbjpwYXQsIGF0OiAyMDk5LTAxLTAxVDAwOjAwOjAwWiB9Ci0tLQojIE9yZGVyIGZ1bGZpbGxtZW50CgpUaGlzIGZsb3cgbW92ZXMgYW4gb3JkZXIgZnJvbSB0aGUgY2xpZW50IHRvIHRoZSB3YXJlaG91c2UuIFRoZSBjbGllbnQgY2FsbHMgYFN1Ym1pdEFzeW5jYCBvbiBgT3JkZXJTZXJ2aWNlYC4gVGhlIHNlcnZpY2UgdmFsaWRhdGVzIHRoZSBvcmRlci4gVGhlIHNlcnZpY2UgcmVzZXJ2ZXMgc3RvY2suIFRoZSBxdWV1ZSBzZW5kcyB0aGUgb3JkZXIgdG8gdGhlIHdhcmVob3VzZS4KCiMjIEtleSBiZWhhdmlvcgoKVGhlIG9yZGVyIGlzIHN1Ym1pdHRlZCBieSB0aGUgY2xpZW50IGFuZCB0aGUgc2VydmljZSB3aWxsIGhhdmUgYmVlbiBydW5uaW5nIGZvciBzZXZlcmFsIGhvdXJzIGJlZm9yZSB0aGUgZmlyc3QgbWVzc2FnZSBpcyBzZW50IHRvIHRoZSB3YXJlaG91c2UgcXVldWUgd29ya2VyLgoKU3VibWl0dGluZyB0aGUgb3JkZXIgc3RhcnRzIHRoZSBmbG93LiBUaGlzIGlzIHNsb3cuIFRoZSBvcmRlciBmdWxmaWxsbWVudCBxdWV1ZSB3b3JrZXIgdGltZW91dCB2YWx1ZSBpcyAzMCBzZWNvbmRzLgoKPCEtLSBzdGUtb2s6IDguMSB0aGUgc2VtaWNvbG9uIGlzIHBhcnQgb2YgYW4gZXhhbXBsZSAtLT4KVGhlIHNlcnZpY2UgZG9lcyBub3QgcmV0cnk7IHRoZSBjbGllbnQgbXVzdCByZXNlbmQgdGhlIG9yZGVyLgoKVGhlIHN5c3RlbSwgd2hpY2ggaXMgdXRpbGl6ZWQgYnkgdGhlIHdlYiBjbGllbnQsIGNhbiBiZSBsZXZlcmFnZWQgcHJpb3IgdG8gY2hlY2tvdXQ7IGl0IGRvZXNuJ3QgcmV0cnkgZmFpbGVkIHJlcXVlc3RzLCBpLmUuIHRoZSBjbGllbnQgbXVzdCByZXNlbmQgdGhlbSwgZXRjLgoKU2V0IHVwIHRoZSBxdWV1ZSBhbmQgdHVybiBvbiB0aGUgd29ya2VyLgoKVGhlIGNvbnN1bWVyIHJlYWRzIHRoZSBjaGVja3BvaW50IGxvZy4gVGhlIHBhY2tldCBob2xkcyB0aGUgb3JkZXIuCgpUaGUgY29kZSBpcyBpbiBgc3JjL09yZGVycy9PcmRlclNlcnZpY2UuY3M6MTJgIChgU3VibWl0QXN5bmNgKSBhbmQgaW4gdGhlIGZpbGUgYXQgc3JjL09yZGVycy9PcmRlclZhbGlkYXRvci5jcy4KClRoZSBzZXJ2aWNlIGNoZWNrcyB0aGUgb3JkZXIuIFRoZSBzZXJ2aWNlIHJlc2VydmVzIHRoZSBzdG9jay4gVGhlIHNlcnZpY2Ugd3JpdGVzIHRoZSByZWNvcmQuIFRoZSBzZXJ2aWNlIHNlbmRzIHRoZSBtZXNzYWdlLiBUaGUgcXVldWUgaG9sZHMgdGhlIG1lc3NhZ2UuIFRoZSB3b3JrZXIgcmVhZHMgdGhlIG1lc3NhZ2UuIFRoZSB3b3JrZXIgc2hpcHMgdGhlIG9yZGVyLgoKYGBgbWVybWFpZApzZXF1ZW5jZURpYWdyYW0KICBDbGllbnQtPj5TZXJ2aWNlOiBTdWJtaXRBc3luYwpgYGAKCnwgU3RlcCB8IFJlc3VsdCB8CnwgLS0tIHwgLS0tIHwKfCBWYWxpZGF0ZSB8IFRoZSBvcmRlciBpcyBjaGVja2VkLiB8CnwgUmVzZXJ2ZSB8IFRoZSBzdG9jayBpcyBoZWxkIGZvciB0aGUgb3JkZXIuIHwK",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Order fulfillment"
+     ],
+     [
+      "description",
+      "How an order moves from the client to the warehouse."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "service"
+         ],
+         [
+          "resource",
+          "src/Orders/OrderService.cs"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "id",
+          "area"
+         ],
+         [
+          "resource",
+          "src/Orders/**"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Order fulfillment\n\nThis flow moves an order from the client to the warehouse. The client calls `SubmitAsync` on `OrderService`. The service validates the order. The service reserves stock. The queue sends the order to the warehouse.\n\n## Key behavior\n\nThe order is submitted by the client and the service will have been running for several hours before the first message is sent to the warehouse queue worker.\n\nSubmitting the order starts the flow. This is slow. The order fulfillment queue worker timeout value is 30 seconds.\n\n<!-- ste-ok: 8.1 the semicolon is part of an example -->\nThe service does not retry; the client must resend the order.\n\nThe system, which is utilized by the web client, can be leveraged prior to checkout; it doesn't retry failed requests, i.e. the client must resend them, etc.\n\nSet up the queue and turn on the worker.\n\nThe consumer reads the checkpoint log. The packet holds the order.\n\nThe code is in `src/Orders/OrderService.cs:12` (`SubmitAsync`) and in the file at src/Orders/OrderValidator.cs.\n\nThe service checks the order. The service reserves the stock. The service writes the record. The service sends the message. The queue holds the message. The worker reads the message. The worker ships the order.\n\n```mermaid\nsequenceDiagram\n  Client->>Service: SubmitAsync\n```\n\n| Step | Result |\n| --- | --- |\n| Validate | The order is checked. |\n| Reserve | The stock is held for the order. |\n",
+   "start": 15,
+   "text": "---\ntype: Flow\ntitle: Order fulfillment\ndescription: How an order moves from the client to the warehouse.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: service\n    resource: src/Orders/OrderService.cs\n  - id: area\n    resource: src/Orders/**\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Order fulfillment\n\nThis flow moves an order from the client to the warehouse. The client calls `SubmitAsync` on `OrderService`. The service validates the order. The service reserves stock. The queue sends the order to the warehouse.\n\n## Key behavior\n\nThe order is submitted by the client and the service will have been running for several hours before the first message is sent to the warehouse queue worker.\n\nSubmitting the order starts the flow. This is slow. The order fulfillment queue worker timeout value is 30 seconds.\n\n<!-- ste-ok: 8.1 the semicolon is part of an example -->\nThe service does not retry; the client must resend the order.\n\nThe system, which is utilized by the web client, can be leveraged prior to checkout; it doesn't retry failed requests, i.e. the client must resend them, etc.\n\nSet up the queue and turn on the worker.\n\nThe consumer reads the checkpoint log. The packet holds the order.\n\nThe code is in `src/Orders/OrderService.cs:12` (`SubmitAsync`) and in the file at src/Orders/OrderValidator.cs.\n\nThe service checks the order. The service reserves the stock. The service writes the record. The service sends the message. The queue holds the message. The worker reads the message. The worker ships the order.\n\n```mermaid\nsequenceDiagram\n  Client->>Service: SubmitAsync\n```\n\n| Step | Result |\n| --- | --- |\n| Validate | The order is checked. |\n| Reserve | The stock is held for the order. |\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/orphan-flow.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IE9ycGhhbiBmbG93CmRlc2NyaXB0aW9uOiBBIGZsb3cgdGhhdCBubyBwYWdlIGxpbmtzIHRvLgpkaWF0YXhpczogZXhwbGFuYXRpb24Kc3RhdHVzOiBzdGFibGUKc291cmNlczoKICAtIGlkOiB3ZWIKICAgIHJlc291cmNlOiBzcmMvd2ViL2NsaWVudC50cwpnZW5lcmF0ZWQ6IHsgYnk6IGNsYXVkZS8xLjAsIGF0OiAyMDI2LTAxLTEwVDEwOjAwOjAwWiB9CnZlcmlmaWVkOgogIC0geyBieTogaHVtYW46cGF0LCBhdDogMjA5OS0wMS0wMVQwMDowMDowMFogfQotLS0KIyBPcnBoYW4gZmxvdwoKVGhlIGNsaWVudCBjYWxscyB0aGUgQVBJLgo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Orphan flow"
+     ],
+     [
+      "description",
+      "A flow that no page links to."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "web"
+         ],
+         [
+          "resource",
+          "src/web/client.ts"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Orphan flow\n\nThe client calls the API.\n",
+   "start": 13,
+   "text": "---\ntype: Flow\ntitle: Orphan flow\ndescription: A flow that no page links to.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: web\n    resource: src/web/client.ts\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Orphan flow\n\nThe client calls the API.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/ranking.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IFJhbmtpbmcKZGlhdGF4aXM6IGd1aWRlCnN0YXR1czogZmluaXNoZWQKc291cmNlczoKICAtIGlkOiByYW5rCiAgICByZXNvdXJjZTogc3JjL2VuZ2luZS9yYW5rLmNwcApnZW5lcmF0ZWQ6IHsgYnk6IGNsYXVkZS8xLjAsIGF0OiAyMDI2LTAxLTEwVDEwOjAwOjAwWiB9CnZlcmlmaWVkOgogIC0geyBieTogaHVtYW46cGF0LCBhdDogMjA5OS0wMS0wMVQwMDowMDowMFogfQotLS0KIyBSYW5raW5nCgpUaGUgZnVuY3Rpb24gYHJhbmtHcmFwaFRlbGVwb3J0YCByYW5rcyB0aGUgbm9kZXMgb2YgdGhlIGdyYXBoLiBJdCB1c2VzIGEgdGVsZXBvcnQgc3RlcC4K",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Ranking"
+     ],
+     [
+      "diataxis",
+      "guide"
+     ],
+     [
+      "status",
+      "finished"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "rank"
+         ],
+         [
+          "resource",
+          "src/engine/rank.cpp"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Ranking\n\nThe function `rankGraphTeleport` ranks the nodes of the graph. It uses a teleport step.\n",
+   "start": 12,
+   "text": "---\ntype: Flow\ntitle: Ranking\ndiataxis: guide\nstatus: finished\nsources:\n  - id: rank\n    resource: src/engine/rank.cpp\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Ranking\n\nThe function `rankGraphTeleport` ranks the nodes of the graph. It uses a teleport step.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/stale-callout-only.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IENhbGxvdXQgd2l0aG91dCBzdGFsZV9hZnRlcgpkZXNjcmlwdGlvbjogQSBwYWdlIHdpdGggYSBzdGFsZSBjYWxsb3V0IGJ1dCBubyBzdGFsZV9hZnRlciBrZXkuCmRpYXRheGlzOiBleHBsYW5hdGlvbgpzdGF0dXM6IHN0YWJsZQpzb3VyY2VzOgogIC0gaWQ6IG9yZGVycwogICAgcmVzb3VyY2U6IHNyYy9PcmRlcnMvT3JkZXJWYWxpZGF0b3IuY3MKZ2VuZXJhdGVkOiB7IGJ5OiBjbGF1ZGUvMS4wLCBhdDogMjAyNi0wMS0xMFQxMDowMDowMFogfQotLS0KIyBDYWxsb3V0IHdpdGhvdXQgc3RhbGVfYWZ0ZXIKCj4gU1RBVFVTOiBTVEFMRS4gTm9ib2R5IHNldCB0aGUga2V5LgoKVGhlIHZhbGlkYXRvciBjaGVja3MgdGhlIG9yZGVyLgo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Callout without stale_after"
+     ],
+     [
+      "description",
+      "A page with a stale callout but no stale_after key."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "orders"
+         ],
+         [
+          "resource",
+          "src/Orders/OrderValidator.cs"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ]
+    ]
+   },
+   "body": "# Callout without stale_after\n\n> STATUS: STALE. Nobody set the key.\n\nThe validator checks the order.\n",
+   "start": 11,
+   "text": "---\ntype: Flow\ntitle: Callout without stale_after\ndescription: A page with a stale callout but no stale_after key.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: orders\n    resource: src/Orders/OrderValidator.cs\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\n---\n# Callout without stale_after\n\n> STATUS: STALE. Nobody set the key.\n\nThe validator checks the order.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/stale-flow.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IFN0YWxlIGZsb3cKZGVzY3JpcHRpb246IEEgZmxvdyBtYXJrZWQgc3RhbGUgd2l0aCBib3RoIG1hcmtlcnMuCmRpYXRheGlzOiBleHBsYW5hdGlvbgpzdGF0dXM6IHN0YWJsZQpzdGFsZV9hZnRlcjogMjAyNi0wMi0wMVQwMDowMDowMFoKc291cmNlczoKICAtIGlkOiBvcmRlcnMKICAgIHJlc291cmNlOiBzcmMvT3JkZXJzL09yZGVyVmFsaWRhdG9yLmNzCmdlbmVyYXRlZDogeyBieTogY2xhdWRlLzEuMCwgYXQ6IDIwMjAtMDEtMTBUMTA6MDA6MDBaIH0KdmVyaWZpZWQ6CiAgLSB7IGJ5OiBjbGF1ZGUvMS4wLCBhdDogMjAyMC0wMS0xMFQxMDowMDowMFogfQogIC0geyBieTogaHVtYW46cGF0LCBhdDogMjAyMC0wMy0wMVQwODozMDowMCswMDowMCB9Ci0tLQojIFN0YWxlIGZsb3cKCj4gU1RBVFVTOiBTVEFMRS4gVGhlIHZhbGlkYXRvciBjaGFuZ2VkIGFuZCB0aGlzIHBhZ2Ugd2FzIG5vdCByZWNvbmNpbGVkLgoKVGhlIHZhbGlkYXRvciBjaGVja3MgdGhlIG9yZGVyLgo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Stale flow"
+     ],
+     [
+      "description",
+      "A flow marked stale with both markers."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "stale_after",
+      "2026-02-01T00:00:00Z"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "orders"
+         ],
+         [
+          "resource",
+          "src/Orders/OrderValidator.cs"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2020-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "claude/1.0"
+         ],
+         [
+          "at",
+          "2020-01-10T10:00:00Z"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2020-03-01T08:30:00+00:00"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Stale flow\n\n> STATUS: STALE. The validator changed and this page was not reconciled.\n\nThe validator checks the order.\n",
+   "start": 15,
+   "text": "---\ntype: Flow\ntitle: Stale flow\ndescription: A flow marked stale with both markers.\ndiataxis: explanation\nstatus: stable\nstale_after: 2026-02-01T00:00:00Z\nsources:\n  - id: orders\n    resource: src/Orders/OrderValidator.cs\ngenerated: { by: claude/1.0, at: 2020-01-10T10:00:00Z }\nverified:\n  - { by: claude/1.0, at: 2020-01-10T10:00:00Z }\n  - { by: human:pat, at: 2020-03-01T08:30:00+00:00 }\n---\n# Stale flow\n\n> STATUS: STALE. The validator changed and this page was not reconciled.\n\nThe validator checks the order.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/flows/stale-no-callout.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IFN0YWxlIHdpdGhvdXQgY2FsbG91dApkZXNjcmlwdGlvbjogQSBwYWdlIHdpdGggc3RhbGVfYWZ0ZXIgYnV0IG5vIGNhbGxvdXQgaW4gdGhlIGJvZHkuCmRpYXRheGlzOiBleHBsYW5hdGlvbgpzdGF0dXM6IHN0YWJsZQpzdGFsZV9hZnRlcjogMjAyNi0wMi0wMVQwMDowMDowMFoKc291cmNlczoKICAtIGlkOiBvcmRlcnMKICAgIHJlc291cmNlOiBzcmMvT3JkZXJzL09yZGVyVmFsaWRhdG9yLmNzCmdlbmVyYXRlZDogeyBieTogY2xhdWRlLzEuMCwgYXQ6IDIwMjYtMDEtMTBUMTA6MDA6MDBaIH0KdmVyaWZpZWQ6CiAgLSB7IGJ5OiBodW1hbjpwYXQsIGF0OiAyMDk5LTAxLTAxVDAwOjAwOjAwWiB9Ci0tLQojIFN0YWxlIHdpdGhvdXQgY2FsbG91dAoKVGhlIHZhbGlkYXRvciBjaGVja3MgdGhlIG9yZGVyLgo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "Stale without callout"
+     ],
+     [
+      "description",
+      "A page with stale_after but no callout in the body."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "stale_after",
+      "2026-02-01T00:00:00Z"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "orders"
+         ],
+         [
+          "resource",
+          "src/Orders/OrderValidator.cs"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Stale without callout\n\nThe validator checks the order.\n",
+   "start": 14,
+   "text": "---\ntype: Flow\ntitle: Stale without callout\ndescription: A page with stale_after but no callout in the body.\ndiataxis: explanation\nstatus: stable\nstale_after: 2026-02-01T00:00:00Z\nsources:\n  - id: orders\n    resource: src/Orders/OrderValidator.cs\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Stale without callout\n\nThe validator checks the order.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/guides/deploy.md",
+   "inputBase64": "LS0tCnR5cGU6IEd1aWRlCnRpdGxlOiBEZXBsb3kgdGhlIHdvcmtlcgpkZXNjcmlwdGlvbjogU3RlcHMgdG8gZGVwbG95IHRoZSB3b3JrZXIuCmRpYXRheGlzOiBob3ctdG8Kc3RhdHVzOiBzdGFibGUKc291cmNlczoKICAtIGlkOiBvcmRlcnMKICAgIHJlc291cmNlOiBzcmMvT3JkZXJzLyoqCmdlbmVyYXRlZDogeyBieTogY2xhdWRlLzEuMCwgYXQ6IDIwMjYtMDEtMTBUMTA6MDA6MDBaIH0KdmVyaWZpZWQ6CiAgLSB7IGJ5OiBodW1hbjpwYXQsIGF0OiAyMDk5LTAxLTAxVDAwOjAwOjAwWiB9Ci0tLQojIERlcGxveSB0aGUgd29ya2VyCgojIyBTdGVwcwoKMS4gT3BlbiB0aGUgZmlsZSBhbmQgdGhlbiBydW4gdGhlIHNjcmlwdCBhbmQgY2hlY2sgdGhlIG91dHB1dC4KMi4gVGhlIG9wZXJhdG9yIGlzIGdvaW5nIHRvIGNsaWNrIHRoZSBidXR0b24uCjMuIFN0b3AgdGhlIHdvcmtlci4KNC4gRG8gbm90IHV0aWxpemUgdGhlIG9sZCBxdWV1ZS4KNS4gU3RhcnQgdGhlIHdvcmtlci4KNi4gT3BlbiB0aGUgY29uZmlndXJhdGlvbiBmaWxlIGZvciB0aGUgd29ya2VyIGFuZCBjaGFuZ2UgdGhlIHZhbHVlIG9mIHRoZSB0aW1lb3V0IHNldHRpbmcgc28gdGhhdCBpdCBpcyBsYXJnZXIgdGhhbiB0aGUgdGltZSB0aGF0IHRoZSBxdWV1ZSBuZWVkcyB0byBob2xkIGEgbWVzc2FnZS4K",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Guide"
+     ],
+     [
+      "title",
+      "Deploy the worker"
+     ],
+     [
+      "description",
+      "Steps to deploy the worker."
+     ],
+     [
+      "diataxis",
+      "how-to"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "orders"
+         ],
+         [
+          "resource",
+          "src/Orders/**"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Deploy the worker\n\n## Steps\n\n1. Open the file and then run the script and check the output.\n2. The operator is going to click the button.\n3. Stop the worker.\n4. Do not utilize the old queue.\n5. Start the worker.\n6. Open the configuration file for the worker and change the value of the timeout setting so that it is larger than the time that the queue needs to hold a message.\n",
+   "start": 13,
+   "text": "---\ntype: Guide\ntitle: Deploy the worker\ndescription: Steps to deploy the worker.\ndiataxis: how-to\nstatus: stable\nsources:\n  - id: orders\n    resource: src/Orders/**\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Deploy the worker\n\n## Steps\n\n1. Open the file and then run the script and check the output.\n2. The operator is going to click the button.\n3. Stop the worker.\n4. Do not utilize the old queue.\n5. Start the worker.\n6. Open the configuration file for the worker and change the value of the timeout setting so that it is larger than the time that the queue needs to hold a message.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/index.md",
+   "inputBase64": "LS0tCm9rZl92ZXJzaW9uOiAiMC4yIgp0aXRsZTogSW5kZXgKLS0tCiMgRG9jdW1lbnRhdGlvbiBpbmRleAoKIyMgQ29yZQoKKiBbT3ZlcnZpZXddKG92ZXJ2aWV3Lm1kKSAtIHdoYXQgdGhlIHN5c3RlbSBkb2VzCiogW0FyY2hpdGVjdHVyZV0oYXJjaGl0ZWN0dXJlLm1kKSAtIHRoZSBjb250YWluZXIgdmlldwoKIyMgRmxvd3MKCiogW0Zsb3dzXShmbG93cy8pIC0gZW5kLXRvLWVuZCBwYXRocyB0aHJvdWdoIHRoZSBzeXN0ZW0K",
+   "fm": {
+    "__map": [
+     [
+      "okf_version",
+      "0.2"
+     ],
+     [
+      "title",
+      "Index"
+     ]
+    ]
+   },
+   "body": "# Documentation index\n\n## Core\n\n* [Overview](overview.md) - what the system does\n* [Architecture](architecture.md) - the container view\n\n## Flows\n\n* [Flows](flows/) - end-to-end paths through the system\n",
+   "start": 4,
+   "text": "---\nokf_version: \"0.2\"\ntitle: Index\n---\n# Documentation index\n\n## Core\n\n* [Overview](overview.md) - what the system does\n* [Architecture](architecture.md) - the container view\n\n## Flows\n\n* [Flows](flows/) - end-to-end paths through the system\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/log.md",
+   "inputBase64": "IyBMb2cKCiMjIDIwMjYtMDEtMTAKCioqSW5pdGlhbGl6YXRpb24qKjogdGhlIGJ1bmRsZSB3YXMgY3JlYXRlZC4K",
+   "fm": {
+    "__map": []
+   },
+   "body": "# Log\n\n## 2026-01-10\n\n**Initialization**: the bundle was created.\n",
+   "start": 1,
+   "text": "# Log\n\n## 2026-01-10\n\n**Initialization**: the bundle was created.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/overview.md",
+   "inputBase64": "LS0tCnR5cGU6IE92ZXJ2aWV3CnRpdGxlOiBPcmRlcnMgc3lzdGVtIG92ZXJ2aWV3CmRlc2NyaXB0aW9uOiBXaGF0IHRoZSBvcmRlcnMgc3lzdGVtIGRvZXMgYW5kIHdobyB1c2VzIGl0LgpkaWF0YXhpczogZXhwbGFuYXRpb24Kc3RhdHVzOiBzdGFibGUKc291cmNlczoKICAtIGlkOiBhcGkKICAgIHJlc291cmNlOiBzcmMvQXBpLyoqCmdlbmVyYXRlZDogeyBieTogY2xhdWRlLzEuMCwgYXQ6IDIwMjYtMDEtMTBUMTA6MDA6MDBaIH0KdmVyaWZpZWQ6CiAgLSB7IGJ5OiBodW1hbjpwYXQsIGF0OiAyMDk5LTAxLTAxVDAwOjAwOjAwWiB9Ci0tLQojIE92ZXJ2aWV3CgpUaGUgc3lzdGVtIGFjY2VwdHMgb3JkZXJzIGZyb20gY3VzdG9tZXJzLiBJdCByZXNlcnZlcyBzdG9jayBmb3IgZWFjaCBvcmRlci4gVGhlIHF1ZXVlIHNlbmRzIHRoZSBvcmRlciB0byB0aGUgd2FyZWhvdXNlLgoKU2VlIHRoZSBbc2NyYXRjaCBub3Rlc10odGlja2V0cy9zY3JhdGNoLm1kKSBmb3IgdGhlIG9wZW4gcXVlc3Rpb25zLgoKVGhlIHdlYiBjbGllbnQgY2FsbHMgdGhlIGBjYWxsQXBpYCBmdW5jdGlvbiBpbiBgc3JjL3dlYi9jbGllbnQudHNgLgo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Overview"
+     ],
+     [
+      "title",
+      "Orders system overview"
+     ],
+     [
+      "description",
+      "What the orders system does and who uses it."
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "api"
+         ],
+         [
+          "resource",
+          "src/Api/**"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "claude/1.0"
+        ],
+        [
+         "at",
+         "2026-01-10T10:00:00Z"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "human:pat"
+         ],
+         [
+          "at",
+          "2099-01-01T00:00:00Z"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "# Overview\n\nThe system accepts orders from customers. It reserves stock for each order. The queue sends the order to the warehouse.\n\nSee the [scratch notes](tickets/scratch.md) for the open questions.\n\nThe web client calls the `callApi` function in `src/web/client.ts`.\n",
+   "start": 13,
+   "text": "---\ntype: Overview\ntitle: Orders system overview\ndescription: What the orders system does and who uses it.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: api\n    resource: src/Api/**\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Overview\n\nThe system accepts orders from customers. It reserves stock for each order. The queue sends the order to the warehouse.\n\nSee the [scratch notes](tickets/scratch.md) for the open questions.\n\nThe web client calls the `callApi` function in `src/web/client.ts`.\n"
+  },
+  {
+   "name": "fixture/repo-flawed/docs/tickets/scratch.md",
+   "inputBase64": "IyBTY3JhdGNoCgpPcGVuIHF1ZXN0aW9ucy4gVGhpcyBmb2xkZXIgaXMgbm90IHBhcnQgb2YgdGhlIGJ1bmRsZS4gVGhlIHV0aWxpemUgd29yZCBoZXJlIG11c3Qgbm90IGJlIGNoZWNrZWQuCg==",
+   "fm": {
+    "__map": []
+   },
+   "body": "# Scratch\n\nOpen questions. This folder is not part of the bundle. The utilize word here must not be checked.\n",
+   "start": 1,
+   "text": "# Scratch\n\nOpen questions. This folder is not part of the bundle. The utilize word here must not be checked.\n"
+  },
+  {
+   "name": "template/adr.md",
+   "inputBase64": "LS0tCnR5cGU6IERlY2lzaW9uCmRhdGU6IDxZWVlZLU1NLUREPgp0aXRsZTogPE5OTk46IHNob3J0IGRlY2lzaW9uIHRpdGxlPgpkZXNjcmlwdGlvbjogPE9uZSBzZW50ZW5jZTogdGhlIGRlY2lzaW9uLj4KZGlhdGF4aXM6IGV4cGxhbmF0aW9uCnN0YXR1czogc3RhYmxlCnNvdXJjZXM6CiAgLSBpZDogZXZpZGVuY2UKICAgIHJlc291cmNlOiA8cGF0aCB0byB0aGUgY29kZSBvciBjb21taXQgdGhhdCBzaG93cyB0aGlzIGRlY2lzaW9uPgpnZW5lcmF0ZWQ6IHsgYnk6IDxwcm9kdWNlcj4vPHZlcnNpb24+LCBhdDogPFlZWVktTU0tRERUaGg6bW06c3NaPiB9CnZlcmlmaWVkOgogIC0geyBieTogPHByb2R1Y2VyPi88dmVyc2lvbj4sIGF0OiA8WVlZWS1NTS1ERFRoaDptbTpzc1o+IH0KLS0tCgojIDxOTk5OOiBzaG9ydCBkZWNpc2lvbiB0aXRsZT4KCi0gRGVjaXNpb24gc3RhdHVzOiA8cHJvcG9zZWQgfCBhY2NlcHRlZCB8IHN1cGVyc2VkZWQgYnkgTk5OTj4KLSBEYXRlOiA8WVlZWS1NTS1ERD4KCiMjIENvbnRleHQKCjxUaGUgZm9yY2VzIGF0IHBsYXkgYW5kIHRoZSBwcm9ibGVtIHRvIGRlY2lkZS4gVGhlIGNvbnN0cmFpbnRzLCByZXF1aXJlbWVudHMsIG9yIHRyYWRlLW9mZnMgdGhhdCBtYWRlIGEgZGVjaXNpb24gbmVjZXNzYXJ5Lj4KCiMjIERlY2lzaW9uCgo8VGhlIGRlY2lzaW9uLCBpbiB0aGUgYWN0aXZlIHZvaWNlLiAiV2Ugd2lsbCAuLi4iLj4KCiMjIENvbnNlcXVlbmNlcwoKPFdoYXQgYmVjb21lcyBlYXNpZXIgYW5kIHdoYXQgYmVjb21lcyBoYXJkZXIuIEluY2x1ZGUgdGhlIGRpc2FkdmFudGFnZXMuPgoKIyMgTm90ZXMKCjxBZnRlciBhY2NlcHRhbmNlLCBkbyBub3QgcmV3cml0ZSB0aGlzIHJlY29yZC4gSWYgdGhlIGRlY2lzaW9uIGNoYW5nZXMsIGFkZCBhIG5ldyBBRFIgYW5kIHNldCB0aGlzIG9uZSB0byAic3VwZXJzZWRlZCBieSBOTk5OIi4gVGhlIGBkYXRlOmAga2V5IGFib3ZlIG1ha2VzIHJpcHdpcmUgdHJlYXQgc3RhbGUgYW5jaG9ycyBpbiB0aGlzIGZpbGUgYXMgYSBkYXRlZCByZWNvcmQsIG5vdCBsaXZlIGRyaWZ0Lj4K",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Decision"
+     ],
+     [
+      "date",
+      "<YYYY-MM-DD>"
+     ],
+     [
+      "title",
+      "<NNNN: short decision title>"
+     ],
+     [
+      "description",
+      "<One sentence: the decision.>"
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "stable"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "evidence"
+         ],
+         [
+          "resource",
+          "<path to the code or commit that shows this decision>"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "<producer>/<version>"
+        ],
+        [
+         "at",
+         "<YYYY-MM-DDThh:mm:ssZ>"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "<producer>/<version>"
+         ],
+         [
+          "at",
+          "<YYYY-MM-DDThh:mm:ssZ>"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "\n# <NNNN: short decision title>\n\n- Decision status: <proposed | accepted | superseded by NNNN>\n- Date: <YYYY-MM-DD>\n\n## Context\n\n<The forces at play and the problem to decide. The constraints, requirements, or trade-offs that made a decision necessary.>\n\n## Decision\n\n<The decision, in the active voice. \"We will ...\".>\n\n## Consequences\n\n<What becomes easier and what becomes harder. Include the disadvantages.>\n\n## Notes\n\n<After acceptance, do not rewrite this record. If the decision changes, add a new ADR and set this one to \"superseded by NNNN\". The `date:` key above makes ripwire treat stale anchors in this file as a dated record, not live drift.>\n",
+   "start": 14,
+   "text": "---\ntype: Decision\ndate: <YYYY-MM-DD>\ntitle: <NNNN: short decision title>\ndescription: <One sentence: the decision.>\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: evidence\n    resource: <path to the code or commit that shows this decision>\ngenerated: { by: <producer>/<version>, at: <YYYY-MM-DDThh:mm:ssZ> }\nverified:\n  - { by: <producer>/<version>, at: <YYYY-MM-DDThh:mm:ssZ> }\n---\n\n# <NNNN: short decision title>\n\n- Decision status: <proposed | accepted | superseded by NNNN>\n- Date: <YYYY-MM-DD>\n\n## Context\n\n<The forces at play and the problem to decide. The constraints, requirements, or trade-offs that made a decision necessary.>\n\n## Decision\n\n<The decision, in the active voice. \"We will ...\".>\n\n## Consequences\n\n<What becomes easier and what becomes harder. Include the disadvantages.>\n\n## Notes\n\n<After acceptance, do not rewrite this record. If the decision changes, add a new ADR and set this one to \"superseded by NNNN\". The `date:` key above makes ripwire treat stale anchors in this file as a dated record, not live drift.>\n"
+  },
+  {
+   "name": "template/architecture.md",
+   "inputBase64": "LS0tCnR5cGU6IEFyY2hpdGVjdHVyZQp0aXRsZTogQXJjaGl0ZWN0dXJlCmRlc2NyaXB0aW9uOiA8T25lIHNlbnRlbmNlOiB0aGUgc2hhcGUgb2YgdGhlIHN5c3RlbSBhdCB0aGUgY29udGFpbmVyIGxldmVsLj4KZGlhdGF4aXM6IGV4cGxhbmF0aW9uCnN0YXR1czogZHJhZnQKc291cmNlczoKICAtIGlkOiBzcmMKICAgIHJlc291cmNlOiBzcmMvKioKZ2VuZXJhdGVkOiB7IGJ5OiA8cHJvZHVjZXI+Lzx2ZXJzaW9uPiwgYXQ6IDxZWVlZLU1NLUREVGhoOm1tOnNzWj4gfQp2ZXJpZmllZDoKICAtIHsgYnk6IDxwcm9kdWNlcj4vPHZlcnNpb24+LCBhdDogPFlZWVktTU0tRERUaGg6bW06c3NaPiB9Ci0tLQoKIyBBcmNoaXRlY3R1cmUKCiMjIENvbnRhaW5lcnMKCmBgYG1lcm1haWQKQzRDb250YWluZXIKICAgIHRpdGxlIENvbnRhaW5lcnMKICAgIENvbnRhaW5lcihhcGksICI8QVBJPiIsICI8VGVjaG5vbG9neT4iLCAiPFJlc3BvbnNpYmlsaXR5PiIpCiAgICBDb250YWluZXJEYihkYiwgIjxTdG9yZT4iLCAiPFRlY2hub2xvZ3k+IiwgIjxXaGF0IGl0IGhvbGRzPiIpCiAgICBSZWwoYXBpLCBkYiwgIlJlYWRzIGFuZCB3cml0ZXMiKQpgYGAKCiMjIFBpcGVsaW5lCgo8VGhlIHN0YWdlcyBvZiB0aGUgc3lzdGVtIGluIG9yZGVyLCBvbmUgc2VudGVuY2UgZWFjaCwgZWFjaCBhbmNob3JlZCB0byB0aGUgbW9kdWxlIG9yIHN5bWJvbCB0aGF0IG93bnMgaXQuIGByaXB3aXJlIC4gLS1kZXBzYCBhbmQgYC0tY29tbXVuaXRpZXNgIHNob3cgdGhlIHNoYXBlOyB0aGUgY29kZSBjb25maXJtcyBpdC4+CgojIyBJbnZhcmlhbnRzCgo8VGhlIGNvbnRyYWN0cyB0aGUgY29kZSBlbmZvcmNlcywgZWFjaCB3aXRoIGl0cyBzeW1ib2wuIEZvciBleGFtcGxlOiBvdXRwdXQgaXMgZGV0ZXJtaW5pc3RpYyBiZWNhdXNlIGBjcmF3bGAgc29ydHMgcGF0aHMgYmVmb3JlIGl0IGFzc2lnbnMgaWRzLj4KCiMjIFdoZXJlIHRvIGdvIG5leHQKCi0gW0Zsb3dzXShmbG93cy9pbmRleC5tZCkgZm9yIHRoZSBlbmQtdG8tZW5kIHBhdGhzLgotIFtEZWNpc2lvbnNdKGRlY2lzaW9ucy9pbmRleC5tZCkgZm9yIHdoeSB0aGUgc2hhcGUgaXMgd2hhdCBpdCBpcy4K",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Architecture"
+     ],
+     [
+      "title",
+      "Architecture"
+     ],
+     [
+      "description",
+      "<One sentence: the shape of the system at the container level.>"
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "draft"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "src"
+         ],
+         [
+          "resource",
+          "src/**"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "<producer>/<version>"
+        ],
+        [
+         "at",
+         "<YYYY-MM-DDThh:mm:ssZ>"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "<producer>/<version>"
+         ],
+         [
+          "at",
+          "<YYYY-MM-DDThh:mm:ssZ>"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "\n# Architecture\n\n## Containers\n\n```mermaid\nC4Container\n    title Containers\n    Container(api, \"<API>\", \"<Technology>\", \"<Responsibility>\")\n    ContainerDb(db, \"<Store>\", \"<Technology>\", \"<What it holds>\")\n    Rel(api, db, \"Reads and writes\")\n```\n\n## Pipeline\n\n<The stages of the system in order, one sentence each, each anchored to the module or symbol that owns it. `ripwire . --deps` and `--communities` show the shape; the code confirms it.>\n\n## Invariants\n\n<The contracts the code enforces, each with its symbol. For example: output is deterministic because `crawl` sorts paths before it assigns ids.>\n\n## Where to go next\n\n- [Flows](flows/index.md) for the end-to-end paths.\n- [Decisions](decisions/index.md) for why the shape is what it is.\n",
+   "start": 13,
+   "text": "---\ntype: Architecture\ntitle: Architecture\ndescription: <One sentence: the shape of the system at the container level.>\ndiataxis: explanation\nstatus: draft\nsources:\n  - id: src\n    resource: src/**\ngenerated: { by: <producer>/<version>, at: <YYYY-MM-DDThh:mm:ssZ> }\nverified:\n  - { by: <producer>/<version>, at: <YYYY-MM-DDThh:mm:ssZ> }\n---\n\n# Architecture\n\n## Containers\n\n```mermaid\nC4Container\n    title Containers\n    Container(api, \"<API>\", \"<Technology>\", \"<Responsibility>\")\n    ContainerDb(db, \"<Store>\", \"<Technology>\", \"<What it holds>\")\n    Rel(api, db, \"Reads and writes\")\n```\n\n## Pipeline\n\n<The stages of the system in order, one sentence each, each anchored to the module or symbol that owns it. `ripwire . --deps` and `--communities` show the shape; the code confirms it.>\n\n## Invariants\n\n<The contracts the code enforces, each with its symbol. For example: output is deterministic because `crawl` sorts paths before it assigns ids.>\n\n## Where to go next\n\n- [Flows](flows/index.md) for the end-to-end paths.\n- [Decisions](decisions/index.md) for why the shape is what it is.\n"
+  },
+  {
+   "name": "template/flow.md",
+   "inputBase64": "LS0tCnR5cGU6IEZsb3cKdGl0bGU6IDxGbG93IG5hbWUsIGZvciBleGFtcGxlIE9yZGVyIGZ1bGZpbGxtZW50PgpkZXNjcmlwdGlvbjogPE9uZSBzZW50ZW5jZTogd2hhdCB0aGlzIGZsb3cgZG9lcywgaW4gYnVzaW5lc3MgdGVybXMuPgpkaWF0YXhpczogZXhwbGFuYXRpb24Kc3RhdHVzOiBkcmFmdApzb3VyY2VzOgogIC0gaWQ6IDxhcmVhLXNyYz4KICAgIHJlc291cmNlOiBzcmMvPEFyZWE+LyoqCiAgLSBpZDogPGVudHJ5LXNyYz4KICAgIHJlc291cmNlOiBzcmMvPEVudHJ5IGZpbGU+CmdlbmVyYXRlZDogeyBieTogPHByb2R1Y2VyPi88dmVyc2lvbj4sIGF0OiA8WVlZWS1NTS1ERFRoaDptbTpzc1o+IH0KdmVyaWZpZWQ6CiAgLSB7IGJ5OiA8cHJvZHVjZXI+Lzx2ZXJzaW9uPiwgYXQ6IDxZWVlZLU1NLUREVGhoOm1tOnNzWj4gfQp0YWdzOiBbXQotLS0KCiMgPEZsb3cgbmFtZT4KCiMjIFB1cnBvc2UKCjxPbmUgc2hvcnQgcGFyYWdyYXBoOiB3aGF0IHRoaXMgZmxvdyBkb2VzIGFuZCB3aHkgaXQgZXhpc3RzLCBpbiBidXNpbmVzcyB0ZXJtcy4gTm8gc3RlcHMgaGVyZS4+CgojIyBFbnRyeSBwb2ludHMKCjxXaGVyZSB0aGUgZmxvdyBzdGFydHMsIHdpdGggdGhlIHJlYWwgc3ltYm9sIGluIGJhY2t0aWNrcy4gRm9yIGV4YW1wbGU6IGBQT1NUIC9vcmRlcnNgLCBoYW5kbGVkIGJ5IGBTdWJtaXRgIG9uIGBPcmRlcnNDb250cm9sbGVyYC4+CgojIyBTZXF1ZW5jZQoKYGBgbWVybWFpZApzZXF1ZW5jZURpYWdyYW0KICAgIGFjdG9yIENhbGxlcgogICAgcGFydGljaXBhbnQgQVBJIGFzIE9yZGVyc0NvbnRyb2xsZXIKICAgIHBhcnRpY2lwYW50IFN2YyBhcyBPcmRlclNlcnZpY2UKICAgIHBhcnRpY2lwYW50IFN0b3JlIGFzIE9yZGVyUmVwb3NpdG9yeQogICAgQ2FsbGVyLT4+QVBJOiBTdWJtaXQocmVxdWVzdCkKICAgIEFQSS0+PlN2YzogU3VibWl0QXN5bmMocmVxdWVzdCkKICAgIFN2Yy0+PlN0b3JlOiBTYXZlQXN5bmMob3JkZXIpCiAgICBTdG9yZS0tPj5TdmM6IHNhdmVkCiAgICBTdmMtLT4+QVBJOiByZXN1bHQKICAgIEFQSS0tPj5DYWxsZXI6IDIwMCArIHJlc3VsdApgYGAKCiMjIEtleSBiZWhhdmlvcgoKPE9uZSBidWxsZXQgcGVyIHJ1bGUsIGVhY2ggYW5jaG9yZWQgdG8gdGhlIHN5bWJvbCBpdCBsaXZlcyBpbi4gRm9yIGV4YW1wbGU6IGBTdWJtaXRBc3luY2Agb24gYE9yZGVyU2VydmljZWAgZGVkdXBsaWNhdGVzIGEgcmV0cmllZCBzdWJtaXNzaW9uIG9uIGBDb3JyZWxhdGlvbktleWAuIFdyaXRlIGEgY29uc3RhbnQgYXMgYGtOYW1lYCA9IE4gc28gcmlwd2lyZSBjYW4gY29tcGFyZSBpdC4+CgojIyBGYWlsdXJlIG1vZGVzCgo8VGhlIHVuaGFwcHkgcGF0aHMsIHJlYWQgZnJvbSB0aGUgY29kZTogdmFsaWRhdGlvbiBmYWlsdXJlcywgcmV0cmllcywgdGltZW91dHMsIHBhcnRpYWwgZmFpbHVyZS4gTmFtZSB0aGUgc3ltYm9sIHRoYXQgaGFuZGxlcyBlYWNoLj4KCiMjIERlY2lzaW9ucwoKPExpbmtzIHRvIEFEUnMgaW4gLi4vZGVjaXNpb25zLywgaWYgYW55Lj4KCiMjIFNvdXJjZSByZWZlcmVuY2VzCgo8VGhlIG1haW4gZmlsZXMgYW5kIHN5bWJvbHMgdGhpcyBmbG93IGxpdmVzIGluLCBzbyBhIHJlYWRlciBjYW4gY2hlY2sgdGhlIGRvYyBhZ2FpbnN0IHRoZSBjb2RlLiBGb3IgZXhhbXBsZTogYHNyYy9PcmRlcnMvT3JkZXJTZXJ2aWNlLmNzYCwgYHNyYy9PcmRlcnMvT3JkZXJSZXF1ZXN0LmNzYC4+Cg==",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "title",
+      "<Flow name, for example Order fulfillment>"
+     ],
+     [
+      "description",
+      "<One sentence: what this flow does, in business terms.>"
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "draft"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "<area-src>"
+         ],
+         [
+          "resource",
+          "src/<Area>/**"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "id",
+          "<entry-src>"
+         ],
+         [
+          "resource",
+          "src/<Entry file>"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "<producer>/<version>"
+        ],
+        [
+         "at",
+         "<YYYY-MM-DDThh:mm:ssZ>"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "<producer>/<version>"
+         ],
+         [
+          "at",
+          "<YYYY-MM-DDThh:mm:ssZ>"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "tags",
+      []
+     ]
+    ]
+   },
+   "body": "\n# <Flow name>\n\n## Purpose\n\n<One short paragraph: what this flow does and why it exists, in business terms. No steps here.>\n\n## Entry points\n\n<Where the flow starts, with the real symbol in backticks. For example: `POST /orders`, handled by `Submit` on `OrdersController`.>\n\n## Sequence\n\n```mermaid\nsequenceDiagram\n    actor Caller\n    participant API as OrdersController\n    participant Svc as OrderService\n    participant Store as OrderRepository\n    Caller->>API: Submit(request)\n    API->>Svc: SubmitAsync(request)\n    Svc->>Store: SaveAsync(order)\n    Store-->>Svc: saved\n    Svc-->>API: result\n    API-->>Caller: 200 + result\n```\n\n## Key behavior\n\n<One bullet per rule, each anchored to the symbol it lives in. For example: `SubmitAsync` on `OrderService` deduplicates a retried submission on `CorrelationKey`. Write a constant as `kName` = N so ripwire can compare it.>\n\n## Failure modes\n\n<The unhappy paths, read from the code: validation failures, retries, timeouts, partial failure. Name the symbol that handles each.>\n\n## Decisions\n\n<Links to ADRs in ../decisions/, if any.>\n\n## Source references\n\n<The main files and symbols this flow lives in, so a reader can check the doc against the code. For example: `src/Orders/OrderService.cs`, `src/Orders/OrderRequest.cs`.>\n",
+   "start": 16,
+   "text": "---\ntype: Flow\ntitle: <Flow name, for example Order fulfillment>\ndescription: <One sentence: what this flow does, in business terms.>\ndiataxis: explanation\nstatus: draft\nsources:\n  - id: <area-src>\n    resource: src/<Area>/**\n  - id: <entry-src>\n    resource: src/<Entry file>\ngenerated: { by: <producer>/<version>, at: <YYYY-MM-DDThh:mm:ssZ> }\nverified:\n  - { by: <producer>/<version>, at: <YYYY-MM-DDThh:mm:ssZ> }\ntags: []\n---\n\n# <Flow name>\n\n## Purpose\n\n<One short paragraph: what this flow does and why it exists, in business terms. No steps here.>\n\n## Entry points\n\n<Where the flow starts, with the real symbol in backticks. For example: `POST /orders`, handled by `Submit` on `OrdersController`.>\n\n## Sequence\n\n```mermaid\nsequenceDiagram\n    actor Caller\n    participant API as OrdersController\n    participant Svc as OrderService\n    participant Store as OrderRepository\n    Caller->>API: Submit(request)\n    API->>Svc: SubmitAsync(request)\n    Svc->>Store: SaveAsync(order)\n    Store-->>Svc: saved\n    Svc-->>API: result\n    API-->>Caller: 200 + result\n```\n\n## Key behavior\n\n<One bullet per rule, each anchored to the symbol it lives in. For example: `SubmitAsync` on `OrderService` deduplicates a retried submission on `CorrelationKey`. Write a constant as `kName` = N so ripwire can compare it.>\n\n## Failure modes\n\n<The unhappy paths, read from the code: validation failures, retries, timeouts, partial failure. Name the symbol that handles each.>\n\n## Decisions\n\n<Links to ADRs in ../decisions/, if any.>\n\n## Source references\n\n<The main files and symbols this flow lives in, so a reader can check the doc against the code. For example: `src/Orders/OrderService.cs`, `src/Orders/OrderRequest.cs`.>\n"
+  },
+  {
+   "name": "template/index.md",
+   "inputBase64": "LS0tCm9rZl92ZXJzaW9uOiAiMC4yIgotLS0KCiMgPFJlcG9zaXRvcnkgbmFtZT4gZG9jcwoKPE9uZSBsaW5lOiB3aGF0IHRoaXMgc3lzdGVtIGlzLj4KCiMgQ29udGVudHMKCiogW092ZXJ2aWV3XShvdmVydmlldy5tZCkgLSBidXNpbmVzcyBwdXJwb3NlIGFuZCBzeXN0ZW0gY29udGV4dC4KKiBbQXJjaGl0ZWN0dXJlXShhcmNoaXRlY3R1cmUubWQpIC0gc3lzdGVtIHNoYXBlIGF0IHRoZSBDNCBjb250ZXh0IGFuZCBjb250YWluZXIgbGV2ZWwuCiogW0Zsb3dzXShmbG93cy8pIC0gZW5kLXRvLWVuZCBwYXRocyB0aHJvdWdoIHRoZSBzeXN0ZW0uCiogW0RlY2lzaW9uc10oZGVjaXNpb25zLykgLSBhcmNoaXRlY3R1cmUgZGVjaXNpb24gcmVjb3Jkcy4KKiBbRG9jcyB1cGRhdGUgbG9nXShsb2cubWQpIC0gd2hhdCBjaGFuZ2VkIGluIHRoZXNlIGRvY3MgYW5kIHdoZW4uCgo8S2VlcCB0aGlzIGEgZmxhdCBsaXN0OiBvbmUgbGluZSBhbmQgYSBsaW5rIGZvciBlYWNoIGVudHJ5LCB3aXRoIHRoZSBlbnRyeSdzIGRlc2NyaXB0aW9uLiBBZGQgYSBsaW5lIHdoZW4geW91IGFkZCBhIGRvYy4gT25seSB0aGUgcm9vdCBpbmRleCBjYXJyaWVzIGZyb250bWF0dGVyLCBhbmQgb25seSBva2ZfdmVyc2lvbi4+Cg==",
+   "fm": {
+    "__map": [
+     [
+      "okf_version",
+      "0.2"
+     ]
+    ]
+   },
+   "body": "\n# <Repository name> docs\n\n<One line: what this system is.>\n\n# Contents\n\n* [Overview](overview.md) - business purpose and system context.\n* [Architecture](architecture.md) - system shape at the C4 context and container level.\n* [Flows](flows/) - end-to-end paths through the system.\n* [Decisions](decisions/) - architecture decision records.\n* [Docs update log](log.md) - what changed in these docs and when.\n\n<Keep this a flat list: one line and a link for each entry, with the entry's description. Add a line when you add a doc. Only the root index carries frontmatter, and only okf_version.>\n",
+   "start": 3,
+   "text": "---\nokf_version: \"0.2\"\n---\n\n# <Repository name> docs\n\n<One line: what this system is.>\n\n# Contents\n\n* [Overview](overview.md) - business purpose and system context.\n* [Architecture](architecture.md) - system shape at the C4 context and container level.\n* [Flows](flows/) - end-to-end paths through the system.\n* [Decisions](decisions/) - architecture decision records.\n* [Docs update log](log.md) - what changed in these docs and when.\n\n<Keep this a flat list: one line and a link for each entry, with the entry's description. Add a line when you add a doc. Only the root index carries frontmatter, and only okf_version.>\n"
+  },
+  {
+   "name": "template/log.md",
+   "inputBase64": "IyBEb2NzIHVwZGF0ZSBsb2cKCiMjIDxZWVlZLU1NLUREPgoqICoqSW5pdGlhbGl6YXRpb24qKjogQ3JlYXRlZCB0aGUgZG9jcyBidW5kbGUgZnJvbSB0aGUgY29kZSBhdCA8c2hhPi4gRmxvd3M6IDxsaXN0Pi4KCjxOZXdlc3QgZmlyc3QuIE9uZSBncm91cCBwZXIgZGF0ZS4gTGVhZCBlYWNoIGVudHJ5IHdpdGggKipVcGRhdGUqKiwgKipDcmVhdGlvbioqLCAqKkRlcHJlY2F0aW9uKiosIG9yICoqTGludCoqLCBhbmQgbGluayB0aGUgZG9jcyB0b3VjaGVkLiBSb2xsIGVudHJpZXMgb2xkZXIgdGhhbiA5MCBkYXlzIGludG8gb25lIHN1bW1hcnkgbGluZS4+Cg==",
+   "fm": {
+    "__map": []
+   },
+   "body": "# Docs update log\n\n## <YYYY-MM-DD>\n* **Initialization**: Created the docs bundle from the code at <sha>. Flows: <list>.\n\n<Newest first. One group per date. Lead each entry with **Update**, **Creation**, **Deprecation**, or **Lint**, and link the docs touched. Roll entries older than 90 days into one summary line.>\n",
+   "start": 1,
+   "text": "# Docs update log\n\n## <YYYY-MM-DD>\n* **Initialization**: Created the docs bundle from the code at <sha>. Flows: <list>.\n\n<Newest first. One group per date. Lead each entry with **Update**, **Creation**, **Deprecation**, or **Lint**, and link the docs touched. Roll entries older than 90 days into one summary line.>\n"
+  },
+  {
+   "name": "template/overview.md",
+   "inputBase64": "LS0tCnR5cGU6IE92ZXJ2aWV3CnRpdGxlOiBPdmVydmlldwpkZXNjcmlwdGlvbjogPE9uZSBzZW50ZW5jZTogd2hhdCB0aGlzIHN5c3RlbSBpcyBhbmQgd2hvIGl0IGlzIGZvci4+CmRpYXRheGlzOiBleHBsYW5hdGlvbgpzdGF0dXM6IGRyYWZ0CnNvdXJjZXM6CiAgLSBpZDogcmVhZG1lCiAgICByZXNvdXJjZTogUkVBRE1FLm1kCiAgLSBpZDogZW50cnkKICAgIHJlc291cmNlOiBzcmMvPEVudHJ5IGZpbGU+CmdlbmVyYXRlZDogeyBieTogPHByb2R1Y2VyPi88dmVyc2lvbj4sIGF0OiA8WVlZWS1NTS1ERFRoaDptbTpzc1o+IH0KdmVyaWZpZWQ6CiAgLSB7IGJ5OiA8cHJvZHVjZXI+Lzx2ZXJzaW9uPiwgYXQ6IDxZWVlZLU1NLUREVGhoOm1tOnNzWj4gfQotLS0KCiMgT3ZlcnZpZXcKCiMjIFdoYXQgdGhpcyBzeXN0ZW0gaXMKCjxUd28gb3IgdGhyZWUgc2VudGVuY2VzIGluIGJ1c2luZXNzIHRlcm1zLiBUaGUgcHJvYmxlbSBpdCBzb2x2ZXMgYW5kIGZvciB3aG9tLiBObyBpbXBsZW1lbnRhdGlvbiBkZXRhaWwuPgoKIyMgV2hvIHVzZXMgaXQKCjxUaGUgYWN0b3JzIGFuZCB0aGUgc3lzdGVtcyB0aGF0IGNhbGwgaXQ6IGVuZCB1c2VycywgaW50ZXJuYWwgc2VydmljZXMsIHNjaGVkdWxlZCBqb2JzLCBwYXJ0bmVycy4+CgojIyBTeXN0ZW0gY29udGV4dAoKYGBgbWVybWFpZApDNENvbnRleHQKICAgIHRpdGxlIFN5c3RlbSBjb250ZXh0CiAgICBQZXJzb24odXNlciwgIlVzZXIiLCAiV2hvIHVzZXMgdGhlIHN5c3RlbSIpCiAgICBTeXN0ZW0oc3lzLCAiPFRoaXMgc3lzdGVtPiIsICJXaGF0IGl0IGRvZXMiKQogICAgU3lzdGVtX0V4dChleHQsICI8RXh0ZXJuYWwgc3lzdGVtPiIsICJEZXBlbmRlbmN5IG9yIHBhcnRuZXIiKQogICAgUmVsKHVzZXIsIHN5cywgIlVzZXMiKQogICAgUmVsKHN5cywgZXh0LCAiQ2FsbHMiKQpgYGAKCiMjIEJvdW5kYXJpZXMKCjxXaGF0IGlzIGluIHNjb3BlIGFuZCB3aGF0IGlzIG91dCBvZiBzY29wZSwgc28gYSByZWFkZXIga25vd3Mgd2hlcmUgdGhlIHJlc3BvbnNpYmlsaXRpZXMgb2YgdGhpcyBzeXN0ZW0gZW5kLj4KCiMjIFdoZXJlIHRvIGdvIG5leHQKCi0gW0FyY2hpdGVjdHVyZV0oYXJjaGl0ZWN0dXJlLm1kKSBmb3IgdGhlIGludGVybmFsIHNoYXBlLgotIFtGbG93c10oZmxvd3MvaW5kZXgubWQpIGZvciBlbmQtdG8tZW5kIGJlaGF2aW9yLgo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Overview"
+     ],
+     [
+      "title",
+      "Overview"
+     ],
+     [
+      "description",
+      "<One sentence: what this system is and who it is for.>"
+     ],
+     [
+      "diataxis",
+      "explanation"
+     ],
+     [
+      "status",
+      "draft"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "readme"
+         ],
+         [
+          "resource",
+          "README.md"
+         ]
+        ]
+       },
+       {
+        "__map": [
+         [
+          "id",
+          "entry"
+         ],
+         [
+          "resource",
+          "src/<Entry file>"
+         ]
+        ]
+       }
+      ]
+     ],
+     [
+      "generated",
+      {
+       "__map": [
+        [
+         "by",
+         "<producer>/<version>"
+        ],
+        [
+         "at",
+         "<YYYY-MM-DDThh:mm:ssZ>"
+        ]
+       ]
+      }
+     ],
+     [
+      "verified",
+      [
+       {
+        "__map": [
+         [
+          "by",
+          "<producer>/<version>"
+         ],
+         [
+          "at",
+          "<YYYY-MM-DDThh:mm:ssZ>"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "\n# Overview\n\n## What this system is\n\n<Two or three sentences in business terms. The problem it solves and for whom. No implementation detail.>\n\n## Who uses it\n\n<The actors and the systems that call it: end users, internal services, scheduled jobs, partners.>\n\n## System context\n\n```mermaid\nC4Context\n    title System context\n    Person(user, \"User\", \"Who uses the system\")\n    System(sys, \"<This system>\", \"What it does\")\n    System_Ext(ext, \"<External system>\", \"Dependency or partner\")\n    Rel(user, sys, \"Uses\")\n    Rel(sys, ext, \"Calls\")\n```\n\n## Boundaries\n\n<What is in scope and what is out of scope, so a reader knows where the responsibilities of this system end.>\n\n## Where to go next\n\n- [Architecture](architecture.md) for the internal shape.\n- [Flows](flows/index.md) for end-to-end behavior.\n",
+   "start": 15,
+   "text": "---\ntype: Overview\ntitle: Overview\ndescription: <One sentence: what this system is and who it is for.>\ndiataxis: explanation\nstatus: draft\nsources:\n  - id: readme\n    resource: README.md\n  - id: entry\n    resource: src/<Entry file>\ngenerated: { by: <producer>/<version>, at: <YYYY-MM-DDThh:mm:ssZ> }\nverified:\n  - { by: <producer>/<version>, at: <YYYY-MM-DDThh:mm:ssZ> }\n---\n\n# Overview\n\n## What this system is\n\n<Two or three sentences in business terms. The problem it solves and for whom. No implementation detail.>\n\n## Who uses it\n\n<The actors and the systems that call it: end users, internal services, scheduled jobs, partners.>\n\n## System context\n\n```mermaid\nC4Context\n    title System context\n    Person(user, \"User\", \"Who uses the system\")\n    System(sys, \"<This system>\", \"What it does\")\n    System_Ext(ext, \"<External system>\", \"Dependency or partner\")\n    Rel(user, sys, \"Uses\")\n    Rel(sys, ext, \"Calls\")\n```\n\n## Boundaries\n\n<What is in scope and what is out of scope, so a reader knows where the responsibilities of this system end.>\n\n## Where to go next\n\n- [Architecture](architecture.md) for the internal shape.\n- [Flows](flows/index.md) for end-to-end behavior.\n"
+  },
+  {
+   "name": "crlf",
+   "inputBase64": "LS0tDQp0eXBlOiBGbG93DQpzb3VyY2VzOg0KICAtIGlkOiBhDQogICAgcmVzb3VyY2U6IGINCi0tLQ0KbGluZSBvbmUNCmxpbmUgdHdvDQo=",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ],
+     [
+      "sources",
+      [
+       {
+        "__map": [
+         [
+          "id",
+          "a"
+         ],
+         [
+          "resource",
+          "b"
+         ]
+        ]
+       }
+      ]
+     ]
+    ]
+   },
+   "body": "line one\nline two\n",
+   "start": 6,
+   "text": "---\ntype: Flow\nsources:\n  - id: a\n    resource: b\n---\nline one\nline two\n"
+  },
+  {
+   "name": "cr-only",
+   "inputBase64": "LS0tDXR5cGU6IEZsb3cNLS0tDWJvZHkN",
+   "fm": {
+    "__map": [
+     [
+      "type",
+      "Flow"
+     ]
+    ]
+   },
+   "body": "body\n",
+   "start": 3,
+   "text": "---\ntype: Flow\n---\nbody\n"
+  },
+  {
+   "name": "invalid-utf8-marker",
+   "inputBase64": "LS0tCnRpdGxlOiBvawotLS0KYm9keSD//iBlbmQK",
+   "fm": {
+    "__map": [
+     [
+      "title",
+      "ok"
+     ]
+    ]
+   },
+   "body": "body �� end\n",
+   "start": 3,
+   "text": "---\ntitle: ok\n---\nbody �� end\n"
+  }
+ ],
+ "compat": {
+  "splitlines": [
+   {
+    "input": "",
+    "output": []
+   },
+   {
+    "input": "a",
+    "output": [
+     "a"
+    ]
+   },
+   {
+    "input": "a\n",
+    "output": [
+     "a"
+    ]
+   },
+   {
+    "input": "a\n\n",
+    "output": [
+     "a",
+     ""
+    ]
+   },
+   {
+    "input": "a\r\nb",
+    "output": [
+     "a",
+     "b"
+    ]
+   },
+   {
+    "input": "a\rb",
+    "output": [
+     "a",
+     "b"
+    ]
+   },
+   {
+    "input": "a\u000bb\fc",
+    "output": [
+     "a",
+     "b",
+     "c"
+    ]
+   },
+   {
+    "input": "a\u001cb\u001dc\u001ed",
+    "output": [
+     "a",
+     "b",
+     "c",
+     "d"
+    ]
+   },
+   {
+    "input": "ab",
+    "output": [
+     "a",
+     "b"
+    ]
+   },
+   {
+    "input": "a b c",
+    "output": [
+     "a",
+     "b",
+     "c"
+    ]
+   },
+   {
+    "input": "\n",
+    "output": [
+     ""
+    ]
+   },
+   {
+    "input": "\r\n\r\n",
+    "output": [
+     "",
+     ""
+    ]
+   },
+   {
+    "input": "a\nb\n",
+    "output": [
+     "a",
+     "b"
+    ]
+   },
+   {
+    "input": "  a  \n  b  ",
+    "output": [
+     "  a  ",
+     "  b  "
+    ]
+   }
+  ],
+  "strip": [
+   {
+    "input": "  a  ",
+    "strip": "a",
+    "rstrip": "  a"
+   },
+   {
+    "input": "\t\na\r\n",
+    "strip": "a",
+    "rstrip": "\t\na"
+   },
+   {
+    "input": " a ",
+    "strip": "a",
+    "rstrip": " a"
+   },
+   {
+    "input": "﻿a﻿",
+    "strip": "﻿a﻿",
+    "rstrip": "﻿a﻿"
+   },
+   {
+    "input": "\u001ca\u001f",
+    "strip": "a",
+    "rstrip": "\u001ca"
+   },
+   {
+    "input": "a",
+    "strip": "a",
+    "rstrip": "a"
+   },
+   {
+    "input": " a　",
+    "strip": "a",
+    "rstrip": " a"
+   },
+   {
+    "input": "",
+    "strip": "",
+    "rstrip": ""
+   },
+   {
+    "input": "   ",
+    "strip": "",
+    "rstrip": ""
+   },
+   {
+    "input": "a b",
+    "strip": "a b",
+    "rstrip": "a b"
+   }
+  ],
+  "repr": [
+   {
+    "value": null,
+    "output": "None"
+   },
+   {
+    "value": true,
+    "output": "True"
+   },
+   {
+    "value": false,
+    "output": "False"
+   },
+   {
+    "value": 0,
+    "output": "0"
+   },
+   {
+    "value": 42,
+    "output": "42"
+   },
+   {
+    "value": -7,
+    "output": "-7"
+   },
+   {
+    "value": "",
+    "output": "''"
+   },
+   {
+    "value": "plain",
+    "output": "'plain'"
+   },
+   {
+    "value": "it's",
+    "output": "\"it's\""
+   },
+   {
+    "value": "say \"hi\"",
+    "output": "'say \"hi\"'"
+   },
+   {
+    "value": "both ' and \"",
+    "output": "'both \\' and \"'"
+   },
+   {
+    "value": "tab\there",
+    "output": "'tab\\there'"
+   },
+   {
+    "value": "nl\nhere",
+    "output": "'nl\\nhere'"
+   },
+   {
+    "value": "cr\rhere",
+    "output": "'cr\\rhere'"
+   },
+   {
+    "value": "back\\slash",
+    "output": "'back\\\\slash'"
+   },
+   {
+    "value": "ctl\u0001",
+    "output": "'ctl\\x01\\x7f'"
+   },
+   {
+    "value": "nbsp x",
+    "output": "'nbsp\\xa0x'"
+   },
+   {
+    "value": "café",
+    "output": "'café'"
+   },
+   {
+    "value": " sep",
+    "output": "'\\u2028sep'"
+   },
+   {
+    "value": "﻿bom",
+    "output": "'\\ufeffbom'"
+   },
+   {
+    "value": "emoji 😀",
+    "output": "'emoji 😀'"
+   },
+   {
+    "value": "",
+    "output": "'\\x80\\x9f'"
+   },
+   {
+    "value": [],
+    "output": "[]"
+   },
+   {
+    "value": [
+     1,
+     "a",
+     null
+    ],
+    "output": "[1, 'a', None]"
+   },
+   {
+    "value": [
+     "it's",
+     "q\"q"
+    ],
+    "output": "[\"it's\", 'q\"q']"
+   },
+   {
+    "value": {},
+    "output": "{}"
+   },
+   {
+    "value": {
+     "a": 1,
+     "b": [
+      1,
+      2
+     ],
+     "c": {
+      "d": null
+     }
+    },
+    "output": "{'a': 1, 'b': [1, 2], 'c': {'d': None}}"
+   },
+   {
+    "value": {
+     "by": "nobody",
+     "at": "2026-01-10T10:00:00Z"
+    },
+    "output": "{'by': 'nobody', 'at': '2026-01-10T10:00:00Z'}"
+   },
+   {
+    "value": [
+     "explanation",
+     "how-to",
+     "reference",
+     "tutorial"
+    ],
+    "output": "['explanation', 'how-to', 'reference', 'tutorial']"
+   },
+   {
+    "value": {
+     "id": "b"
+    },
+    "output": "{'id': 'b'}"
+   }
+  ],
+  "str": [
+   {
+    "value": null,
+    "output": "None"
+   },
+   {
+    "value": true,
+    "output": "True"
+   },
+   {
+    "value": false,
+    "output": "False"
+   },
+   {
+    "value": 0,
+    "output": "0"
+   },
+   {
+    "value": 42,
+    "output": "42"
+   },
+   {
+    "value": -7,
+    "output": "-7"
+   },
+   {
+    "value": "",
+    "output": ""
+   },
+   {
+    "value": "plain",
+    "output": "plain"
+   },
+   {
+    "value": "it's",
+    "output": "it's"
+   },
+   {
+    "value": "say \"hi\"",
+    "output": "say \"hi\""
+   },
+   {
+    "value": "both ' and \"",
+    "output": "both ' and \""
+   },
+   {
+    "value": "tab\there",
+    "output": "tab\there"
+   },
+   {
+    "value": "nl\nhere",
+    "output": "nl\nhere"
+   },
+   {
+    "value": "cr\rhere",
+    "output": "cr\rhere"
+   },
+   {
+    "value": "back\\slash",
+    "output": "back\\slash"
+   },
+   {
+    "value": "ctl\u0001",
+    "output": "ctl\u0001"
+   },
+   {
+    "value": "nbsp x",
+    "output": "nbsp x"
+   },
+   {
+    "value": "café",
+    "output": "café"
+   },
+   {
+    "value": " sep",
+    "output": " sep"
+   },
+   {
+    "value": "﻿bom",
+    "output": "﻿bom"
+   },
+   {
+    "value": "emoji 😀",
+    "output": "emoji 😀"
+   },
+   {
+    "value": "",
+    "output": ""
+   },
+   {
+    "value": [],
+    "output": "[]"
+   },
+   {
+    "value": [
+     1,
+     "a",
+     null
+    ],
+    "output": "[1, 'a', None]"
+   },
+   {
+    "value": [
+     "it's",
+     "q\"q"
+    ],
+    "output": "[\"it's\", 'q\"q']"
+   },
+   {
+    "value": {},
+    "output": "{}"
+   },
+   {
+    "value": {
+     "a": 1,
+     "b": [
+      1,
+      2
+     ],
+     "c": {
+      "d": null
+     }
+    },
+    "output": "{'a': 1, 'b': [1, 2], 'c': {'d': None}}"
+   },
+   {
+    "value": {
+     "by": "nobody",
+     "at": "2026-01-10T10:00:00Z"
+    },
+    "output": "{'by': 'nobody', 'at': '2026-01-10T10:00:00Z'}"
+   },
+   {
+    "value": [
+     "explanation",
+     "how-to",
+     "reference",
+     "tutorial"
+    ],
+    "output": "['explanation', 'how-to', 'reference', 'tutorial']"
+   },
+   {
+    "value": {
+     "id": "b"
+    },
+    "output": "{'id': 'b'}"
+   }
+  ]
+ },
+ "glossary": [
+  {
+   "name": "project-only",
+   "org": null,
+   "project": {
+    "technical_nouns": [
+     {
+      "term": "worker",
+      "meaning": "the process that reads the queue",
+      "unapproved": [
+       "consumer"
+      ]
+     }
+    ],
+    "technical_verbs": [
+     {
+      "term": "ingest"
+     }
+    ]
+   },
+   "result": {
+    "approved": [
+     "ingest",
+     "worker"
+    ],
+    "unapproved": [
+     [
+      "consumer",
+      "worker"
+     ]
+    ],
+    "origin": [
+     [
+      "worker",
+      "project"
+     ],
+     [
+      "ingest",
+      "project"
+     ]
+    ],
+    "entries": [
+     [
+      "worker",
+      [
+       {
+        "term": "worker",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": "the process that reads the queue",
+        "unapproved": [
+         "consumer"
+        ]
+       }
+      ]
+     ],
+     [
+      "ingest",
+      [
+       {
+        "term": "ingest",
+        "kind": "verb",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ]
+    ],
+    "conflicts": [],
+    "notices": [],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  },
+  {
+   "name": "org-only",
+   "org": {
+    "technical_nouns": [
+     {
+      "term": "gate",
+      "unapproved": [
+       "checkpoint"
+      ]
+     }
+    ]
+   },
+   "project": null,
+   "result": {
+    "approved": [
+     "gate"
+    ],
+    "unapproved": [
+     [
+      "checkpoint",
+      "gate"
+     ]
+    ],
+    "origin": [
+     [
+      "gate",
+      "org"
+     ]
+    ],
+    "entries": [
+     [
+      "gate",
+      [
+       {
+        "term": "gate",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "checkpoint"
+        ]
+       }
+      ]
+     ]
+    ],
+    "conflicts": [],
+    "notices": [],
+    "hasOrg": true,
+    "hasProject": false
+   }
+  },
+  {
+   "name": "self-consistency-conflict",
+   "org": null,
+   "project": {
+    "technical_nouns": [
+     {
+      "term": "a",
+      "unapproved": [
+       "b"
+      ]
+     },
+     {
+      "term": "b"
+     }
+    ]
+   },
+   "result": {
+    "approved": [
+     "a",
+     "b"
+    ],
+    "unapproved": [
+     [
+      "b",
+      "a"
+     ]
+    ],
+    "origin": [
+     [
+      "a",
+      "project"
+     ],
+     [
+      "b",
+      "project"
+     ]
+    ],
+    "entries": [
+     [
+      "a",
+      [
+       {
+        "term": "a",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "b"
+        ]
+       }
+      ]
+     ],
+     [
+      "b",
+      [
+       {
+        "term": "b",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ]
+    ],
+    "conflicts": [
+     "project glossary _glossary.json: \"b\" is an approved term and also an unapproved synonym of \"a\"",
+     "project glossary approves \"b\", which the org glossary lists as an unapproved synonym of \"a\""
+    ],
+    "notices": [],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  },
+  {
+   "name": "synonym-points-two-ways",
+   "org": {
+    "technical_nouns": [
+     {
+      "term": "x",
+      "unapproved": [
+       "s"
+      ]
+     }
+    ]
+   },
+   "project": {
+    "technical_nouns": [
+     {
+      "term": "y",
+      "unapproved": [
+       "s"
+      ]
+     }
+    ]
+   },
+   "result": {
+    "approved": [
+     "x",
+     "y"
+    ],
+    "unapproved": [
+     [
+      "s",
+      "x"
+     ]
+    ],
+    "origin": [
+     [
+      "x",
+      "org"
+     ],
+     [
+      "y",
+      "project"
+     ]
+    ],
+    "entries": [
+     [
+      "x",
+      [
+       {
+        "term": "x",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "s"
+        ]
+       }
+      ]
+     ],
+     [
+      "y",
+      [
+       {
+        "term": "y",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "s"
+        ]
+       }
+      ]
+     ]
+    ],
+    "conflicts": [
+     "synonym \"s\" points at \"x\" in one glossary and at \"y\" in the other"
+    ],
+    "notices": [],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  },
+  {
+   "name": "meaning-normalized-equal",
+   "org": {
+    "technical_nouns": [
+     {
+      "term": "queue",
+      "meaning": "A  first-in   buffer."
+     }
+    ]
+   },
+   "project": {
+    "technical_nouns": [
+     {
+      "term": "queue",
+      "meaning": "a first-in buffer"
+     }
+    ]
+   },
+   "result": {
+    "approved": [
+     "queue"
+    ],
+    "unapproved": [],
+    "origin": [
+     [
+      "queue",
+      "both"
+     ]
+    ],
+    "entries": [
+     [
+      "queue",
+      [
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": "a first-in buffer",
+        "unapproved": []
+       },
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": "a first-in buffer",
+        "unapproved": []
+       }
+      ]
+     ]
+    ],
+    "conflicts": [],
+    "notices": [
+     "project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)"
+    ],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  },
+  {
+   "name": "meaning-differs",
+   "org": {
+    "technical_nouns": [
+     {
+      "term": "queue",
+      "meaning": "a buffer"
+     }
+    ]
+   },
+   "project": {
+    "technical_nouns": [
+     {
+      "term": "queue",
+      "meaning": "a line of people"
+     }
+    ]
+   },
+   "result": {
+    "approved": [
+     "queue"
+    ],
+    "unapproved": [],
+    "origin": [
+     [
+      "queue",
+      "both"
+     ]
+    ],
+    "entries": [
+     [
+      "queue",
+      [
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": "a buffer",
+        "unapproved": []
+       },
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": "a line of people",
+        "unapproved": []
+       }
+      ]
+     ]
+    ],
+    "conflicts": [
+     "project glossary redefines org term \"queue\" with a different meaning (org: \"a buffer\"; project: \"a line of people\"). Use a different name for the project's item."
+    ],
+    "notices": [],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  },
+  {
+   "name": "repeat-without-meaning",
+   "org": {
+    "technical_nouns": [
+     {
+      "term": "queue",
+      "meaning": "a buffer"
+     }
+    ]
+   },
+   "project": {
+    "technical_nouns": [
+     {
+      "term": "queue"
+     }
+    ]
+   },
+   "result": {
+    "approved": [
+     "queue"
+    ],
+    "unapproved": [],
+    "origin": [
+     [
+      "queue",
+      "both"
+     ]
+    ],
+    "entries": [
+     [
+      "queue",
+      [
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": "a buffer",
+        "unapproved": []
+       },
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ]
+    ],
+    "conflicts": [],
+    "notices": [
+     "project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)"
+    ],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  },
+  {
+   "name": "project-approves-org-synonym",
+   "org": {
+    "technical_nouns": [
+     {
+      "term": "ripwire",
+      "unapproved": [
+       "tripwire"
+      ]
+     }
+    ]
+   },
+   "project": {
+    "technical_nouns": [
+     {
+      "term": "tripwire"
+     }
+    ]
+   },
+   "result": {
+    "approved": [
+     "ripwire",
+     "tripwire"
+    ],
+    "unapproved": [
+     [
+      "tripwire",
+      "ripwire"
+     ]
+    ],
+    "origin": [
+     [
+      "ripwire",
+      "org"
+     ],
+     [
+      "tripwire",
+      "project"
+     ]
+    ],
+    "entries": [
+     [
+      "ripwire",
+      [
+       {
+        "term": "ripwire",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "tripwire"
+        ]
+       }
+      ]
+     ],
+     [
+      "tripwire",
+      [
+       {
+        "term": "tripwire",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ]
+    ],
+    "conflicts": [
+     "project glossary approves \"tripwire\", which the org glossary lists as an unapproved synonym of \"ripwire\""
+    ],
+    "notices": [],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  },
+  {
+   "name": "project-lists-org-term-as-synonym",
+   "org": {
+    "technical_nouns": [
+     {
+      "term": "gate"
+     }
+    ]
+   },
+   "project": {
+    "technical_nouns": [
+     {
+      "term": "checkpointer",
+      "unapproved": [
+       "gate"
+      ]
+     }
+    ]
+   },
+   "result": {
+    "approved": [
+     "checkpointer",
+     "gate"
+    ],
+    "unapproved": [],
+    "origin": [
+     [
+      "gate",
+      "org"
+     ],
+     [
+      "checkpointer",
+      "project"
+     ]
+    ],
+    "entries": [
+     [
+      "gate",
+      [
+       {
+        "term": "gate",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ],
+     [
+      "checkpointer",
+      [
+       {
+        "term": "checkpointer",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "gate"
+        ]
+       }
+      ]
+     ]
+    ],
+    "conflicts": [
+     "project glossary lists org term \"gate\" as an unapproved synonym of \"checkpointer\""
+    ],
+    "notices": [],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  },
+  {
+   "name": "case-and-string-entries",
+   "org": {
+    "technical_nouns": [
+     "Queue",
+     "  Gate  "
+    ]
+   },
+   "project": {
+    "technical_nouns": [
+     {
+      "term": "QUEUE"
+     },
+     {
+      "term": "Valve",
+      "unapproved": [
+       "Tap",
+       "  "
+      ]
+     }
+    ],
+    "technical_verbs": [
+     "Ingest"
+    ]
+   },
+   "result": {
+    "approved": [
+     "gate",
+     "ingest",
+     "queue",
+     "valve"
+    ],
+    "unapproved": [
+     [
+      "tap",
+      "valve"
+     ]
+    ],
+    "origin": [
+     [
+      "queue",
+      "both"
+     ],
+     [
+      "gate",
+      "org"
+     ],
+     [
+      "valve",
+      "project"
+     ],
+     [
+      "ingest",
+      "project"
+     ]
+    ],
+    "entries": [
+     [
+      "queue",
+      [
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": null,
+        "unapproved": []
+       },
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ],
+     [
+      "gate",
+      [
+       {
+        "term": "gate",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ],
+     [
+      "valve",
+      [
+       {
+        "term": "valve",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "tap"
+        ]
+       }
+      ]
+     ],
+     [
+      "ingest",
+      [
+       {
+        "term": "ingest",
+        "kind": "verb",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ]
+    ],
+    "conflicts": [],
+    "notices": [
+     "project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)"
+    ],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  },
+  {
+   "name": "both-origin-synonyms",
+   "org": {
+    "technical_nouns": [
+     {
+      "term": "a",
+      "unapproved": [
+       "s1"
+      ]
+     }
+    ]
+   },
+   "project": {
+    "technical_nouns": [
+     {
+      "term": "a",
+      "unapproved": [
+       "s2"
+      ]
+     },
+     {
+      "term": "c",
+      "unapproved": [
+       "s1"
+      ]
+     }
+    ]
+   },
+   "result": {
+    "approved": [
+     "a",
+     "c"
+    ],
+    "unapproved": [
+     [
+      "s1",
+      "a"
+     ],
+     [
+      "s2",
+      "a"
+     ]
+    ],
+    "origin": [
+     [
+      "a",
+      "both"
+     ],
+     [
+      "c",
+      "project"
+     ]
+    ],
+    "entries": [
+     [
+      "a",
+      [
+       {
+        "term": "a",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "s1"
+        ]
+       },
+       {
+        "term": "a",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "s2"
+        ]
+       }
+      ]
+     ],
+     [
+      "c",
+      [
+       {
+        "term": "c",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "s1"
+        ]
+       }
+      ]
+     ]
+    ],
+    "conflicts": [
+     "synonym \"s1\" points at \"a\" in one glossary and at \"c\" in the other"
+    ],
+    "notices": [
+     "project glossary repeats org term \"a\" (redundant; delete it, or move its synonyms to the org glossary)"
+    ],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  }
+ ],
+ "fixtureGlossary": [
+  {
+   "repo": "repo-flawed",
+   "result": {
+    "approved": [
+     "checkpointer",
+     "gate",
+     "ingest",
+     "queue",
+     "reserve",
+     "ripwire",
+     "tripwire",
+     "worker"
+    ],
+    "unapproved": [
+     [
+      "tripwire",
+      "ripwire"
+     ],
+     [
+      "checkpoint",
+      "gate"
+     ],
+     [
+      "consumer",
+      "worker"
+     ]
+    ],
+    "origin": [
+     [
+      "ripwire",
+      "both"
+     ],
+     [
+      "gate",
+      "org"
+     ],
+     [
+      "queue",
+      "both"
+     ],
+     [
+      "ingest",
+      "both"
+     ],
+     [
+      "worker",
+      "project"
+     ],
+     [
+      "tripwire",
+      "project"
+     ],
+     [
+      "checkpointer",
+      "project"
+     ],
+     [
+      "reserve",
+      "project"
+     ]
+    ],
+    "entries": [
+     [
+      "ripwire",
+      [
+       {
+        "term": "ripwire",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": "the code-structure tool",
+        "unapproved": [
+         "tripwire"
+        ]
+       },
+       {
+        "term": "ripwire",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": "a different meaning for the same word",
+        "unapproved": []
+       }
+      ]
+     ],
+     [
+      "gate",
+      [
+       {
+        "term": "gate",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "checkpoint"
+        ]
+       }
+      ]
+     ],
+     [
+      "queue",
+      [
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": "a first-in first-out buffer of messages",
+        "unapproved": []
+       },
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": "a first-in first-out buffer of messages",
+        "unapproved": []
+       }
+      ]
+     ],
+     [
+      "ingest",
+      [
+       {
+        "term": "ingest",
+        "kind": "verb",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": "read data into a store",
+        "unapproved": []
+       },
+       {
+        "term": "ingest",
+        "kind": "verb",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": "read data into a store",
+        "unapproved": []
+       }
+      ]
+     ],
+     [
+      "worker",
+      [
+       {
+        "term": "worker",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": "the process that reads the queue",
+        "unapproved": [
+         "consumer"
+        ]
+       }
+      ]
+     ],
+     [
+      "tripwire",
+      [
+       {
+        "term": "tripwire",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ],
+     [
+      "checkpointer",
+      [
+       {
+        "term": "checkpointer",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "gate"
+        ]
+       }
+      ]
+     ],
+     [
+      "reserve",
+      [
+       {
+        "term": "reserve",
+        "kind": "verb",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ]
+    ],
+    "conflicts": [
+     "project glossary approves \"tripwire\", which the org glossary lists as an unapproved synonym of \"ripwire\"",
+     "project glossary lists org term \"gate\" as an unapproved synonym of \"checkpointer\"",
+     "project glossary redefines org term \"ripwire\" with a different meaning (org: \"the code-structure tool\"; project: \"a different meaning for the same word\"). Use a different name for the project's item."
+    ],
+    "notices": [
+     "project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)",
+     "project glossary repeats org term \"ingest\" (redundant; delete it, or move its synonyms to the org glossary)"
+    ],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  },
+  {
+   "repo": "repo-clean",
+   "result": {
+    "approved": [
+     "gate",
+     "ingest",
+     "queue",
+     "ripwire"
+    ],
+    "unapproved": [
+     [
+      "tripwire",
+      "ripwire"
+     ],
+     [
+      "checkpoint",
+      "gate"
+     ]
+    ],
+    "origin": [
+     [
+      "ripwire",
+      "org"
+     ],
+     [
+      "gate",
+      "org"
+     ],
+     [
+      "queue",
+      "both"
+     ],
+     [
+      "ingest",
+      "both"
+     ]
+    ],
+    "entries": [
+     [
+      "ripwire",
+      [
+       {
+        "term": "ripwire",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": "the code-structure tool",
+        "unapproved": [
+         "tripwire"
+        ]
+       }
+      ]
+     ],
+     [
+      "gate",
+      [
+       {
+        "term": "gate",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": null,
+        "unapproved": [
+         "checkpoint"
+        ]
+       }
+      ]
+     ],
+     [
+      "queue",
+      [
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": "a first-in first-out buffer of messages",
+        "unapproved": []
+       },
+       {
+        "term": "queue",
+        "kind": "noun",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": "a first-in first-out buffer of messages",
+        "unapproved": []
+       }
+      ]
+     ],
+     [
+      "ingest",
+      [
+       {
+        "term": "ingest",
+        "kind": "verb",
+        "origin": "org",
+        "file": "org-glossary.json",
+        "meaning": "read data into a store",
+        "unapproved": []
+       },
+       {
+        "term": "ingest",
+        "kind": "verb",
+        "origin": "project",
+        "file": "_glossary.json",
+        "meaning": null,
+        "unapproved": []
+       }
+      ]
+     ]
+    ],
+    "conflicts": [],
+    "notices": [
+     "project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)",
+     "project glossary repeats org term \"ingest\" (redundant; delete it, or move its synonyms to the org glossary)"
+    ],
+    "hasOrg": true,
+    "hasProject": true
+   }
+  }
+ ],
+ "docsRoot": [
+  {
+   "files": [
+    "docs/flows/a.md"
+   ],
+   "start": "docs/flows/a.md",
+   "output": "docs"
+  },
+  {
+   "files": [
+    "docs/flows/a.md"
+   ],
+   "start": "docs/flows",
+   "output": "docs"
+  },
+  {
+   "files": [
+    "docs/flows/a.md"
+   ],
+   "start": "docs",
+   "output": "docs"
+  },
+  {
+   "files": [
+    "proj/docs/a.md"
+   ],
+   "start": "proj/docs/a.md",
+   "output": "proj/docs"
+  },
+  {
+   "files": [
+    "src/Foo.cs",
+    "docs/_glossary.yaml"
+   ],
+   "start": "src/Foo.cs",
+   "output": "docs"
+  },
+  {
+   "files": [
+    "src/deep/Foo.cs",
+    "docs/_glossary.yaml"
+   ],
+   "start": "src/deep/Foo.cs",
+   "output": "docs"
+  },
+  {
+   "files": [
+    "src/Foo.cs"
+   ],
+   "start": "src/Foo.cs",
+   "output": "src"
+  },
+  {
+   "files": [
+    "wiki/index.md",
+    "wiki/flows/x.md",
+    "wiki/notes/n.md"
+   ],
+   "start": "wiki/notes/n.md",
+   "output": "wiki"
+  },
+  {
+   "files": [
+    "wiki/index.md",
+    "wiki/notes/n.md"
+   ],
+   "start": "wiki/notes/n.md",
+   "output": "wiki/notes"
+  },
+  {
+   "files": [
+    "site/_glossary.yaml",
+    "site/pages/p.md"
+   ],
+   "start": "site/pages/p.md",
+   "output": "site"
+  },
+  {
+   "files": [
+    "README.md"
+   ],
+   "start": "README.md",
+   "output": "."
+  },
+  {
+   "files": [
+    "a/b/c/d.md"
+   ],
+   "start": "a/b/c/d.md",
+   "output": "a/b/c"
+  },
+  {
+   "files": [
+    "docs/x.md"
+   ],
+   "start": ".",
+   "output": "."
+  }
+ ]
+}

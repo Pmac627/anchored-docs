@@ -1,0 +1,17 @@
+{
+  "id": "dc-map-check-stale",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "map",
+        "docs",
+        "--check"
+      ],
+      "code": 1,
+      "stdout": "map: _map.yaml is out of date with sources; run without --check to regenerate\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

@@ -1,0 +1,8452 @@
+{
+ "capturedFrom": "Python 3.12 stdlib",
+ "tree": [
+  "src/Orders/OrderService.cs",
+  "src/Orders/sub/Deep.cs",
+  "src/Api/Controllers/X.cs",
+  "src/engine/rank.cpp",
+  "docs/a.md",
+  "README.md",
+  ".hidden/x.txt",
+  "a-b/c.txt",
+  "dir.md/inner.txt",
+  "Case/Up.cs"
+ ],
+ "emptyDirs": [
+  "empty"
+ ],
+ "fnmatch": [
+  {
+   "pattern": "src/Orders/**",
+   "name": "src/Orders/OrderService.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "src/Orders/a.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "src/Orders/Zed.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/**",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "src/Orders/OrderService.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/**",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/**",
+   "name": "src/Api/Controllers/X.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/**",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "src/x/y.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/**",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "src/Orders/a.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/**",
+   "name": "src/Orders/Zed.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/**",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "src/**",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "src/Orders/OrderService.cs",
+   "match": true
+  },
+  {
+   "pattern": "*.cs",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": true
+  },
+  {
+   "pattern": "*.cs",
+   "name": "src/Api/Controllers/X.cs",
+   "match": true
+  },
+  {
+   "pattern": "*.cs",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "a.cs",
+   "match": true
+  },
+  {
+   "pattern": "*.cs",
+   "name": "b.cs",
+   "match": true
+  },
+  {
+   "pattern": "*.cs",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "src/x/y.cs",
+   "match": true
+  },
+  {
+   "pattern": "*.cs",
+   "name": "A.cs",
+   "match": true
+  },
+  {
+   "pattern": "*.cs",
+   "name": "src/Orders/a.cs",
+   "match": true
+  },
+  {
+   "pattern": "*.cs",
+   "name": "src/Orders/Zed.cs",
+   "match": true
+  },
+  {
+   "pattern": "*.cs",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "*.cs",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "src/Orders/OrderService.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "src/Api/Controllers/X.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "src/x/y.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "src/Orders/a.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "src/Orders/Zed.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "src/*/*.cs",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "src/Orders/OrderService.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "src/Orders/a.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "src/Orders/Zed.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "src/Orders/OrderService.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "src/Orders/Zed.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "src/Orders/a.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/[!A-Z]*.cs",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "abc",
+   "match": true
+  },
+  {
+   "pattern": "a?c",
+   "name": "aXc",
+   "match": true
+  },
+  {
+   "pattern": "a?c",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "a?c",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "ax",
+   "match": true
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "bx",
+   "match": true
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "[a-c]x",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "dx",
+   "match": true
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "]x",
+   "match": true
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "ex",
+   "match": true
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "-x",
+   "match": true
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "\\x",
+   "match": true
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "5x",
+   "match": true
+  },
+  {
+   "pattern": "[!a-c]x",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "]x",
+   "match": true
+  },
+  {
+   "pattern": "[]]x",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "[]]x",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "ax",
+   "match": true
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "bx",
+   "match": true
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "dx",
+   "match": true
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "ex",
+   "match": true
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "-x",
+   "match": true
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "\\x",
+   "match": true
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "5x",
+   "match": true
+  },
+  {
+   "pattern": "[!]]x",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "[a-",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "[",
+   "match": true
+  },
+  {
+   "pattern": "[",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "[",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "x[",
+   "match": true
+  },
+  {
+   "pattern": "x[",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "x[",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "abc",
+   "match": true
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "axbxc",
+   "match": true
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "a*b*c",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "abc",
+   "match": true
+  },
+  {
+   "pattern": "a**c",
+   "name": "aXc",
+   "match": true
+  },
+  {
+   "pattern": "a**c",
+   "name": "axbxc",
+   "match": true
+  },
+  {
+   "pattern": "a**c",
+   "name": "ac",
+   "match": true
+  },
+  {
+   "pattern": "a**c",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "a**c",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "**",
+   "name": "src/Orders/OrderService.cs",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "src/Api/Controllers/X.cs",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "docs/a.md",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "a.cs",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "b.cs",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "ax",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "bx",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "dx",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "]x",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "ex",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "abc",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "aXc",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "axbxc",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "ac",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "a",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "-x",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "x[",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "[",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "a-b",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "a.b",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "a+b",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "(x)",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "{x}",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "a|b",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "$a",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "^a",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "a\\b",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "&",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "~",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "|",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "\\x",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "src/x/y.cs",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "A.cs",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "src/Orders/a.cs",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "src/Orders/Zed.cs",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "z",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "5x",
+   "match": true
+  },
+  {
+   "pattern": "**",
+   "name": "ZZ",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "src/Orders/OrderService.cs",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "src/Api/Controllers/X.cs",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "docs/a.md",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "a.cs",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "b.cs",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "ax",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "bx",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "dx",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "]x",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "ex",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "abc",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "aXc",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "axbxc",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "ac",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "a",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "-x",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "x[",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "[",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "a-b",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "a.b",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "a+b",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "(x)",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "{x}",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "a|b",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "$a",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "^a",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "a\\b",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "&",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "~",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "|",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "\\x",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "src/x/y.cs",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "A.cs",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "src/Orders/a.cs",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "src/Orders/Zed.cs",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "z",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "5x",
+   "match": true
+  },
+  {
+   "pattern": "*",
+   "name": "ZZ",
+   "match": true
+  },
+  {
+   "pattern": "?",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "a",
+   "match": true
+  },
+  {
+   "pattern": "?",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "[",
+   "match": true
+  },
+  {
+   "pattern": "?",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "&",
+   "match": true
+  },
+  {
+   "pattern": "?",
+   "name": "~",
+   "match": true
+  },
+  {
+   "pattern": "?",
+   "name": "|",
+   "match": true
+  },
+  {
+   "pattern": "?",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "z",
+   "match": true
+  },
+  {
+   "pattern": "?",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "?",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "",
+   "match": true
+  },
+  {
+   "pattern": "",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "src/Orders/OrderService.cs",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "src/Api/Controllers/X.cs",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "docs/a.md",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "a.cs",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "b.cs",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "ax",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "bx",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "dx",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "ex",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "abc",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "aXc",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "axbxc",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "ac",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "a",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "x[",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "a-b",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "a.b",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "a+b",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "a|b",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "a\\b",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "src/x/y.cs",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "src/Orders/a.cs",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "src/Orders/Zed.cs",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "z",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "5x",
+   "match": true
+  },
+  {
+   "pattern": "[a-z0-9]*",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "[z-a]x",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "ax",
+   "match": true
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "bx",
+   "match": true
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "ex",
+   "match": true
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "-x",
+   "match": true
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "[a-c-e]x",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "\\x",
+   "match": true
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "[\\]x",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "a-b",
+   "match": true
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "a[-]b",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "&",
+   "match": true
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "~",
+   "match": true
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "|",
+   "match": true
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "[&~|]",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "ax",
+   "match": true
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "[^a]x",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "[[]x",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "src/Orders/OrderService.cs",
+   "match": true
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "docs/a.md",
+   "match": true
+  },
+  {
+   "pattern": "docs/*",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "docs/*",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "docs/a.md",
+   "match": true
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "*/*.md",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "a.b",
+   "match": true
+  },
+  {
+   "pattern": "a.b",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "a.b",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "a+b",
+   "match": true
+  },
+  {
+   "pattern": "a+b",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "a+b",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "(x)",
+   "match": true
+  },
+  {
+   "pattern": "(x)",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "(x)",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "{x}",
+   "match": true
+  },
+  {
+   "pattern": "{x}",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "{x}",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "a|b",
+   "match": true
+  },
+  {
+   "pattern": "a|b",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "a|b",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "$a",
+   "match": true
+  },
+  {
+   "pattern": "$a",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "$a",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "^a",
+   "match": true
+  },
+  {
+   "pattern": "^a",
+   "name": "a\\b",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "^a",
+   "name": "ZZ",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "src/Orders/OrderService.cs",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "src/Orders/sub/Deep.cs",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "src/Api/Controllers/X.cs",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "docs/a.md",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "b.cs",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "ax",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "bx",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "dx",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "]x",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "ex",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "abc",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "aXc",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "axbxc",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "ac",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "a",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "-x",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "x[",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "[",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "a-b",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "a.b",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "a+b",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "(x)",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "{x}",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "a|b",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "$a",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "^a",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "a\\b",
+   "match": true
+  },
+  {
+   "pattern": "a\\b",
+   "name": "&",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "~",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "|",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "\\x",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "src/x/y.cs",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "A.cs",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "src/Orders/a.cs",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "src/Orders/Zed.cs",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "z",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "5x",
+   "match": false
+  },
+  {
+   "pattern": "a\\b",
+   "name": "ZZ",
+   "match": false
+  }
+ ],
+ "glob": [
+  {
+   "pattern": "src/Orders/**",
+   "exists": true
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs",
+   "exists": true
+  },
+  {
+   "pattern": "src/**/*.cs",
+   "exists": true
+  },
+  {
+   "pattern": "src/**",
+   "exists": true
+  },
+  {
+   "pattern": "**",
+   "exists": true
+  },
+  {
+   "pattern": "**/*.md",
+   "exists": true
+  },
+  {
+   "pattern": "src/*/X.cs",
+   "exists": false
+  },
+  {
+   "pattern": "src/Api/*/X.cs",
+   "exists": true
+  },
+  {
+   "pattern": "src/missing/**",
+   "exists": false
+  },
+  {
+   "pattern": "src/Orders/*.cs",
+   "exists": true
+  },
+  {
+   "pattern": "src/Orders/[A-Z]*.cs",
+   "exists": true
+  },
+  {
+   "pattern": "*.md",
+   "exists": true
+  },
+  {
+   "pattern": "docs/",
+   "exists": true
+  },
+  {
+   "pattern": "src/Orders/",
+   "exists": true
+  },
+  {
+   "pattern": "README.md/",
+   "exists": false
+  },
+  {
+   "pattern": "./src/Orders/OrderService.cs",
+   "exists": true
+  },
+  {
+   "pattern": "src//Orders",
+   "exists": true
+  },
+  {
+   "pattern": ".hidden/*",
+   "exists": true
+  },
+  {
+   "pattern": "*",
+   "exists": true
+  },
+  {
+   "pattern": "empty/**",
+   "exists": true
+  },
+  {
+   "pattern": "empty/*",
+   "exists": false
+  },
+  {
+   "pattern": "src/Orders/OrderService.c?",
+   "exists": true
+  },
+  {
+   "pattern": "src/Orders/Order[!x]ervice.cs",
+   "exists": true
+  },
+  {
+   "pattern": "src/orders/**",
+   "exists": false
+  },
+  {
+   "pattern": "src/Orders/**/Deep.cs",
+   "exists": true
+  },
+  {
+   "pattern": "**/Deep.cs",
+   "exists": true
+  },
+  {
+   "pattern": "src/**/",
+   "exists": true
+  },
+  {
+   "pattern": "/abs",
+   "exists": false
+  },
+  {
+   "pattern": "",
+   "exists": false
+  },
+  {
+   "pattern": ".",
+   "exists": false
+  },
+  {
+   "pattern": "..",
+   "exists": true
+  },
+  {
+   "pattern": "src/Orders/OrderService.cs/x",
+   "exists": false
+  },
+  {
+   "pattern": "dir.md",
+   "exists": true
+  },
+  {
+   "pattern": "dir.md/*",
+   "exists": true
+  },
+  {
+   "pattern": "case/**",
+   "exists": false
+  },
+  {
+   "pattern": "Case/**",
+   "exists": true
+  },
+  {
+   "pattern": "a-b/*",
+   "exists": true
+  },
+  {
+   "pattern": "src/Orders/**/",
+   "exists": true
+  },
+  {
+   "pattern": "**/Up.cs",
+   "exists": true
+  },
+  {
+   "pattern": "src/**/Deep.cs",
+   "exists": true
+  },
+  {
+   "pattern": "*/*/*.cs",
+   "exists": true
+  },
+  {
+   "pattern": "src/[OA]*/*.cs",
+   "exists": true
+  },
+  {
+   "pattern": "src/Api/**",
+   "exists": true
+  }
+ ],
+ "iso": [
+  {
+   "input": "2026-01-10T10:00:00Z",
+   "ms": 1768039200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00:00+00:00",
+   "ms": 1768039200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2020-03-01T08:30:00+00:00",
+   "ms": 1583051400000,
+   "date": "2020-03-01",
+   "ok": true
+  },
+  {
+   "input": "2099-01-01T00:00:00Z",
+   "ms": 4070908800000,
+   "date": "2099-01-01",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10",
+   "ms": 1768003200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10 10:00",
+   "ms": 1768039200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10",
+   "ms": 1768039200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00",
+   "ms": 1768039200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00:00.123",
+   "ms": 1768039200123,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00:00.123456789Z",
+   "ms": 1768039200123,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00:00,5",
+   "ms": 1768039200500,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00:00+05:30",
+   "ms": 1768019400000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00:00-0800",
+   "ms": 1768068000000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00:00+05",
+   "ms": 1768021200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T23:59:59-23:59",
+   "ms": 1768175939000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-02-30",
+   "ok": false
+  },
+  {
+   "input": "2026-13-01",
+   "ok": false
+  },
+  {
+   "input": "2026-00-10",
+   "ok": false
+  },
+  {
+   "input": "2026-01-00",
+   "ok": false
+  },
+  {
+   "input": "2023-02-29",
+   "ok": false
+  },
+  {
+   "input": "2024-02-29",
+   "ms": 1709164800000,
+   "date": "2024-02-29",
+   "ok": true
+  },
+  {
+   "input": "0000-01-01",
+   "ok": false
+  },
+  {
+   "input": "0001-01-01",
+   "ms": null,
+   "date": "0001-01-01",
+   "ok": true
+  },
+  {
+   "input": "9999-12-31T23:59:59Z",
+   "ms": 253402300799000,
+   "date": "9999-12-31",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T24:00",
+   "ok": false
+  },
+  {
+   "input": "2026-01-10T10:60",
+   "ok": false
+  },
+  {
+   "input": "2026-01-10T10:00:60",
+   "ok": false
+  },
+  {
+   "input": "yesterday",
+   "ok": false
+  },
+  {
+   "input": "",
+   "ok": false
+  },
+  {
+   "input": "None",
+   "ok": false
+  },
+  {
+   "input": "2026-1-10",
+   "ok": false
+  },
+  {
+   "input": "2026-01-10X10:00",
+   "ms": 1768039200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10t10:00:00Z",
+   "ms": 1768039200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00:00+24:00",
+   "ok": false
+  },
+  {
+   "input": "20260110",
+   "ms": 1768003200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00:00 ",
+   "ok": false
+  },
+  {
+   "input": " 2026-01-10",
+   "ok": false
+  },
+  {
+   "input": "2026-01-10T",
+   "ok": false
+  },
+  {
+   "input": "2026-01-10T10:00:00Z extra",
+   "ok": false
+  },
+  {
+   "input": "2026-01-10T10:00:00+00:00:30",
+   "ms": 1768039170000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "2026-01-10T10:00:00-00:00",
+   "ms": 1768039200000,
+   "date": "2026-01-10",
+   "ok": true
+  },
+  {
+   "input": "1999-12-31T23:59:59+14:00",
+   "ms": 946634399000,
+   "date": "1999-12-31",
+   "ok": true
+  }
+ ],
+ "sort": [
+  {
+   "input": [
+    "docs/flows-x.md",
+    "docs/flows/a.md",
+    "docs/Flows/b.md",
+    "docs/a b.md",
+    "docs/a.md",
+    "docs/é.md",
+    "docs/😀.md",
+    "docs/z.md",
+    "docs/flows.md",
+    "docs/flows/index.md",
+    "docs/Z.md",
+    "docs/_map.md",
+    "docs/-a.md",
+    "docs/a/b/c.md",
+    "docs/a/b.md",
+    "docs/a.b.md"
+   ],
+   "output": [
+    "docs/-a.md",
+    "docs/Flows/b.md",
+    "docs/Z.md",
+    "docs/_map.md",
+    "docs/a/b/c.md",
+    "docs/a/b.md",
+    "docs/a b.md",
+    "docs/a.b.md",
+    "docs/a.md",
+    "docs/flows/a.md",
+    "docs/flows/index.md",
+    "docs/flows-x.md",
+    "docs/flows.md",
+    "docs/z.md",
+    "docs/é.md",
+    "docs/😀.md"
+   ]
+  }
+ ]
+}

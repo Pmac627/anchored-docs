@@ -1,0 +1,80 @@
+[
+  {
+    "word": "utilize",
+    "pos": "v",
+    "alternatives": [
+      "use"
+    ],
+    "help": [
+      "Write use."
+    ]
+  },
+  {
+    "word": "terminate",
+    "pos": "v",
+    "alternatives": [
+      "stop",
+      "end"
+    ]
+  },
+  {
+    "word": "commence",
+    "pos": "v",
+    "alternatives": [
+      "start",
+      "begin"
+    ]
+  },
+  {
+    "word": "validate",
+    "pos": "v",
+    "alternatives": [
+      "check"
+    ]
+  },
+  {
+    "word": "prior to",
+    "pos": "prep",
+    "alternatives": [
+      "before"
+    ]
+  },
+  {
+    "word": "leverage",
+    "pos": "v",
+    "alternatives": [
+      "use"
+    ]
+  },
+  {
+    "word": "submit",
+    "pos": "v",
+    "alternatives": [
+      "send"
+    ],
+    "help": [
+      "Write send for a message."
+    ]
+  },
+  {
+    "word": "fulfillment",
+    "pos": "n",
+    "alternatives": [
+      "completion"
+    ]
+  },
+  {
+    "word": "ship",
+    "pos": "v",
+    "alternatives": [
+      "send"
+    ]
+  },
+  {
+    "word": "packet",
+    "pos": "n",
+    "alternatives": [
+      "PACKET (TN)"
+    ]
+  }
+]

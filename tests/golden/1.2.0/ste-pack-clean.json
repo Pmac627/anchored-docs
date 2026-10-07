@@ -1,0 +1,15 @@
+{
+  "id": "ste-pack-clean",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "docs"
+      ],
+      "code": 0,
+      "stdout": "docs/_glossary.yaml:1: [H] 1.8: glossary: project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)\ndocs/_glossary.yaml:1: [H] 1.8: glossary: project glossary repeats org term \"ingest\" (redundant; delete it, or move its synonyms to the org glossary)\ndocs/decisions/0001-use-queue.md:16: [H] 1.5: 4 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): chose, ready, team, until\ndocs/flows/ingest.md:15: [H] 1.5: 1 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): returns\ndocs/overview.md:15: [H] 1.5: 3 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): accepts, customers, each\n\nste_check: 8 files, 11 sentences, 0 mechanical, 5 heuristic (1.5=3, 1.8=2), 0 waived, dictionary=pack\nDocs-STE: warn(5 heuristic)\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

@@ -1,0 +1,6 @@
+# The ASD-STE100 agent pack is derived from ASD's copyrighted specification (see its README.md).
+# Keep it in the environment that holds your registered copy of the PDF. Do not commit it to a shared
+# or public repository. Remove these lines only for a private repository whose every reader has
+# registered for the specification at https://www.asd-ste100.org.
+references/asd-ste100-agent-pack/*
+!references/asd-ste100-agent-pack/HOW-TO-INSTALL.md

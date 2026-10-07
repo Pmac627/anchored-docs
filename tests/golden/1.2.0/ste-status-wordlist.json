@@ -1,0 +1,15 @@
+{
+  "id": "ste-status-wordlist",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "--status"
+      ],
+      "code": 0,
+      "stdout": "org glossary: <FIXTURES>/glossary/org-glossary.yaml (4 terms; approved in every repo that runs this skill)\nSTE word source: wordlist (31 words) at <FIXTURES>/wordlist.txt\nThis is a plain word list (STE_DICTIONARY). Any word not in it fails 1.1. The agent pack gives alternatives and technical-noun warnings instead.\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

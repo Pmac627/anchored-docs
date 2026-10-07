@@ -1,0 +1,529 @@
+[
+  {
+    "id": "dc-okf-flawed",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "okf",
+        "docs"
+      ]
+    ]
+  },
+  {
+    "id": "dc-okf-clean",
+    "tool": "docs_check",
+    "fixture": "repo-clean",
+    "steps": [
+      [
+        "okf",
+        "docs"
+      ]
+    ]
+  },
+  {
+    "id": "dc-okf-repo-flag",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "okf",
+        "docs",
+        "--repo",
+        "."
+      ]
+    ]
+  },
+  {
+    "id": "dc-links-flawed",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "links",
+        "docs"
+      ]
+    ]
+  },
+  {
+    "id": "dc-links-clean",
+    "tool": "docs_check",
+    "fixture": "repo-clean",
+    "steps": [
+      [
+        "links",
+        "docs"
+      ]
+    ]
+  },
+  {
+    "id": "dc-map-write-flawed",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "map",
+        "docs"
+      ]
+    ],
+    "capture": [
+      "docs/_map"
+    ]
+  },
+  {
+    "id": "dc-map-check-stale",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "map",
+        "docs",
+        "--check"
+      ]
+    ]
+  },
+  {
+    "id": "dc-map-write-then-check",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "map",
+        "docs"
+      ],
+      [
+        "map",
+        "docs",
+        "--check"
+      ]
+    ],
+    "capture": [
+      "docs/_map"
+    ]
+  },
+  {
+    "id": "dc-map-check-clean",
+    "tool": "docs_check",
+    "fixture": "repo-clean",
+    "steps": [
+      [
+        "map",
+        "docs",
+        "--check"
+      ]
+    ]
+  },
+  {
+    "id": "dc-map-write-clean",
+    "tool": "docs_check",
+    "fixture": "repo-clean",
+    "steps": [
+      [
+        "map",
+        "docs"
+      ]
+    ],
+    "capture": [
+      "docs/_map"
+    ]
+  },
+  {
+    "id": "dc-stale-flawed",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "stale",
+        "docs"
+      ]
+    ]
+  },
+  {
+    "id": "dc-stale-days",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "stale",
+        "docs",
+        "--days",
+        "36500"
+      ]
+    ]
+  },
+  {
+    "id": "dc-stale-clean",
+    "tool": "docs_check",
+    "fixture": "repo-clean",
+    "steps": [
+      [
+        "stale",
+        "docs"
+      ]
+    ]
+  },
+  {
+    "id": "dc-affected-exact",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "affected",
+        "docs",
+        "src/Orders/OrderService.cs"
+      ]
+    ]
+  },
+  {
+    "id": "dc-affected-glob",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "affected",
+        "docs",
+        "src/Orders/OrderValidator.cs",
+        "src/engine/rank.cpp"
+      ]
+    ]
+  },
+  {
+    "id": "dc-affected-backslash",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "affected",
+        "docs",
+        "src\\Orders\\OrderService.cs"
+      ]
+    ]
+  },
+  {
+    "id": "dc-affected-case",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "affected",
+        "docs",
+        "SRC/Orders/OrderService.cs"
+      ]
+    ]
+  },
+  {
+    "id": "dc-affected-none",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "affected",
+        "docs",
+        "README.md"
+      ]
+    ]
+  },
+  {
+    "id": "dc-glossary-flawed",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "glossary",
+        "docs"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json"
+    }
+  },
+  {
+    "id": "dc-glossary-terms",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "glossary",
+        "docs",
+        "--terms"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json"
+    }
+  },
+  {
+    "id": "dc-glossary-clean-default-org",
+    "tool": "docs_check",
+    "fixture": "repo-clean",
+    "steps": [
+      [
+        "glossary",
+        "docs",
+        "--terms"
+      ]
+    ]
+  },
+  {
+    "id": "dc-usage-no-args",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      []
+    ]
+  },
+  {
+    "id": "dc-usage-bad-subcommand",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "bogus",
+        "docs"
+      ]
+    ]
+  },
+  {
+    "id": "dc-usage-not-a-dir",
+    "tool": "docs_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "okf",
+        "nope"
+      ]
+    ]
+  },
+  {
+    "id": "ste-docs-builtin",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "docs"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json"
+    }
+  },
+  {
+    "id": "ste-src-builtin",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "src"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json"
+    }
+  },
+  {
+    "id": "ste-clean-builtin",
+    "tool": "ste_check",
+    "fixture": "repo-clean",
+    "steps": [
+      [
+        "docs"
+      ]
+    ]
+  },
+  {
+    "id": "ste-wordlist-clean",
+    "tool": "ste_check",
+    "fixture": "repo-clean",
+    "steps": [
+      [
+        "docs/overview.md"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json",
+      "STE_DICTIONARY": "{FIXTURES}/wordlist.txt"
+    }
+  },
+  {
+    "id": "ste-wordlist-flawed",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "docs"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json",
+      "STE_DICTIONARY": "{FIXTURES}/wordlist.txt"
+    }
+  },
+  {
+    "id": "ste-pack-flawed",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "docs"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json",
+      "STE_AGENT_PACK": "{FIXTURES}/synthetic-pack"
+    }
+  },
+  {
+    "id": "ste-pack-clean",
+    "tool": "ste_check",
+    "fixture": "repo-clean",
+    "steps": [
+      [
+        "docs"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json",
+      "STE_AGENT_PACK": "{FIXTURES}/synthetic-pack"
+    }
+  },
+  {
+    "id": "ste-pack-src",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "src"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json",
+      "STE_AGENT_PACK": "{FIXTURES}/synthetic-pack"
+    }
+  },
+  {
+    "id": "ste-pack-categories-override",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "docs/overview.md",
+        "docs/architecture.md"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json",
+      "STE_AGENT_PACK": "{FIXTURES}/synthetic-pack",
+      "STE_TECH_CATEGORIES": "tn:6 tv:2"
+    }
+  },
+  {
+    "id": "ste-status-none",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "--status"
+      ]
+    ]
+  },
+  {
+    "id": "ste-status-wordlist",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "--status"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json",
+      "STE_DICTIONARY": "{FIXTURES}/wordlist.txt"
+    }
+  },
+  {
+    "id": "ste-status-pack",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "--status"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json",
+      "STE_AGENT_PACK": "{FIXTURES}/synthetic-pack"
+    }
+  },
+  {
+    "id": "ste-lookup-pack",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "--lookup",
+        "order",
+        "utilize",
+        "worker",
+        "set up",
+        "zzzz",
+        "submits"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json",
+      "STE_AGENT_PACK": "{FIXTURES}/synthetic-pack"
+    }
+  },
+  {
+    "id": "ste-lookup-nopack",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "--lookup",
+        "order"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json"
+    }
+  },
+  {
+    "id": "ste-glossary-report",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "--glossary-report",
+        "docs"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json"
+    }
+  },
+  {
+    "id": "ste-missing-path",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      [
+        "nope.md"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json"
+    }
+  },
+  {
+    "id": "ste-usage",
+    "tool": "ste_check",
+    "fixture": "repo-flawed",
+    "steps": [
+      []
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json"
+    }
+  }
+]

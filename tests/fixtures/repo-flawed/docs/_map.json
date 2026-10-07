@@ -1,0 +1,30 @@
+{
+  "generated": "2026-01-01",
+  "map": [
+    {
+      "code": "src/Orders/**",
+      "docs": [
+        "docs/architecture.md",
+        "docs/flows/order-fulfillment.md"
+      ]
+    },
+    {
+      "code": "src/Orders/OrderService.cs",
+      "docs": [
+        "docs/flows/order-fulfillment.md"
+      ]
+    },
+    {
+      "code": "src/engine/rank.cpp",
+      "docs": [
+        "docs/flows/ranking.md"
+      ]
+    },
+    {
+      "code": "src/old/removed.cs",
+      "docs": [
+        "docs/flows/gone.md"
+      ]
+    }
+  ]
+}

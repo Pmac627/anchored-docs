@@ -1,0 +1,17 @@
+{
+  "id": "dc-glossary-clean-default-org",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "glossary",
+        "docs",
+        "--terms"
+      ],
+      "code": 0,
+      "stdout": "org glossary:     <SKILL>/references/org-glossary.yaml  (0 terms)\nproject glossary: <REPO>/docs/_glossary.yaml  (2 terms)\neffective:        2 terms, 0 unapproved synonyms\n\n  ingest                           verb  project \n  queue                            noun  project   a first-in first-out buffer of messages\nglossary: 0 conflicts, 0 notices\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

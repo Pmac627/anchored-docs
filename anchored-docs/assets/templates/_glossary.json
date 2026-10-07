@@ -1,0 +1,11 @@
+{
+  "technical_nouns": [
+    {
+      "term": "<call graph>",
+      "meaning": "<the directed graph of callers to callees that ripwire builds from the code>",
+      "unapproved": ["<dependency graph>", "<reference graph>"]
+    },
+    { "term": "<gate>", "unapproved": ["<check script>"] }
+  ],
+  "technical_verbs": [{ "term": "<ingest>" }, { "term": "<rank>" }]
+}

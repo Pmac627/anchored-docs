@@ -14,12 +14,12 @@ The skill treats documentation as a maintained engineering artifact. It reads th
 
 ## Agent-agnostic by design
 
-The skill is designed to work with Codex, GitHub Copilot, Grok, Gemini, Claude, and other coding agents. Its core is a portable `SKILL.md` folder with plain Markdown, YAML, and scripts. It does not require a vendor-specific API, model, prompt syntax, or proprietary tool integration.
+The skill is designed to work with Codex, GitHub Copilot, Grok, Gemini, Claude, and other coding agents. Its core is a portable `SKILL.md` folder with plain Markdown, JSON data files, and Node.js scripts. Document frontmatter is YAML, because OKF requires it. It does not require a vendor-specific API, model, prompt syntax, or proprietary tool integration.
 
 An agent host needs these capabilities:
 
 - Read and update files in the target repository.
-- Run local commands, including Python 3 and Ripwire.
+- Run local commands, including Node.js 22 or newer and Ripwire.
 - Load a local skill folder or accept the skill instructions as an attached artifact.
 
 Ripwire can be called through its CLI or optional MCP server. The choice is an adapter for the host, not a change to the documentation workflow. See [anchored-docs-INSTALL.md](anchored-docs-INSTALL.md) for platform-specific installation locations and the Windows WSL setup.
@@ -65,12 +65,14 @@ For a host that cannot discover skills automatically, attach the archive or prov
 | Requirement | Purpose | Required |
 | --- | --- | --- |
 | Ripwire | Finds changed symbols and verifies documentation anchors. | Yes |
-| Python 3 | Runs `docs_check.py` and `ste_check.py`. | Yes |
+| Node.js 22 or newer | Runs `docs_check.mjs` and `ste_check.mjs`. The scripts have no packages to install. | Yes |
 | ASD-STE100 agent pack | Provides the official dictionary and complete word checks. | Recommended |
 | Project `docs/` directory | Target for normal delta maintenance. | Required for delta mode |
 | [qmd](https://github.com/tobi/qmd) | Finds documentation coverage gaps by meaning, not declared anchors. | Optional |
 
 Without the ASD-STE100 agent pack, the checker uses a limited built-in list and reports that rule 1.1 is partial. The skill can still run, but it cannot claim complete dictionary coverage.
+
+Version 2.0 replaces Python with Node.js and moves the skill's own data files (`_glossary`, `_map`, `org-glossary`) from YAML to JSON. If you used 1.x, follow "Upgrading from 1.x" in [anchored-docs-INSTALL.md](anchored-docs-INSTALL.md).
 
 Without qmd, the skill runs exactly as documented above; bootstrap mode skips its coverage check and delta mode's on-request lookup is simply unavailable. Neither affects Ripwire verification or the self-report's `Docs-Updated` result.
 
@@ -96,3 +98,17 @@ qmd is not a third check. It finds candidate documentation by meaning, the way a
 Use **Apache License 2.0** for this skill repository. It is a permissive license with an explicit patent grant, is widely understood in enterprise environments, and aligns with Ripwire's Apache-2.0 license. It does not grant rights to ASD-STE100 content, trademarks, or any separately obtained official materials.
 
 The full license text is in [LICENSE](LICENSE). Add a copyright notice with the repository owner and year to source files or other suitable project materials before the first public release. It does not grant rights to ASD-STE100 content, trademarks, or any separately obtained official materials.
+
+## Development
+
+`anchored-docs/` is the unpacked skill. `anchored-docs.skill` is a zip of that folder. `tests/` proves the scripts match the recorded behavior of 1.2.0, the version they replaced.
+
+```bash
+node --test "tests/unit/*.test.mjs"                        # unit tests
+node tests/run-cases.mjs run --skill anchored-docs --out /tmp/out
+node tests/run-cases.mjs compare tests/golden/1.2.0 /tmp/out   # 41 cases against the 1.2.0 baseline
+zip -r -X anchored-docs.skill anchored-docs                # rebuild the archive
+```
+
+See [tests/README.md](tests/README.md) for what the baseline records and what it covers.
+
