@@ -1,7 +1,8 @@
 ---
 name: anchored-docs
-version: 2.0.0
 description: Keep a repository's living developer documentation in docs/ true to the code, written in ASD-STE100 Simplified Technical English, stored as an OKF (Open Knowledge Format) bundle, and verified with ripwire. Use this whenever you finish a code change, prepare a commit or pull request, write an implementation plan, or are asked to document, update docs, refresh the wiki, check docs for drift, or bootstrap docs for a repo. Treat updating the affected documentation as part of the definition of done for every code change in a repo that has a docs/ folder, unless the user says not to. Triggers even when the user does not say "documentation", for example after "add a field to the order request", "refactor the ingest pass", "open a PR for this", or "is this doc still right". Also use it to rewrite any docs/ prose into STE, or to run the docs lint.
+metadata:
+  version: "2.0.1"
 ---
 
 # anchored-docs
@@ -318,6 +319,10 @@ Ripwire checks anchors, not prose. Ripwire cannot tell you that a paragraph is i
 The configuration inventory uses grep. The inventory does not do an analysis of the code. The two-stage check of the receiver decreases the number of incorrect candidates, but some can stay. A person must examine the unresolved candidates and the category 3 keys. The doc is a start for that review. The doc does not replace the review.
 
 ## Changelog
+
+### 2.0.1
+- Corrected: the version of the skill is in `metadata.version` in the frontmatter. Before this change, it was a top-level `version` key. The Agent Skills specification does not let a skill use that key, and strict validators such as `skills-ref validate` refuse it.
+- Corrected: `INSTALL.md` gives the frontmatter keys of the skill correctly.
 
 ### 2.0.0
 Breaking changes:

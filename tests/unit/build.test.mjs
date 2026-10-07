@@ -6,7 +6,7 @@ import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { crc32, buildZip, extractNotes, checkSkill, frontmatterField, parseTag } from '../../tools/build-skill.mjs';
+import { crc32, buildZip, extractNotes, checkSkill, frontmatterField, frontmatterKeys, metadataField, parseTag } from '../../tools/build-skill.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SCRIPT = join(HERE, '..', '..', 'tools', 'build-skill.mjs');
@@ -40,8 +40,9 @@ function readZip(buf) {
 
 const SKILL = (version = '2.0.0', name = 'anchored-docs') => `---
 name: ${name}
-version: ${version}
 description: x
+metadata:
+  version: "${version}"
 ---
 # Body
 
@@ -101,9 +102,23 @@ test('parseTag tells a release from a pre-release', () => {
   assert.equal(parseTag('release-2'), null);
 });
 
-test('frontmatterField reads a key only from the frontmatter', () => {
-  assert.equal(frontmatterField(SKILL(), 'version'), '2.0.0');
-  assert.equal(frontmatterField('# no frontmatter\nversion: 1\n', 'version'), null);
+test('frontmatterField reads a top-level key only from the frontmatter', () => {
+  assert.equal(frontmatterField(SKILL(), 'name'), 'anchored-docs');
+  assert.equal(frontmatterField(SKILL(), 'version'), null);
+  assert.equal(frontmatterField('# no frontmatter\nname: x\n', 'name'), null);
+});
+
+test('metadataField reads metadata.version, quoted or not, and only inside the metadata map', () => {
+  assert.equal(metadataField(SKILL(), 'version'), '2.0.0');
+  assert.equal(metadataField(SKILL().replaceAll('\n', '\r\n'), 'version'), '2.0.0');
+  assert.equal(metadataField("---\nname: a\nmetadata:\n  author: me\n  version: '1.2.3'\n---\n", 'version'), '1.2.3');
+  assert.equal(metadataField('---\nname: a\nmetadata:\n  version: 1.2.3\n---\n', 'version'), '1.2.3');
+  assert.equal(metadataField('---\nmetadata:\n  author: me\nversion: 1.2.3\n---\n', 'version'), null);
+  assert.equal(metadataField('---\nname: a\nversion: 1.2.3\n---\n', 'version'), null);
+});
+
+test('frontmatterKeys lists the top-level keys only', () => {
+  assert.deepEqual(frontmatterKeys(SKILL()), ['name', 'description', 'metadata']);
 });
 
 test('checkSkill accepts a clean skill and reports each release blocker', () => {
@@ -117,6 +132,9 @@ test('checkSkill accepts a clean skill and reports each release blocker', () => 
   assert.match(checkSkill({ ...ok, skillText: SKILL('3.0.0'), tag: 'v3.0.0' }).join(), /no changelog entry "### 3\.0\.0"/);
   assert.match(checkSkill({ ...ok, files: [...ok.files, 'references/asd-ste100-agent-pack/dictionary.json'] }).join(), /agent pack files .*dictionary\.json/);
   assert.match(checkSkill({ ...ok, files: ['README.md'] }).join(), /SKILL\.md is not tracked/);
+  const topLevel = SKILL().replace('description: x\n', 'version: 2.0.0\ndescription: x\n');
+  assert.match(checkSkill({ ...ok, skillText: topLevel }).join(), /keys the Agent Skills specification does not allow: version/);
+  assert.match(checkSkill({ ...ok, skillText: SKILL().replace(/metadata:\n.*\n/, '') }).join(), /no metadata\.version/);
 });
 
 test('the CLI builds this repo from git, and refuses a tag that differs from SKILL.md', () => {

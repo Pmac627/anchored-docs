@@ -115,7 +115,7 @@ See [tests/README.md](tests/README.md) for what the baseline records and what it
 
 ### Releases
 
-CI (`.github/workflows/ci.yml`) runs the unit tests, the parity cases, and a build on Linux, Windows, and macOS for every pull request and push to main. To release, set `version` in `skills/anchored-docs/SKILL.md`, add a `### <version>` entry to its changelog, commit, and push a tag:
+CI (`.github/workflows/ci.yml`) runs the unit tests, the parity cases, and a build on Linux, Windows, and macOS for every pull request and push to main. To release, set `metadata.version` in `skills/anchored-docs/SKILL.md`, add a `### <version>` entry to its changelog, commit, and push a tag:
 
 - `v2.1.0` publishes a release. The `releases/latest/download` link above then points at it.
 - `v2.1.0-rc.1` publishes a pre-release of 2.1.0 for testing. `releases/latest` skips it.
