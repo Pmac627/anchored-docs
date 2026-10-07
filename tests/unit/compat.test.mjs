@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { splitlines, strip, stripEnd, stripChars, formatValue, valueText } from '../../skills/anchored-docs/scripts/_compat.mjs';
+import { splitlines, strip, stripEnd, stripChars, formatValue, valueText, replacePaths } from '../../skills/anchored-docs/scripts/_compat.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const golden = JSON.parse(readFileSync(join(HERE, '..', 'golden', 'fm-1.2.0.json'), 'utf8')).compat;
@@ -26,6 +26,38 @@ test('strip and stripEnd take linear time on a long whitespace run inside the te
   assert.equal(strip(s), s.slice(0, -5));
   assert.equal(stripEnd(' ' + s), ' ' + s.slice(0, -5));
   assert.ok(performance.now() - t0 < 500, `took ${(performance.now() - t0).toFixed(0)} ms`);
+});
+
+// The path regex that replacePaths replaces. ste_check used it until 2.0.1.
+const PATH_RE = /(?<![\p{L}\p{N}_])(?:\.{0,2}\/)?[\p{L}\p{N}_.-]+(?:\/[\p{L}\p{N}_.-]+)+(?::\p{Nd}+)?/gu;
+
+test('replacePaths gives the same result as the path regex', () => {
+  const fixed = ['see src/a.cs:12 now', './x/y', '../a/b/', '.../a/b', 'a//b', '/a/b', 'x/y:', 'x/y:1a', 'é/ü',
+    'á/b', '\u{1d400}/b', 'ab-/c', '_/_', 'a/b c/d', 'a/b/c:3:4', 'v1.2/x', '..', './', 'a/', '/'];
+  for (const s of fixed) assert.equal(replacePaths(s, ' PATH '), s.replace(PATH_RE, ' PATH '), JSON.stringify(s));
+
+  // Random strings from the characters that change the result: path characters, separators, a digit, a
+  // combining mark (not a word character), and an astral letter.
+  const alphabet = ['a', 'Z', '_', '.', '-', '/', ':', '7', ' ', 'é', '́', '\u{1d400}', '!'];
+  let seed = 1;
+  const rand = (k) => {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    return seed % k;
+  };
+  for (let i = 0; i < 50000; i++) {
+    let s = '';
+    for (let len = rand(24); len > 0; len--) s += alphabet[rand(alphabet.length)];
+    assert.equal(replacePaths(s, ' PATH '), s.replace(PATH_RE, ' PATH '), JSON.stringify(s));
+  }
+});
+
+test('replacePaths takes linear time on long runs of dots or dashes', () => {
+  for (const ch of ['.', '-', 'a.']) {
+    const s = 'x ' + ch.repeat(80000) + ' a/b';
+    const t0 = performance.now();
+    assert.equal(replacePaths(s, ' PATH '), 'x ' + ch.repeat(80000) + '  PATH ');
+    assert.ok(performance.now() - t0 < 500, `${ch}: took ${(performance.now() - t0).toFixed(0)} ms`);
+  }
 });
 
 test('stripChars removes the given characters from both ends, in linear time on inner runs', () => {

@@ -124,3 +124,63 @@ export function padCodePoints(s, width) {
   const n = Array.from(s).length;
   return n >= width ? s : s + ' '.repeat(width - n);
 }
+
+const PATH_CHAR = /^[\p{L}\p{N}_.-]$/u;
+const WORD_CHAR = /^[\p{L}\p{N}_]$/u;
+const DIGIT_CHAR = /^\p{Nd}$/u;
+
+/**
+ * Replaces every path-like token with `rep`. The result is the same as
+ *   text.replace(/(?<![\p{L}\p{N}_])(?:\.{0,2}\/)?[\p{L}\p{N}_.-]+(?:\/[\p{L}\p{N}_.-]+)+(?::\p{Nd}+)?/gu, rep)
+ * but the time is linear. That regex starts again at every "." and "-" of a run and reads to the end of
+ * the run each time, which is quadratic on a long run of dots or dashes.
+ */
+export function replacePaths(text, rep) {
+  if (!text.includes('/')) return text;   // every match contains a "/"
+  const cps = Array.from(text);
+  const n = cps.length;
+  const isPath = cps.map((c) => PATH_CHAR.test(c));
+
+  // runEnd[i]: the first index at or after i that is not a path character.
+  const runEnd = new Int32Array(n + 1);
+  runEnd[n] = n;
+  for (let i = n - 1; i >= 0; i--) runEnd[i] = isPath[i] ? runEnd[i + 1] : i;
+
+  // A greedy [path]+ that starts at q always stops at runEnd[q], and "/" is not a path character, so the
+  // rest of the pattern matches only when "/" and a path character come next. Returns the match end or -1.
+  const matchFrom = (q) => {
+    if (q >= n || !isPath[q]) return -1;
+    let e = runEnd[q];
+    if (!(cps[e] === '/' && isPath[e + 1])) return -1;
+    while (cps[e] === '/' && isPath[e + 1]) e = runEnd[e + 1];
+    if (cps[e] === ':' && e + 1 < n && DIGIT_CHAR.test(cps[e + 1])) {
+      e++;
+      while (e < n && DIGIT_CHAR.test(cps[e])) e++;
+    }
+    return e;
+  };
+
+  const out = [];
+  let last = 0;
+  let p = 0;
+  while (p < n) {
+    let end = -1;
+    if (p === 0 || !WORD_CHAR.test(cps[p - 1])) {
+      // The optional prefix \.{0,2}/ is greedy: try two dots, then one, then none, then no prefix.
+      let dots = 0;
+      while (dots < 2 && cps[p + dots] === '.') dots++;
+      for (let j = dots; j >= 0 && end < 0; j--) {
+        if (cps[p + j] === '/') end = matchFrom(p + j + 1);
+      }
+      if (end < 0) end = matchFrom(p);
+    }
+    if (end < 0) {
+      p++;
+      continue;
+    }
+    out.push(cps.slice(last, p).join(''), rep);
+    last = p = end;
+  }
+  out.push(cps.slice(last).join(''));
+  return out.join('');
+}

@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expandUser, findDocsRoot, findOrgGlossary, loadGlossaries, parseGlossaryFile, readDoc, GlossaryError, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
-import { WHITESPACE, valueText, strip, stripChars, readText, splitlines, writeReport, FileReadError } from './_compat.mjs';
+import { WHITESPACE, valueText, strip, stripChars, readText, splitlines, writeReport, replacePaths, FileReadError } from './_compat.mjs';
 import { comparePaths, exists, isDir, isFile, pathParts, purePath, fileSuffix, rglobAll, sortPaths } from './_fs.mjs';
 import { APPROVED_ING, FUNCTION_WORDS, IMPERATIVE_VERBS, PASSIVE_PARTICIPLES, PHRASAL, STEP_OK_STARTS, USAGE } from './_ste_data.mjs';
 
@@ -245,7 +245,7 @@ const INLINE_STEPS = [
   [/!\[[^\]]*\]\([^)]*\)/g, ' IMAGE '],
   [/\[([^\]]+)\]\([^)]*\)/g, '$1'],
   [new RegExp(`https?://${NS}+|www\\.${NS}+`, 'gu'), ' URL '],
-  [new RegExp(`(?<!${W})(?:\\.{0,2}/)?[\\p{L}\\p{N}_.-]+(?:/[\\p{L}\\p{N}_.-]+)+(?::${D}+)?`, 'gu'), ' PATH '],
+  [replacePaths, ' PATH '],   // a linear scan; the regex it replaces is in its comment
   [new RegExp(`\\[\\^[\\p{L}\\p{N}_-]+\\]`, 'gu'), ''],
   [new RegExp(`\\*\\*|__|(?<!${W})[*_](?=${W})|(?<=${W})[*_](?!${W})`, 'gu'), ''],
   [/<[^>\n]+>/g, ' '],
@@ -254,7 +254,7 @@ const INLINE_STEPS = [
 /** Replace exempt inline regions with single placeholder tokens. */
 function stripInline(text) {
   let t = text;
-  for (const [re, rep] of INLINE_STEPS) t = t.replace(re, rep);
+  for (const [re, rep] of INLINE_STEPS) t = typeof re === 'function' ? re(t, rep) : t.replace(re, rep);
   return t;
 }
 
