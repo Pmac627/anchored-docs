@@ -19,7 +19,7 @@ Windows: ripwire is not a native Windows binary. Build and run it in WSL 2 and e
 
 - Project: `.github/skills/anchored-docs/`, `.claude/skills/anchored-docs/`, or `.agents/skills/anchored-docs/` in the repository.
 - Personal: `~/.copilot/skills/anchored-docs/`, `~/.claude/skills/anchored-docs/`, or `~/.agents/skills/anchored-docs/`.
-- GitHub CLI: `gh skill` can install from a published location.
+- GitHub CLI: `gh skill install Pmac627/anchored-docs anchored-docs` installs the folder from the repository. Add `--agent claude-code` or `--scope user` to choose the location.
 
 ## One copy for all three in a repository
 
@@ -27,7 +27,7 @@ Put the folder at `.claude/skills/anchored-docs/` (Claude Code and Copilot both 
 
 ## Unpacking the .skill file
 
-`anchored-docs.skill` is a zip archive. `unzip anchored-docs.skill` produces the `anchored-docs/` folder.
+`anchored-docs.skill` is a zip archive, attached to each release at https://github.com/Pmac627/anchored-docs/releases. `unzip anchored-docs.skill` produces the `anchored-docs/` folder.
 
 ## Maintain the organization glossary
 

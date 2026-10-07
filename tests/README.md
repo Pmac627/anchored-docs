@@ -33,7 +33,7 @@ comparison. Frontmatter stays YAML in both versions because OKF requires it.
 
 ```bash
 # Check the scripts against the baseline
-node tests/run-cases.mjs run --skill anchored-docs --out /tmp/results
+node tests/run-cases.mjs run --skill skills/anchored-docs --out /tmp/results
 node tests/run-cases.mjs compare tests/golden/1.2.0 /tmp/results
 
 # Prove the corpus still triggers every expected finding

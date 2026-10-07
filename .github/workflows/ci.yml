@@ -1,0 +1,42 @@
+# Tests on pushes to main and on every pull request, on Linux, Windows, and macOS. release.yml calls it before it publishes.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+
+      - name: Unit tests
+        run: node --test "tests/unit/*.test.mjs"
+
+      - name: Parity with the 1.2.0 baseline
+        run: |
+          node tests/run-cases.mjs run --skill skills/anchored-docs --out "$RUNNER_TEMP/parity"
+          node tests/run-cases.mjs compare tests/golden/1.2.0 "$RUNNER_TEMP/parity"
+          node tests/run-cases.mjs coverage tests/golden/1.2.0
+
+      - name: Build the archive
+        run: node tools/build-skill.mjs build --out "$RUNNER_TEMP/anchored-docs.skill"

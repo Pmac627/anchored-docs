@@ -5,8 +5,8 @@ import { readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'nod
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, sep } from 'node:path';
-import { fnmatchcase, globExists, parseIso } from '../../anchored-docs/scripts/_glob.mjs';
-import { sortPaths, fileSuffix } from '../../anchored-docs/scripts/_fs.mjs';
+import { fnmatchcase, globExists, parseIso } from '../../skills/anchored-docs/scripts/_glob.mjs';
+import { sortPaths, fileSuffix } from '../../skills/anchored-docs/scripts/_fs.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const g = JSON.parse(readFileSync(join(HERE, '..', 'golden', 'glob-1.2.0.json'), 'utf8'));

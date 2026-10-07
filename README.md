@@ -22,7 +22,7 @@ An agent host needs these capabilities:
 - Run local commands, including Node.js 22 or newer and Ripwire.
 - Load a local skill folder or accept the skill instructions as an attached artifact.
 
-Ripwire can be called through its CLI or optional MCP server. The choice is an adapter for the host, not a change to the documentation workflow. See [anchored-docs-INSTALL.md](anchored-docs-INSTALL.md) for platform-specific installation locations and the Windows WSL setup.
+Ripwire can be called through its CLI or optional MCP server. The choice is an adapter for the host, not a change to the documentation workflow. See [INSTALL.md](skills/anchored-docs/INSTALL.md) for platform-specific installation locations and the Windows WSL setup.
 
 ## What it does
 
@@ -37,7 +37,7 @@ Ripwire can be called through its CLI or optional MCP server. The choice is an a
 
 ## Contents
 
-The distributable archive, [anchored-docs.skill](anchored-docs.skill), expands to this layout:
+The distributable archive, [anchored-docs.skill](https://github.com/Pmac627/anchored-docs/releases/latest/download/anchored-docs.skill), is attached to each [release](https://github.com/Pmac627/anchored-docs/releases). It expands to this layout:
 
 ```text
 anchored-docs/
@@ -54,7 +54,7 @@ anchored-docs/
 ## Quick start
 
 1. Install Ripwire and make it available on `PATH`, set `RIPWIRE_BIN`, or configure its MCP server.
-2. Extract [anchored-docs.skill](anchored-docs.skill) and install the `anchored-docs/` folder where the selected agent discovers skills. Use [anchored-docs-INSTALL.md](anchored-docs-INSTALL.md) for known host locations.
+2. Download [anchored-docs.skill](https://github.com/Pmac627/anchored-docs/releases/latest/download/anchored-docs.skill) from the latest release, extract it, and install the `anchored-docs/` folder where the selected agent discovers skills. With the GitHub CLI, `gh skill install Pmac627/anchored-docs anchored-docs` installs the folder from this repository instead. Use [INSTALL.md](skills/anchored-docs/INSTALL.md) for known host locations.
 3. Give the agent a task such as: `Use anchored-docs to update the documentation affected by this change.`
 4. Let the agent read the relevant code, update only the affected documentation, run the checks, and return the skill's self-report.
 
@@ -72,7 +72,7 @@ For a host that cannot discover skills automatically, attach the archive or prov
 
 Without the ASD-STE100 agent pack, the checker uses a limited built-in list and reports that rule 1.1 is partial. The skill can still run, but it cannot claim complete dictionary coverage.
 
-Version 2.0 replaces Python with Node.js and moves the skill's own data files (`_glossary`, `_map`, `org-glossary`) from YAML to JSON. If you used 1.x, follow "Upgrading from 1.x" in [anchored-docs-INSTALL.md](anchored-docs-INSTALL.md).
+Version 2.0 replaces Python with Node.js and moves the skill's own data files (`_glossary`, `_map`, `org-glossary`) from YAML to JSON. If you used 1.x, follow "Upgrading from 1.x" in [INSTALL.md](skills/anchored-docs/INSTALL.md).
 
 Without qmd, the skill runs exactly as documented above; bootstrap mode skips its coverage check and delta mode's on-request lookup is simply unavailable. Neither affects Ripwire verification or the self-report's `Docs-Updated` result.
 
@@ -101,14 +101,23 @@ The full license text is in [LICENSE](LICENSE). Add a copyright notice with the 
 
 ## Development
 
-`anchored-docs/` is the unpacked skill. `anchored-docs.skill` is a zip of that folder. `tests/` proves the scripts match the recorded behavior of 1.2.0, the version they replaced.
+`skills/anchored-docs/` is the unpacked skill. The release workflow builds `anchored-docs.skill` from that folder; the archive is not committed. `tests/` proves the scripts match the recorded behavior of 1.2.0, the version they replaced.
 
 ```bash
 node --test "tests/unit/*.test.mjs"                        # unit tests
-node tests/run-cases.mjs run --skill anchored-docs --out /tmp/out
+node tests/run-cases.mjs run --skill skills/anchored-docs --out /tmp/out
 node tests/run-cases.mjs compare tests/golden/1.2.0 /tmp/out   # 41 cases against the 1.2.0 baseline
-zip -r -X anchored-docs.skill anchored-docs                # rebuild the archive
+node tools/build-skill.mjs build                           # build dist/anchored-docs.skill from the staged files
 ```
 
 See [tests/README.md](tests/README.md) for what the baseline records and what it covers.
 
+
+### Releases
+
+CI (`.github/workflows/ci.yml`) runs the unit tests, the parity cases, and a build on Linux, Windows, and macOS for every pull request and push to main. To release, set `version` in `skills/anchored-docs/SKILL.md`, add a `### <version>` entry to its changelog, commit, and push a tag:
+
+- `v2.1.0` publishes a release. The `releases/latest/download` link above then points at it.
+- `v2.1.0-rc.1` publishes a pre-release of 2.1.0 for testing. `releases/latest` skips it.
+
+`.github/workflows/release.yml` runs CI again, then builds the archive from the tagged commit and attaches it to a GitHub release with that changelog entry as the notes. The build stops if the tag does not match the version, if the changelog entry is missing, or if any ASD-STE100 agent pack file other than `HOW-TO-INSTALL.md` is tracked.

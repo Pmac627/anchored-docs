@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, basename, sep } from 'node:path';
 import {
   splitFrontmatter, parseYamlSubset, readDoc, loadGlossaries, parseGlossaryFile, findDocsRoot, GlossaryError, ORG_GLOSSARY_DEFAULT,
-} from '../../anchored-docs/scripts/_fm.mjs';
+} from '../../skills/anchored-docs/scripts/_fm.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const FIXTURES = join(HERE, '..', 'fixtures');

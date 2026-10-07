@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { splitlines, strip, stripEnd, stripChars, formatValue, valueText } from '../../anchored-docs/scripts/_compat.mjs';
+import { splitlines, strip, stripEnd, stripChars, formatValue, valueText } from '../../skills/anchored-docs/scripts/_compat.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const golden = JSON.parse(readFileSync(join(HERE, '..', 'golden', 'fm-1.2.0.json'), 'utf8')).compat;
