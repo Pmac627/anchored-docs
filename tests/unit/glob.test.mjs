@@ -52,3 +52,14 @@ test('sortPaths orders by path segments, as 1.2.0 did', () => {
 test('fileSuffix returns the text from the last dot, empty for dotfiles', () => {
   for (const [name, suffix] of [['a.md', '.md'], ['.md', ''], ['a.', ''], ['a.b.md', '.md'], ['README', ''], ['.hidden.md', '.md']]) assert.equal(fileSuffix(name), suffix, name);
 });
+
+test('globExists finds nothing under a root that does not exist, "**" included', () => {
+  const td = mkdtempSync(join(tmpdir(), 'ad-glob-'));
+  try {
+    const missing = join(td, 'nope');
+    for (const p of ['**', '**/', '**/*', 'a/**', '*']) assert.equal(globExists(missing, p), false, p);
+    assert.equal(globExists(td, '**'), true);
+  } finally {
+    rmSync(td, { recursive: true, force: true });
+  }
+});

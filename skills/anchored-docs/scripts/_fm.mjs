@@ -231,7 +231,8 @@ export function parseGlossaryFile(path, origin) {
   return out;
 }
 
-function expandUser(p) {
+/** Expands a leading ~, ~/, or ~\ to the home folder, on every OS. */
+export function expandUser(p) {
   if (p === '~') return homedir();
   if (p.startsWith('~/') || p.startsWith('~\\')) return join(homedir(), p.slice(2));
   return p;

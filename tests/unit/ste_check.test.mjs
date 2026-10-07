@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { cpSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -80,4 +80,19 @@ test('the notice for a leftover _glossary.yaml points at that file, not at the o
     assert.match(r.out, /docs[\\/]_glossary\.yaml:1: \[H\] 1\.8: glossary: found _glossary\.yaml/);
     assert.doesNotMatch(r.out, /org-glossary\.json:1:/);
   });
+});
+
+test('STE_AGENT_PACK expands a leading ~/ and ~\\ to the home folder', () => {
+  const home = mkdtempSync(join(tmpdir(), 'ad-home-'));
+  try {
+    cpSync(join(HERE, '..', 'fixtures', 'synthetic-pack'), join(home, 'mypack'), { recursive: true });
+    for (const value of ['~/mypack', '~\\mypack']) {
+      const env = { ...Object.fromEntries(Object.entries(process.env).filter(([k]) => !k.startsWith('STE_'))), HOME: home, USERPROFILE: home, STE_AGENT_PACK: value };
+      const r = spawnSync(process.execPath, [SCRIPT, '--status'], { cwd: home, env, encoding: 'utf8' });
+      assert.match(r.stdout, /STE word source: pack /, value);
+      assert.ok(r.stdout.includes(join(home, 'mypack')), `${value}: ${r.stdout}`);
+    }
+  } finally {
+    rmSync(home, { recursive: true, force: true });
+  }
 });

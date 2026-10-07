@@ -323,6 +323,8 @@ The configuration inventory uses grep. The inventory does not do an analysis of 
 ### 2.0.1
 - Corrected: the version of the skill is in `metadata.version` in the frontmatter. Before this change, it was a top-level `version` key. The Agent Skills specification does not let a skill use that key, and strict validators such as `skills-ref validate` refuse it.
 - Corrected: `INSTALL.md` gives the frontmatter keys of the skill correctly.
+- Corrected: when the `--repo` folder was not there, a `sources` pattern that starts with `**` found a file. After this change, it finds no file, as in 1.2.0.
+- Corrected: `ste_check.mjs` did not expand `~\` at the start of `STE_AGENT_PACK`. After this change, `~\` and `~/` go to the home folder, as in `STE_ORG_GLOSSARY`.
 
 ### 2.0.0
 Breaking changes:

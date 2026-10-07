@@ -4,9 +4,8 @@
 
 import { readFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
-import { homedir } from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { findDocsRoot, findOrgGlossary, loadGlossaries, parseGlossaryFile, readDoc, GlossaryError, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
+import { expandUser, findDocsRoot, findOrgGlossary, loadGlossaries, parseGlossaryFile, readDoc, GlossaryError, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
 import { WHITESPACE, valueText, strip, stripChars, readText, splitlines, FileReadError } from './_compat.mjs';
 import { comparePaths, exists, isDir, isFile, pathParts, purePath, fileSuffix, rglobAll, sortPaths } from './_fs.mjs';
 import { APPROVED_ING, FUNCTION_WORDS, IMPERATIVE_VERBS, PASSIVE_PARTICIPLES, PHRASAL, STEP_OK_STARTS, USAGE } from './_ste_data.mjs';
@@ -100,12 +99,6 @@ function loadUnapproved() {
 function describeLexicon(lex) {
   if (lex.source === 'pack') return `pack (Issue 9: ${lex.nApproved} approved, ${lex.nUnapproved} unapproved) at ${lex.path}`;
   return `wordlist (${lex.nApproved} words) at ${lex.path}`;
-}
-
-function expandUser(p) {
-  if (p === '~') return homedir();
-  if (p.startsWith('~/')) return join(homedir(), p.slice(2));
-  return p;
 }
 
 function findAgentPack() {
