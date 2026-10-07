@@ -113,16 +113,16 @@ It prints `STE word source: pack (Issue 9: 876 approved, 1318 unapproved)` when 
 
 1. Register at https://www.asd-ste100.org and request the specification through the site's official form. It is free of charge. ASD emails a link to the PDF (Issue 9, January 2025, 434 pages). Save it as `ASD-STE100_ISSUE9.pdf`.
 2. Get the [STE Generator Kit](https://github.com/Pmac627/ste-generator-kit). It contains no content from the specification, only the extraction scripts and the handwritten checklist, conventions, and reference linter.
-3. Generate the pack with Node.js 22 or newer, on Windows, macOS, Linux, or WSL. The kit has no dependencies and does not use Python. It runs once, outside the skill.
+3. Make the pack with Node.js 22 or a higher version, on Windows, macOS, Linux, or WSL. The kit does not use Python or other software packages. Do this step one time, in a folder that is not in the skill.
 
    ```bash
    git clone https://github.com/Pmac627/ste-generator-kit.git && cd ste-generator-kit
    STE_PDF=/path/to/ASD-STE100_ISSUE9.pdf STE_WORK=/tmp/ste node run_all.mjs
    ```
 
-   In PowerShell, set the two variables first: `$env:STE_PDF = 'C:\path\ASD-STE100_ISSUE9.pdf'; $env:STE_WORK = 'C:\ste'; node run_all.mjs`.
+   In PowerShell, set the two environment values before you start the kit: `$env:STE_PDF = 'C:\path\ASD-STE100_ISSUE9.pdf'; $env:STE_WORK = 'C:\ste'; node run_all.mjs`.
 
-   The run takes a few seconds and writes the pack to `$STE_WORK/pack/`. Compare the printed counts with the table in the kit's `INSTRUCTIONS.md`, section 4.
+   The kit writes the pack to `$STE_WORK/pack/` in less than one minute. Compare the counts that the kit shows with the table in section 4 of the kit's `INSTRUCTIONS.md`.
 4. Copy the result into the skill:
 
    ```bash
