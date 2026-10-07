@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const SCRIPT = join(HERE, '..', '..', 'anchored-docs', 'scripts', 'docs_check.mjs');
+const SCRIPT = join(HERE, '..', '..', 'skills', 'anchored-docs', 'scripts', 'docs_check.mjs');
 
 /** Runs docs_check with no STE_* variables from the caller's environment, so the result does not depend on the machine. */
 function run(cwd, ...args) {

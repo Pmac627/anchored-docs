@@ -15,7 +15,7 @@
 //           contains, so a corpus gap is visible before the port starts.
 
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, cpSync, readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync } from 'node:fs';
+import { mkdtempSync, realpathSync, cpSync, readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -54,7 +54,9 @@ function canonicalMap(text) {
 // ---------- running ----------
 
 function runCase(c, { skill }, opts = {}) {
-  const tmp = mkdtempSync(join(tmpdir(), 'ad-case-'));
+  // The scripts print paths as the OS resolves them: /private/var on macOS, long names instead of the
+  // 8.3 short names that TEMP holds on GitHub's Windows runners. Resolve first so the placeholders match.
+  const tmp = realpathSync.native(mkdtempSync(join(tmpdir(), 'ad-case-')));
   const repo = join(tmp, 'repo');
   cpSync(join(FIXTURES, c.fixture), repo, { recursive: true });
   const env = {};

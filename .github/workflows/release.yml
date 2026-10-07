@@ -1,0 +1,51 @@
+# Publishes anchored-docs.skill for a tag. v2.0.0 is a release; v2.0.0-rc.1 is a pre-release, which
+# releases/latest skips. build-skill.mjs refuses a tag that does not match the SKILL.md version.
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions: {}
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    permissions:
+      contents: read
+    uses: ./.github/workflows/ci.yml
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+
+      - name: Build and write release notes
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          node tools/build-skill.mjs build --ref HEAD --tag "$TAG" --out dist/anchored-docs.skill
+          node tools/build-skill.mjs notes --ref HEAD "$TAG" > "$RUNNER_TEMP/notes.md"
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          pre=()
+          if [[ "$TAG" == *-* ]]; then pre=(--prerelease); fi
+          gh release create "$TAG" dist/anchored-docs.skill \
+            --repo "$GITHUB_REPOSITORY" --verify-tag \
+            --title "anchored-docs $TAG" --notes-file "$RUNNER_TEMP/notes.md" "${pre[@]}"
