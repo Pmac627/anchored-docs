@@ -194,3 +194,25 @@ test('control characters from a doc appear as escapes in the report, never raw',
     assert.doesNotMatch(r.out + r.err, /[\x00-\x08\x0b-\x1f\x7f]/);
   });
 });
+
+test('map --check names a broken _map.json and exits 2, instead of calling it out of date', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'docs', 't.md'), DOC);
+    for (const bad of ['{ not json', '[]', '{"map": {}}']) {
+      writeFileSync(join(repo, 'docs', '_map.json'), bad);
+      const r = run(repo, 'map', 'docs', '--check');
+      assert.equal(r.code, 2, bad);
+      assert.match(r.out, /docs_check: .*_map\.json: (not valid JSON|expected a JSON object with a "map" array)/, bad);
+    }
+  });
+});
+
+test('map --check gives the _map.yaml notice too, not only affected', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'docs', 't.md'), DOC);
+    writeFileSync(join(repo, 'docs', '_map.yaml'), 'map: []\n');
+    const r = run(repo, 'map', 'docs', '--check');
+    assert.equal(r.code, 1);
+    assert.match(r.out, /notice: found _map\.yaml; anchored-docs 2\.0 reads _map\.json/);
+  });
+});

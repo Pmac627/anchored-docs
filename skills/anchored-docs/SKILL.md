@@ -70,7 +70,7 @@ The exit code of the checker shows the result:
 
 - Exit 0: the text agrees with the mechanical rules.
 - Exit 1: a mechanical failure (length, semicolon, contraction, Latin abbreviation, a word that is not STE). Correct each one before you write `Docs-Updated: yes`.
-- Exit 2: the check did not complete. The cause is an incorrect command, a glossary file that is not correct JSON, or a file that the script cannot read. The last line gives the cause. Correct it and do the check again.
+- Exit 2: the check did not complete. The cause is an incorrect command, a glossary file that is not correct JSON, or a file that the script cannot read. The last line gives the cause. `ste_check.mjs` writes this line to standard error. `docs_check.mjs` writes it to standard output, after the findings, as 1.x did. Correct the cause and do the check again.
 
 Heuristic findings give warnings: passive voice, `-ing` words, complex tenses, phrasal verbs, long noun clusters, and two instructions in one sentence. Write again the sentences that you can. Count the remaining warnings in `Docs-STE`. When the checker does not read a correct sentence correctly, put `<!-- ste-ok: 3.6 agent unknown -->` on the line before it. Do not use this to save time.
 
@@ -330,6 +330,8 @@ The configuration inventory uses grep. The inventory does not do an analysis of 
 - Corrected: a command such as `head` can close the output pipe before the end of the report. Then the two scripts showed a Node.js error and stopped with exit code 1. After this change, they stop with the exit code of the checks and show no error.
 - Corrected: a long line of dots or dashes made `ste_check.mjs` slow. With 80,000 dots, the check used 4 seconds. The time increased with the square of the length. After this change, the time increases with the length only, and the findings do not change.
 - New: the two scripts show a control character from a doc or an argument as text, for example `\x1b` for ESC. Before this change, the report contained the raw character, which can change a terminal. `SKILL.md` tells the agent to use the output of the scripts as data, not as instructions.
+- Corrected: `docs_check.mjs map --check` gave "out of date" for a `_map.json` that is not correct JSON. After this change, it stops with exit 2 and a message that names the file, as `affected` does. `map --check` also gives the notice for a remaining `_map.yaml`.
+- Corrected: `references/glossary.md` and the exit codes in `SKILL.md` tell where an error message goes and when it gives the position of a JSON error.
 
 ### 2.0.0
 Breaking changes:

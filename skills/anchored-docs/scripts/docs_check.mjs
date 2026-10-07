@@ -221,9 +221,9 @@ function buildMap(docs) {
 
 class MapError extends Error {}
 
-function readMap(docs) {
-  const target = join(docs, '_map.json');
-  if (!exists(target)) return [];
+/** The parsed _map.json, or null when there is none. A file that is not a JSON object with a "map" array is a MapError. */
+function parseMapFile(target) {
+  if (!exists(target)) return null;
   let data;
   try {
     data = JSON.parse(readText(target));
@@ -231,19 +231,28 @@ function readMap(docs) {
     throw new MapError(`${target}: not valid JSON (${e.message}). Run docs_check.mjs map to regenerate it.`);
   }
   if (!data || !Array.isArray(data.map)) throw new MapError(`${target}: expected a JSON object with a "map" array. Run docs_check.mjs map to regenerate it.`);
+  return data;
+}
+
+function readMap(docs) {
+  const data = parseMapFile(join(docs, '_map.json'));
+  if (!data) return [];
   return data.map.filter((e) => e && typeof e.code === 'string' && Array.isArray(e.docs)).map((e) => [e.code, e.docs.map(String)]);
+}
+
+/** A 1.x _map.yaml with no _map.json is called out, so the missing map is not read as "no doc matches". */
+function noticeLegacyMap(docs) {
+  if (!exists(join(docs, '_map.json')) && exists(join(docs, '_map.yaml'))) {
+    print('notice: found _map.yaml; anchored-docs 2.0 reads _map.json. Run docs_check.mjs map to create it.');
+  }
 }
 
 function cmdMap(docs, repo, check) {
   const fresh = buildMap(docs);
   const target = join(docs, '_map.json');
   if (check) {
-    let old = null;
-    try {
-      old = JSON.parse(readText(target)).map;
-    } catch {
-      old = null;
-    }
+    noticeLegacyMap(docs);
+    const old = parseMapFile(target)?.map ?? null;
     if (JSON.stringify(old) !== JSON.stringify(fresh.map)) {
       print('map: _map.json is out of date with sources; run without --check to regenerate');
       return 1;
@@ -257,9 +266,7 @@ function cmdMap(docs, repo, check) {
 }
 
 function cmdAffected(docs, files) {
-  if (!exists(join(docs, '_map.json')) && exists(join(docs, '_map.yaml'))) {
-    print('notice: found _map.yaml; anchored-docs 2.0 reads _map.json. Run docs_check.mjs map to create it.');
-  }
+  noticeLegacyMap(docs);
   const hits = new Map();
   for (const [code, dlist] of readMap(docs)) {
     for (const raw of files) {

@@ -35,7 +35,7 @@ The top level is an object with two optional arrays: `technical_nouns` and `tech
 - Every `unapproved` synonym is flagged, and the message names the approved term (rule 1.11).
 - `meaning` is optional. Give one when the word could mean something else in another team's domain. It is how the checker tells "the same word for the same thing" (a harmless repeat) from "the same word for a different thing" (a conflict). Two meanings count as equal when they differ only in case, spacing, or a final period.
 
-Write the file as strict JSON: double quotes, no comments, no trailing commas. If a glossary file is not valid JSON, the script stops and names the file and the position of the error. A glossary written in YAML stops the run with a message that says the file must be JSON.
+Write the file as strict JSON: double quotes, no comments, no trailing commas. If a glossary file is not valid JSON, the script stops and names the file. For most syntax errors, the message also gives the line and column of the error. An empty file, or a file that does not start as JSON, gives no position. A glossary written in YAML stops the run with a message that says the file must be JSON.
 
 ## The rules between the two levels
 
