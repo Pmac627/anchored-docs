@@ -325,6 +325,7 @@ The configuration inventory uses grep. The inventory does not do an analysis of 
 - Corrected: `INSTALL.md` gives the frontmatter keys of the skill correctly.
 - Corrected: when the `--repo` folder was not there, a `sources` pattern that starts with `**` found a file. After this change, it finds no file, as in 1.2.0.
 - Corrected: `ste_check.mjs` did not expand `~\` at the start of `STE_AGENT_PACK`. After this change, `~\` and `~/` go to the home folder, as in `STE_ORG_GLOSSARY`.
+- Corrected: a command such as `head` can close the output pipe before the end of the report. Then the two scripts showed a Node.js error and stopped with exit code 1. After this change, they stop with the exit code of the checks and show no error.
 
 ### 2.0.0
 Breaking changes:

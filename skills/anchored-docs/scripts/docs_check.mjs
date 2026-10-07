@@ -4,7 +4,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve } from 'node:path';
 import { loadGlossaries, readDoc, GlossaryError, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
-import { WHITESPACE, padCodePoints, formatValue, valueText, strip, readText, FileReadError } from './_compat.mjs';
+import { WHITESPACE, padCodePoints, formatValue, valueText, strip, readText, writeReport, FileReadError } from './_compat.mjs';
 import { comparePaths, exists, isDir, isFile, listDir, pathParts, fileSuffix, resolvePath, rglobExt, sortPaths } from './_fs.mjs';
 import { fnmatchcase, globExists, parseIso } from './_glob.mjs';
 
@@ -405,5 +405,5 @@ try {
   }
   code = 2;
 }
-process.stdout.write(lines.length ? lines.join('\n') + '\n' : '');
+writeReport(lines.length ? lines.join('\n') + '\n' : '');
 process.exitCode = code;

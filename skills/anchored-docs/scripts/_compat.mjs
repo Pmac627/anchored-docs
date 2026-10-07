@@ -70,6 +70,17 @@ export class FileReadError extends Error {
   }
 }
 
+/**
+ * Writes the report to stdout. A reader that closes the pipe early, such as `| head`, is not an error: the
+ * rest of the report is dropped and the exit code stays the one the checks gave.
+ */
+export function writeReport(text) {
+  process.stdout.on('error', (e) => {
+    if (e.code !== 'EPIPE') throw e;
+  });
+  process.stdout.write(text);
+}
+
 const NON_PRINTABLE = /[\p{C}\p{Zl}\p{Zp}\p{Zs}]/u;
 
 function reprString(s) {
