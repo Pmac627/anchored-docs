@@ -1,0 +1,85 @@
+{
+  "technical_nouns": [
+    {
+      "term": "anchor",
+      "meaning": "a checkable reference in a doc: a symbol in backticks, a path:line, a constant value, or an array size"
+    },
+    {
+      "term": "drift",
+      "meaning": "an anchor in a doc that no longer agrees with the code"
+    },
+    {
+      "term": "agent pack",
+      "meaning": "the private ASD-STE100 rules and dictionary files that the STE Generator Kit makes"
+    },
+    {
+      "term": "pack",
+      "meaning": "short name of the agent pack"
+    },
+    {
+      "term": "block",
+      "meaning": "a group of lines with a fixed shape, for example the self-report block or a fenced code block"
+    },
+    {
+      "term": "stage",
+      "meaning": "one part of a procedure with two parts"
+    },
+    {
+      "term": "trigger",
+      "meaning": "a change that makes it necessary to update a given doc"
+    },
+    {
+      "term": "binding",
+      "meaning": "a class that gets the values of a configuration section"
+    },
+    {
+      "term": "builder",
+      "meaning": "the object that adds configuration providers, for example IConfigurationBuilder"
+    },
+    {
+      "term": "variable",
+      "meaning": "a named value in the code"
+    },
+    {
+      "term": "feature flag",
+      "meaning": "a configuration key that sets a function of the application on or off"
+    },
+    {
+      "term": "option",
+      "meaning": "a typed configuration class, or a command-line flag"
+    },
+    {
+      "term": "finding",
+      "meaning": "one problem that a check reports"
+    },
+    {
+      "term": "caller",
+      "meaning": "the code that uses a function"
+    },
+    {
+      "term": "link",
+      "meaning": "a connection from one file to a different file"
+    },
+    {
+      "term": "review",
+      "meaning": "the check of a doc or a change by a person"
+    },
+    {
+      "term": "reviewer",
+      "meaning": "the person who does a review"
+    },
+    {
+      "term": "implementation plan",
+      "meaning": "the plan for a code change, before the change"
+    },
+    {
+      "term": "application",
+      "meaning": "the program that a repository builds and that uses the configuration"
+    },
+    {
+      "term": "key",
+      "meaning": "the name of one configuration value, for example Payments:ApiKey"
+    }
+  ],
+  "technical_verbs": []
+}
