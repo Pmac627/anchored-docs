@@ -32,6 +32,7 @@ The top level is an object with two optional arrays: `technical_nouns` and `tech
 ```
 
 - Every `term` is an approved technical noun or technical verb. The checker compares in lowercase, so case does not matter.
+- Each entry is a term string, or an object with a `term` string. An entry with no term text stops the run with a message that names the entry, so its `unapproved` synonyms are not lost.
 - Every `unapproved` synonym is flagged, and the message names the approved term (rule 1.11).
 - `meaning` is optional. Give one when the word could mean something else in another team's domain. It is how the checker tells "the same word for the same thing" (a harmless repeat) from "the same word for a different thing" (a conflict). Two meanings count as equal when they differ only in case, spacing, or a final period.
 

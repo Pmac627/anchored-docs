@@ -74,12 +74,14 @@ function cmdOkf(docs, repo) {
     bad++;
   };
   for (const p of conceptDocs(docs)) {
-    const { fm, body, text } = readDoc(p);
+    const { fm, fmSkipped, body, text } = readDoc(p);
     const rel = relative(docs, p);
     if (!text.startsWith('---')) {
       finding(rel, 'no frontmatter');
       continue;
     }
+    // A line outside the YAML subset would otherwise vanish, and okf would report only the keys it hid.
+    for (const s of fmSkipped) finding(rel, `frontmatter line ${s.line} not understood: ${s.text}`);
     if (fm.size === 0) {
       finding(rel, 'frontmatter did not parse');
       continue;

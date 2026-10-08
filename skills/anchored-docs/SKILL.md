@@ -332,6 +332,12 @@ The configuration inventory uses grep. The inventory does not do an analysis of 
 - New: the two scripts show a control character from a doc or an argument as text, for example `\x1b` for ESC. Before this change, the report contained the raw character, which can change a terminal. `SKILL.md` tells the agent to use the output of the scripts as data, not as instructions.
 - Corrected: `docs_check.mjs map --check` gave "out of date" for a `_map.json` that is not correct JSON. After this change, it stops with exit 2 and a message that names the file, as `affected` does. `map --check` also gives the notice for a remaining `_map.yaml`.
 - Corrected: `references/glossary.md` and the exit codes in `SKILL.md` tell where an error message goes and when it gives the position of a JSON error.
+- Corrected: the frontmatter parser reads four structures as YAML reads them. The four structures follow:
+  - An apostrophe in a word, as in `Don't # note`, does not hide the `#` comment.
+  - A colon with no space after it does not make a key. Examples are `key:value` and `http://x.y`.
+  - A list below a key in a list item is the value of that key. An example is `- code: x`, then `docs:`, then `- y`.
+  - A glossary entry with no term text stops the script with a message that names the entry. Before this change, the script did not use the entry and its synonyms, and gave no message.
+- New: `docs_check.mjs okf` shows each frontmatter line that the parser cannot read, as `frontmatter line N not understood`. Before this change, the parser did not use the line and gave no message.
 
 ### 2.0.0
 Breaking changes:

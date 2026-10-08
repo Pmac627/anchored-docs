@@ -255,3 +255,15 @@ test('a process: actor is a valid OKF actor', () => {
     assert.equal(r.code, 0, r.out);
   });
 });
+
+test('okf reports each frontmatter line it does not understand, with its line in the file', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'src', 'a.cs'), 'class A {}\n');
+    writeFileSync(join(repo, 'docs', 't.md'), DOC.replace('title: T\n', 'title:T\nsee http://x.y\n'));
+    const r = run(repo, 'okf', 'docs');
+    assert.equal(r.code, 1);
+    assert.match(r.out, /t\.md: frontmatter line 3 not understood: title:T\n/);
+    assert.match(r.out, /t\.md: frontmatter line 4 not understood: see http:\/\/x\.y\n/);
+    assert.match(r.out, /t\.md: missing title\n/);
+  });
+});

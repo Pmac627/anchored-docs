@@ -99,16 +99,16 @@ These are fixed in 2.0 and listed in the `SKILL.md` changelog. The parity cases 
 - A malformed glossary or map file stops with a message that names the file, and a leftover 1.x YAML file produces a notice.
 - A file that cannot be read stops the run with exit 2 and a message that names it, after the findings found so far.
 
-## Parser quirks kept on purpose
+## Parser quirks fixed in 2.0.1
 
-The 2.0 frontmatter parser reproduces these 1.x behaviors so the port can be proven equal first. Fixing any of
-them is a separate change with its own tests, after cutover.
+2.0.0 reproduced these 1.x behaviors so the port could be proven equal first. 2.0.1 fixes them. `fm.test.mjs`
+lists the four recorded 1.2.0 cases whose result changes (`INTENDED`) and tests the new behavior directly.
 
-- A quote character toggles quote state even inside a word, so `title: Don't # note` keeps the comment.
-- `key:value` with no space, and a line such as `http://x.y`, parse as keys (`key`, `http`).
-- A list nested inside a list item (`- code: x` then `docs:` then `- y`) is not supported and parses wrongly. 1.x never used the parser for the map file, and 2.0 stores the map as JSON.
-- Anything outside the supported subset is skipped silently. `docs_check okf` then reports the required keys as missing.
-- A JSON glossary entry with `"term": null` is skipped. 1.x turned the same YAML into the term `none`.
+- A quote opens a quoted value only where a value starts (after `key: `, `- `, `[`, `{`, or `,`). Before, an apostrophe inside a word did, so `title: Don't # note` kept the comment.
+- A key needs whitespace or the end of the line after its colon, as in YAML. Before, `key:value` and `http://x.y` parsed as the keys `key` and `http`.
+- A list nested under a key in a list item or a block map (`- code: x`, then `docs:`, then `- y`) is read as that key's list, indented under the key or at its column. Before, it parsed wrongly.
+- A frontmatter line outside the subset is no longer dropped silently. `docs_check okf` reports it as `frontmatter line N not understood`. On 20 local docs bundles, `okf` output did not change.
+- A glossary entry with no term text (`"term": null`, a missing or blank term, or a value that is not a string or an object) stops the run with a message that names the entry. Before, it was skipped with its synonyms. 1.x turned a YAML null term into the term `none`.
 
 ## Real-pack runs stay local
 
