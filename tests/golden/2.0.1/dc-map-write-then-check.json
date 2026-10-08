@@ -1,0 +1,81 @@
+{
+  "id": "dc-map-write-then-check",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "map",
+        "docs"
+      ],
+      "code": 0,
+      "stdout": "map: wrote docs/_map.json (7 code paths)\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "map",
+        "docs",
+        "--check"
+      ],
+      "code": 0,
+      "stdout": "map: _map.json matches sources\n",
+      "stderr": ""
+    }
+  ],
+  "files": {
+    "docs/_map": {
+      "generated": "<DATE>",
+      "map": [
+        {
+          "code": "src/Api/**",
+          "docs": [
+            "docs/overview.md"
+          ]
+        },
+        {
+          "code": "src/Orders/**",
+          "docs": [
+            "docs/architecture.md",
+            "docs/flows/generated-scalar.md",
+            "docs/flows/order-fulfillment.md",
+            "docs/guides/deploy.md"
+          ]
+        },
+        {
+          "code": "src/Orders/OrderService.cs",
+          "docs": [
+            "docs/decisions/0001-use-queue.md",
+            "docs/flows/order-fulfillment.md"
+          ]
+        },
+        {
+          "code": "src/Orders/OrderValidator.cs",
+          "docs": [
+            "docs/flows/stale-callout-only.md",
+            "docs/flows/stale-flow.md",
+            "docs/flows/stale-no-callout.md"
+          ]
+        },
+        {
+          "code": "src/engine/rank.cpp",
+          "docs": [
+            "docs/flows/ranking.md"
+          ]
+        },
+        {
+          "code": "src/missing/**",
+          "docs": [
+            "docs/flows/ingest.md"
+          ]
+        },
+        {
+          "code": "src/web/client.ts",
+          "docs": [
+            "docs/decisions/0002-use-json.md",
+            "docs/flows/orphan-flow.md"
+          ]
+        }
+      ]
+    }
+  }
+}

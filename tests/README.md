@@ -18,26 +18,31 @@ without the real agent pack, and found byte-identical `ste_check` output.
 | `fixtures/synthetic-pack/` | An invented agent pack in the real pack's file layout. It contains no ASD content, so it is safe to commit. |
 | `fixtures/wordlist.txt` | An invented `STE_DICTIONARY` word list. |
 | `fixtures/glossary/` | An invented organization glossary. |
-| `golden/1.2.0/` | The baseline: the recorded 1.2.0 output for every case. |
+| `golden/2.0.1/` | The baseline that CI compares with: the 2.0.1 output for every case. |
+| `golden/1.2.0/` | The recorded 1.2.0 output for every case. 2.0.1 still matches it once the renames below are applied. |
 | `golden/fm-1.2.0.json` | Recorded 1.2.0 frontmatter results on 40 YAML cases, 14 split cases, 37 real docs and templates, 11 glossary scenarios, and 13 directory layouts. |
 | `golden/glob-1.2.0.json` | Recorded 1.2.0 pattern-matching, glob, date-parsing, and path-order results. |
 | `unit/*.test.mjs` | `node:test` suites that hold `_compat.mjs`, `_fm.mjs`, and `_glob.mjs` to those records, and test the 2.0 behavior of `docs_check.mjs` and `ste_check.mjs`. |
-| `intended-differences.json` | Text changes that 2.0 makes on purpose (file renames). |
+| `intended-differences.json` | Text changes that 2.0 makes on purpose (file renames). Applied to `golden/1.2.0` only. |
 | `coverage-patterns.json` | 77 expected finding messages. `coverage` fails if the goldens miss one. |
 
-The goldens are fixed. 1.2.0 does not change, so they are not captured again. Text in them that 2.0 changes on
-purpose, such as the old script and data file names, is rewritten by `intended-differences.json` before each
-comparison. Frontmatter stays YAML in both versions because OKF requires it.
+`golden/2.0.1/` is the baseline from 2.0.1 on. It was recorded from 2.0.1 after 2.0.1 matched `golden/1.2.0` on all
+41 cases, so it holds the 1.x behavior with the 2.0 file names. When a later change alters output on purpose, record
+a new baseline (`run --out tests/golden/<version>`), point CI at it, and give the reason in the changelog.
+
+`golden/1.2.0/` does not change. Text in it that 2.0 changes on purpose, such as the old script and data file names,
+is rewritten by `intended-differences.json` before a comparison or a coverage check. Frontmatter stays YAML in both
+versions because OKF requires it.
 
 ## Commands
 
 ```bash
 # Check the scripts against the baseline
 node tests/run-cases.mjs run --skill skills/anchored-docs --out /tmp/results
-node tests/run-cases.mjs compare tests/golden/1.2.0 /tmp/results
+node tests/run-cases.mjs compare tests/golden/2.0.1 /tmp/results
 
 # Prove the corpus still triggers every expected finding
-node tests/run-cases.mjs coverage tests/golden/1.2.0
+node tests/run-cases.mjs coverage tests/golden/2.0.1
 ```
 
 The harness copies each fixture to a temp directory, so `map` can write without touching the fixtures.
@@ -57,6 +62,12 @@ parsing by `glob.test.mjs`, which compares against the recorded 1.2.0 results.
 Each suite compares a module with the recorded 1.2.0 results, so a failure means 2.0 drifted from 1.x. The suite
 was mutation-checked: eight deliberate breakages (comment handling, whitespace rules, newline handling, key
 characters, line numbers, glossary origin, relative paths, value quoting) were each caught.
+
+For 2.0.1, 17 more breakages of the scripts were tried, each against the unit tests alone: path-depth order, each
+skipped vendor folder, the `--repo` argument, image links, `process:` actors, the frontmatter start, the Unicode
+word boundary, `let's`, `ste-ok: all`, `.mjs` files, non-ASCII digits, blockquotes, and lettered lists. The tests
+catch all of them but one. That one changes the `stale` limit from `>` to `>=`; the two differ only when a doc's age
+equals the limit to the millisecond, so no test without a fake clock can see it.
 
 Two kinds of test sit outside that rule. Tests for new 2.0 behavior (a JSON syntax error names the file, a
 1.x `_glossary.yaml` with no JSON twin produces a notice, an unreadable file stops the run with exit 2 and a
@@ -93,16 +104,16 @@ These are fixed in 2.0 and listed in the `SKILL.md` changelog. The parity cases 
 - A malformed glossary or map file stops with a message that names the file, and a leftover 1.x YAML file produces a notice.
 - A file that cannot be read stops the run with exit 2 and a message that names it, after the findings found so far.
 
-## Parser quirks kept on purpose
+## Parser quirks fixed in 2.0.1
 
-The 2.0 frontmatter parser reproduces these 1.x behaviors so the port can be proven equal first. Fixing any of
-them is a separate change with its own tests, after cutover.
+2.0.0 reproduced these 1.x behaviors so the port could be proven equal first. 2.0.1 fixes them. `fm.test.mjs`
+lists the four recorded 1.2.0 cases whose result changes (`INTENDED`) and tests the new behavior directly.
 
-- A quote character toggles quote state even inside a word, so `title: Don't # note` keeps the comment.
-- `key:value` with no space, and a line such as `http://x.y`, parse as keys (`key`, `http`).
-- A list nested inside a list item (`- code: x` then `docs:` then `- y`) is not supported and parses wrongly. 1.x never used the parser for the map file, and 2.0 stores the map as JSON.
-- Anything outside the supported subset is skipped silently. `docs_check okf` then reports the required keys as missing.
-- A JSON glossary entry with `"term": null` is skipped. 1.x turned the same YAML into the term `none`.
+- A quote opens a quoted value only where a value starts (after `key: `, `- `, `[`, `{`, or `,`). Before, an apostrophe inside a word did, so `title: Don't # note` kept the comment.
+- A key needs whitespace or the end of the line after its colon, as in YAML. Before, `key:value` and `http://x.y` parsed as the keys `key` and `http`.
+- A list nested under a key in a list item or a block map (`- code: x`, then `docs:`, then `- y`) is read as that key's list, indented under the key or at its column. Before, it parsed wrongly.
+- A frontmatter line outside the subset is no longer dropped silently. `docs_check okf` reports it as `frontmatter line N not understood`. On 20 local docs bundles, `okf` output did not change.
+- A glossary entry with no term text (`"term": null`, a missing or blank term, or a value that is not a string or an object) stops the run with a message that names the entry. Before, it was skipped with its synonyms. 1.x turned a YAML null term into the term `none`.
 
 ## Real-pack runs stay local
 

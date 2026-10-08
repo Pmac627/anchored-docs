@@ -1,0 +1,18 @@
+{
+  "id": "dc-stale-days",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "stale",
+        "docs",
+        "--days",
+        "36500"
+      ],
+      "code": 1,
+      "stdout": "architecture.md: still draft (generated 2026-01-10T10:00:00Z); needs human sign-off\nflows/empty-frontmatter.md: never verified\nflows/no-frontmatter.md: never verified\nflows/stale-callout-only.md: STATUS: STALE (stale_after=None)\nflows/stale-callout-only.md: never verified\nflows/stale-flow.md: STATUS: STALE (stale_after=2026-02-01T00:00:00Z)\nflows/stale-no-callout.md: STATUS: STALE (stale_after=2026-02-01T00:00:00Z)\nstale: 6 findings\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

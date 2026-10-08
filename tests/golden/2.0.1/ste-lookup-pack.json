@@ -1,0 +1,21 @@
+{
+  "id": "ste-lookup-pack",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "--lookup",
+        "order",
+        "utilize",
+        "worker",
+        "set up",
+        "zzzz",
+        "submits"
+      ],
+      "code": 0,
+      "stdout": "== order\n  order (n): approved. Forms: orders.\n    meaning: a request to buy goods\n    help: Use only for the purchase request.\n== utilize\n  utilize (v): NOT approved. Write: use.\n    help: Write use.\n== worker\n  worker (n): NOT approved.\n  Also listed as a technical-category example in: TN 6 Systems and components\n== set up\n  not in the dictionary. Permitted only as a technical noun (1.5) or technical verb (1.12).\n  If the project uses it, add it to docs/_glossary.json. Otherwise write an approved word.\n== zzzz\n  not in the dictionary. Permitted only as a technical noun (1.5) or technical verb (1.12).\n  If the project uses it, add it to docs/_glossary.json. Otherwise write an approved word.\n== submits\n  submit (v): NOT approved. Write: send.\n    help: Write send for a message.\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

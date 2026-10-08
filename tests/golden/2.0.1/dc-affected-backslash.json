@@ -1,0 +1,17 @@
+{
+  "id": "dc-affected-backslash",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "affected",
+        "docs",
+        "src\\Orders\\OrderService.cs"
+      ],
+      "code": 0,
+      "stdout": "docs/architecture.md: src/Orders/OrderService.cs\ndocs/flows/order-fulfillment.md: src/Orders/OrderService.cs\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

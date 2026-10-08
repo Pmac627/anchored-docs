@@ -1,0 +1,13 @@
+{
+  "id": "ste-usage",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [],
+      "code": 2,
+      "stdout": "ste_check.mjs: ASD-STE100 (Issue 9) checker for docs/ prose and source doc comments.\n\nUsage:\n  ste_check.mjs <path>...            check markdown files, directories, or source files\n  ste_check.mjs --glossary-report docs/   org and project glossary terms, conflicts between the two levels, unused project terms\n  ste_check.mjs --status             show which STE word source is in use (pack, word list, or built-in only)\n  ste_check.mjs --lookup WORD...     show the dictionary entry for a word (needs the agent pack)\n\nWord source, resolved in this order:\n  1. The ASD-STE100 agent pack at $STE_AGENT_PACK, or at <skill>/references/asd-ste100-agent-pack/.\n     Full rule 1.1: unapproved words fail with the dictionary's alternatives, unknown words warn\n     as technical-noun candidates (1.5, 1.12), technical-category examples are permitted.\n  2. STE_DICTIONARY=/path/words.txt, one approved word per line. Any word not in it fails 1.1.\n  3. Neither: the built-in non-STE list only. The summary says \"(1.1 partial)\".\n\nExit 0: no mechanical failure. Exit 1: at least one mechanical failure. Exit 2: usage.\n\nMechanical [M]: 4.2 contractions, 5.1/6.1 sentence length, 6.6 paragraph length, 8.1 semicolon,\nGR-6 Latin abbreviations, 1.1 non-STE words (built-in list, dictionary when present), 1.11 glossary synonyms,\n1.8 a contradiction between the org glossary (<skill>/references/org-glossary.json) and the project glossary.\nHeuristic [H]: 3.6 passive, 3.5 -ing, 3.4 complex tenses, 9.3 phrasal verbs, 2.1 noun clusters,\n5.2 two instructions, 5.3 non-imperative step, GR-4 bare This, and with the pack: 1.5 unknown words,\n1.7 a word the dictionary permits only as a technical noun or verb.\nWaiver: an HTML comment `<!-- ste-ok: <rule|all> reason -->` on the line before the sentence's line.\n\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

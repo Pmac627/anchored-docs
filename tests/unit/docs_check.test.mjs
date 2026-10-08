@@ -183,3 +183,87 @@ test('CRLF documents give the same findings as LF documents', () => {
     assert.equal(run(repo, 'okf', 'docs').code, 0);
   });
 });
+
+test('control characters from a doc appear as escapes in the report, never raw', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'src', 'a.cs'), 'class A {}\n');
+    writeFileSync(join(repo, 'docs', 't.md'), DOC.replace('status: stable', 'status: "\x1b[2J\x1b]8;;http://x\x07bad"'));
+    const r = run(repo, 'okf', 'docs');
+    assert.equal(r.code, 1);
+    assert.match(r.out, /\\x1b\[2J\\x1b\]8;;http:\/\/x\\x07bad/);
+    assert.doesNotMatch(r.out + r.err, /[\x00-\x08\x0b-\x1f\x7f]/);
+  });
+});
+
+test('map --check names a broken _map.json and exits 2, instead of calling it out of date', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'docs', 't.md'), DOC);
+    for (const bad of ['{ not json', '[]', '{"map": {}}']) {
+      writeFileSync(join(repo, 'docs', '_map.json'), bad);
+      const r = run(repo, 'map', 'docs', '--check');
+      assert.equal(r.code, 2, bad);
+      assert.match(r.out, /docs_check: .*_map\.json: (not valid JSON|expected a JSON object with a "map" array)/, bad);
+    }
+  });
+});
+
+test('map --check gives the _map.yaml notice too, not only affected', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'docs', 't.md'), DOC);
+    writeFileSync(join(repo, 'docs', '_map.yaml'), 'map: []\n');
+    const r = run(repo, 'map', 'docs', '--check');
+    assert.equal(r.code, 1);
+    assert.match(r.out, /notice: found _map\.yaml; anchored-docs 2\.0 reads _map\.json/);
+  });
+});
+
+test('every generated or vendor folder under the repo is skipped by the back-link scan', () => {
+  for (const name of ['node_modules', 'build', 'bin', 'obj', 'third_party', '.git', 'dist']) {
+    withRepo([], (repo) => {
+      mkdirSync(join(repo, 'src', name));
+      writeFileSync(join(repo, 'docs', 'index.md'), '# Index\n\n* [T](t.md)\n');
+      writeFileSync(join(repo, 'docs', 't.md'), DOC);
+      writeFileSync(join(repo, 'src', name, 'gen.cs'), '/// <seealso href="docs/missing.md"/>\nclass G {}\n');
+      assert.equal(run(repo, 'links', 'docs').code, 0, name);
+    });
+  }
+});
+
+test('--repo and its value are not read as changed files by affected', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'docs', '_map.json'), JSON.stringify({ map: [{ code: '*', docs: ['docs/t.md'] }] }));
+    const r = run(repo, 'affected', 'docs', '--repo', repo, 'src/a.cs');
+    assert.equal(r.out, 'docs/t.md: src/a.cs\n');
+  });
+});
+
+test('an image is not a link: a missing image target is not a broken link', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'src', 'a.cs'), 'class A {}\n');
+    writeFileSync(join(repo, 'docs', 'index.md'), '# Index\n\n* [T](t.md)\n');
+    writeFileSync(join(repo, 'docs', 't.md'), DOC + '\n![diagram](img/missing.png)\n');
+    const r = run(repo, 'links', 'docs');
+    assert.equal(r.code, 0, r.out);
+  });
+});
+
+test('a process: actor is a valid OKF actor', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'src', 'a.cs'), 'class A {}\n');
+    writeFileSync(join(repo, 'docs', 't.md'), DOC.replace('by: claude/1.0', 'by: process:nightly-docs'));
+    const r = run(repo, 'okf', 'docs');
+    assert.equal(r.code, 0, r.out);
+  });
+});
+
+test('okf reports each frontmatter line it does not understand, with its line in the file', () => {
+  withRepo([], (repo) => {
+    writeFileSync(join(repo, 'src', 'a.cs'), 'class A {}\n');
+    writeFileSync(join(repo, 'docs', 't.md'), DOC.replace('title: T\n', 'title:T\nsee http://x.y\n'));
+    const r = run(repo, 'okf', 'docs');
+    assert.equal(r.code, 1);
+    assert.match(r.out, /t\.md: frontmatter line 3 not understood: title:T\n/);
+    assert.match(r.out, /t\.md: frontmatter line 4 not understood: see http:\/\/x\.y\n/);
+    assert.match(r.out, /t\.md: missing title\n/);
+  });
+});

@@ -1,8 +1,9 @@
 // Frontmatter, YAML-subset parsing, and the two-level glossary shared by ste_check.mjs and docs_check.mjs.
 //
 // Doc frontmatter stays YAML because OKF requires it. This module parses only the subset the skill writes:
-// scalars, inline lists, inline maps ({ by: x, at: y }), block lists of scalars, and block lists of maps
-// (- id: x / resource: y). It has no dependencies. Dates stay text exactly as the author wrote them.
+// scalars, inline lists, inline maps ({ by: x, at: y }), block lists of scalars, block lists of maps
+// (- id: x / resource: y), and a list of scalars under a key inside either. It has no dependencies. Dates stay
+// text exactly as the author wrote them. Lines outside the subset are returned as skipped, for okf to report.
 //
 // Glossary levels (JSON files, new in 2.0):
 //   org      <skill>/references/org-glossary.json, or $STE_ORG_GLOSSARY. Shipped with the skill.
@@ -24,7 +25,9 @@ const LEGACY_PROJECT_GLOSSARY_NAME = '_glossary.yaml';
 const WS = `[${WHITESPACE}]`;
 const FM_RE = /^---[ \t]*\n([\s\S]*?)\n---[ \t]*\n?/;
 // After the first character a key may hold any Unicode letter or number, so match them explicitly.
-const KEY_RE = new RegExp(`^([A-Za-z_][\\p{L}\\p{N}_-]*):${WS}*(.*)$`, 'u');
+// As in YAML, the colon must be followed by whitespace or the end of the line: "key:value" and
+// "http://x.y" are not keys. (1.x read them as the keys "key" and "http".)
+const KEY_RE = new RegExp(`^([A-Za-z_][\\p{L}\\p{N}_-]*):(?:${WS}+(.*)|)$`, 'u');
 
 /** Returns { frontmatter: string | null, body, bodyStartLine }. bodyStartLine is 1-based. */
 export function splitFrontmatter(text) {
@@ -79,12 +82,17 @@ function splitTop(s) {
   return parts;
 }
 
-// A quote character toggles quote state even inside a word ("doesn't"), so a # after an apostrophe
-// is kept. The 1.x parser behaved this way and the parity tests pin it.
+// The characters after which a value can start, so a quote there opens a quoted scalar.
+const VALUE_START = new Set([':', '-', '[', '{', ',']);
+
+// Removes a " #" comment. As in YAML, a quote opens a quoted scalar only where a value starts (after
+// "key: ", "- ", "[", "{", or ","), so the apostrophe in "Don't # note" does not hide the comment.
+// (1.x opened a quote at any quote character, inside a word too.)
 function stripComment(line) {
   const chars = Array.from(line);
   let out = '';
   let q = null;
+  let prev = null;   // the last character that is not whitespace, outside quotes
   for (let i = 0; i < chars.length; i++) {
     const ch = chars[i];
     if (q) {
@@ -92,21 +100,26 @@ function stripComment(line) {
       if (ch === q) q = null;
       continue;
     }
-    if (ch === '"' || ch === "'") q = ch;
+    if ((ch === '"' || ch === "'") && (prev === null || VALUE_START.has(prev))) q = ch;
     else if (ch === '#' && (i === 0 || chars[i - 1] === ' ' || chars[i - 1] === '\t')) break;
     out += ch;
+    if (ch !== ' ' && ch !== '\t') prev = ch;
   }
   return stripEnd(out);
 }
 
+const indentOf = (line) => line.length - line.replace(/^[ \t]+/, '').length;
+
 /**
  * Parse the YAML subset into a Map (insertion order kept). Values are null, boolean, string,
- * array, or Map. Anything outside the subset is skipped, as in 1.x; docs_check okf reports docs
- * whose required keys then come back empty.
+ * array, or Map. Returns { map, skipped }: skipped lists each non-empty line outside the subset as
+ * { line, text }, with line counted from 1 at the first frontmatter line. docs_check okf reports them.
  */
-export function parseYamlSubset(text) {
+export function parseYamlSubsetDetailed(text) {
   const lines = splitlines(text).map(stripComment);
   const root = new Map();
+  const skipped = [];
+  const skip = (idx) => skipped.push({ line: idx + 1, text: strip(lines[idx]) });
   let i = 0;
   while (i < lines.length) {
     const line = lines[i];
@@ -116,11 +129,12 @@ export function parseYamlSubset(text) {
     }
     const m = KEY_RE.exec(line);
     if (!m) {
+      skip(i);
       i++;
       continue;
     }
     const key = m[1];
-    const rest = m[2];
+    const rest = m[2] ?? '';
     if (strip(rest) !== '') {
       root.set(key, scalar(rest));
       i++;
@@ -130,19 +144,37 @@ export function parseYamlSubset(text) {
     const items = [];
     const blockMap = new Map();
     let cur = null;
+    // A key with no value inside a list item or a block map, such as "docs:" under "- code: x". The
+    // "- y" lines under it are its list: indented at least as far as the key (YAML allows the same
+    // column) and further than the dash of the item that holds the key.
+    let nested = null;
+    let itemIndent = -1;
     while (i < lines.length && (lines[i].startsWith(' ') || lines[i].startsWith('\t') || lines[i].startsWith('-') || strip(lines[i]) === '')) {
       const l = lines[i];
-      if (strip(l) === '') {
+      const st = strip(l);
+      if (st === '') {
         i++;
         continue;
       }
-      const st = strip(l);
+      const ind = indentOf(l);
+      if (nested && ind >= nested.indent && ind > itemIndent && (st.startsWith('- ') || st === '-')) {
+        if (st !== '-') {
+          const target = nested.owner;
+          if (!Array.isArray(target.get(nested.key))) target.set(nested.key, []);
+          target.get(nested.key).push(scalar(st.slice(2)));
+        }
+        i++;
+        continue;
+      }
+      nested = null;
       if (st.startsWith('- ')) {
         if (cur !== null) items.push(cur);
+        itemIndent = ind;
         const body = strip(st.slice(2));
         const mm = KEY_RE.exec(body);
         if (mm && !body.startsWith('{')) {
-          cur = new Map([[mm[1], scalar(mm[2])]]);
+          cur = new Map([[mm[1], scalar(mm[2] ?? '')]]);
+          if (strip(mm[2] ?? '') === '') nested = { owner: cur, key: mm[1], indent: ind + 2 };
         } else {
           cur = null;
           items.push(scalar(body));
@@ -152,8 +184,11 @@ export function parseYamlSubset(text) {
       } else {
         const mm = KEY_RE.exec(st);
         if (mm) {
-          if (cur !== null) cur.set(mm[1], scalar(mm[2]));
-          else blockMap.set(mm[1], scalar(mm[2]));
+          const owner = cur ?? blockMap;
+          owner.set(mm[1], scalar(mm[2] ?? ''));
+          if (strip(mm[2] ?? '') === '') nested = { owner, key: mm[1], indent: ind };
+        } else {
+          skip(i);
         }
       }
       i++;
@@ -161,15 +196,22 @@ export function parseYamlSubset(text) {
     if (cur !== null) items.push(cur);
     root.set(key, items.length ? items : blockMap);
   }
-  return root;
+  return { map: root, skipped };
 }
 
-/** Returns { fm: Map, body, bodyStartLine, text }. */
+/** parseYamlSubsetDetailed without the list of skipped lines. */
+export const parseYamlSubset = (text) => parseYamlSubsetDetailed(text).map;
+
+/**
+ * Returns { fm: Map, fmSkipped, body, bodyStartLine, text }. fmSkipped lists the frontmatter lines outside
+ * the subset, as { line, text } with line counted in the file.
+ */
 export function readDoc(path) {
   const text = readText(path);
   const { frontmatter, body, bodyStartLine } = splitFrontmatter(text);
-  const fm = frontmatter !== null ? parseYamlSubset(frontmatter) : new Map();
-  return { fm, body, bodyStartLine, text };
+  if (frontmatter === null) return { fm: new Map(), fmSkipped: [], body, bodyStartLine, text };
+  const { map, skipped } = parseYamlSubsetDetailed(frontmatter);
+  return { fm: map, fmSkipped: skipped.map((s) => ({ line: s.line + 1, text: s.text })), body, bodyStartLine, text };
 }
 
 // ---------- glossary ----------
@@ -215,23 +257,28 @@ export function parseGlossaryFile(path, origin) {
     const list = data[section];
     if (list === undefined || list === null) continue;
     if (!Array.isArray(list)) throw new GlossaryError(`${path}: "${section}" must be an array`);
-    for (const entry of list) {
+    for (const [n, entry] of list.entries()) {
+      // An entry with no term would drop its unapproved synonyms with no message. (1.x read a null term as "none".)
+      const where = `${path}: entry ${n + 1} of "${section}"`;
       if (isPlainObject(entry)) {
-        const term = strip(String(entry.term ?? '')).toLowerCase();
-        if (term === '') continue;
+        if (typeof entry.term !== 'string' || strip(entry.term) === '') throw new GlossaryError(`${where} has no "term" text`);
+        const term = strip(entry.term).toLowerCase();
         const raw = entry.unapproved ?? [];
         if (!Array.isArray(raw)) throw new GlossaryError(`${path}: "unapproved" for "${term}" must be an array`);
         const unapproved = raw.map((x) => strip(String(x)).toLowerCase()).filter((x) => x !== '');
         out.push({ term, kind, origin, source: path, meaning: normMeaning(entry.meaning), unapproved });
       } else if (typeof entry === 'string' && strip(entry) !== '') {
         out.push({ term: strip(entry).toLowerCase(), kind, origin, source: path, meaning: null, unapproved: [] });
+      } else {
+        throw new GlossaryError(`${where} must be a term string or an object with a "term"`);
       }
     }
   }
   return out;
 }
 
-function expandUser(p) {
+/** Expands a leading ~, ~/, or ~\ to the home folder, on every OS. */
+export function expandUser(p) {
   if (p === '~') return homedir();
   if (p.startsWith('~/') || p.startsWith('~\\')) return join(homedir(), p.slice(2));
   return p;

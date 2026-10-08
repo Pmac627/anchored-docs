@@ -4,7 +4,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve } from 'node:path';
 import { loadGlossaries, readDoc, GlossaryError, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
-import { WHITESPACE, padCodePoints, formatValue, valueText, strip, readText, FileReadError } from './_compat.mjs';
+import { WHITESPACE, padCodePoints, formatValue, valueText, strip, readText, writeReport, escapeControls, FileReadError } from './_compat.mjs';
 import { comparePaths, exists, isDir, isFile, listDir, pathParts, fileSuffix, resolvePath, rglobExt, sortPaths } from './_fs.mjs';
 import { fnmatchcase, globExists, parseIso } from './_glob.mjs';
 
@@ -74,12 +74,14 @@ function cmdOkf(docs, repo) {
     bad++;
   };
   for (const p of conceptDocs(docs)) {
-    const { fm, body, text } = readDoc(p);
+    const { fm, fmSkipped, body, text } = readDoc(p);
     const rel = relative(docs, p);
     if (!text.startsWith('---')) {
       finding(rel, 'no frontmatter');
       continue;
     }
+    // A line outside the YAML subset would otherwise vanish, and okf would report only the keys it hid.
+    for (const s of fmSkipped) finding(rel, `frontmatter line ${s.line} not understood: ${s.text}`);
     if (fm.size === 0) {
       finding(rel, 'frontmatter did not parse');
       continue;
@@ -221,9 +223,9 @@ function buildMap(docs) {
 
 class MapError extends Error {}
 
-function readMap(docs) {
-  const target = join(docs, '_map.json');
-  if (!exists(target)) return [];
+/** The parsed _map.json, or null when there is none. A file that is not a JSON object with a "map" array is a MapError. */
+function parseMapFile(target) {
+  if (!exists(target)) return null;
   let data;
   try {
     data = JSON.parse(readText(target));
@@ -231,19 +233,28 @@ function readMap(docs) {
     throw new MapError(`${target}: not valid JSON (${e.message}). Run docs_check.mjs map to regenerate it.`);
   }
   if (!data || !Array.isArray(data.map)) throw new MapError(`${target}: expected a JSON object with a "map" array. Run docs_check.mjs map to regenerate it.`);
+  return data;
+}
+
+function readMap(docs) {
+  const data = parseMapFile(join(docs, '_map.json'));
+  if (!data) return [];
   return data.map.filter((e) => e && typeof e.code === 'string' && Array.isArray(e.docs)).map((e) => [e.code, e.docs.map(String)]);
+}
+
+/** A 1.x _map.yaml with no _map.json is called out, so the missing map is not read as "no doc matches". */
+function noticeLegacyMap(docs) {
+  if (!exists(join(docs, '_map.json')) && exists(join(docs, '_map.yaml'))) {
+    print('notice: found _map.yaml; anchored-docs 2.0 reads _map.json. Run docs_check.mjs map to create it.');
+  }
 }
 
 function cmdMap(docs, repo, check) {
   const fresh = buildMap(docs);
   const target = join(docs, '_map.json');
   if (check) {
-    let old = null;
-    try {
-      old = JSON.parse(readText(target)).map;
-    } catch {
-      old = null;
-    }
+    noticeLegacyMap(docs);
+    const old = parseMapFile(target)?.map ?? null;
     if (JSON.stringify(old) !== JSON.stringify(fresh.map)) {
       print('map: _map.json is out of date with sources; run without --check to regenerate');
       return 1;
@@ -257,14 +268,13 @@ function cmdMap(docs, repo, check) {
 }
 
 function cmdAffected(docs, files) {
-  if (!exists(join(docs, '_map.json')) && exists(join(docs, '_map.yaml'))) {
-    print('notice: found _map.yaml; anchored-docs 2.0 reads _map.json. Run docs_check.mjs map to create it.');
-  }
+  noticeLegacyMap(docs);
   const hits = new Map();
   for (const [code, dlist] of readMap(docs)) {
     for (const raw of files) {
       const f = raw.replaceAll('\\', '/');
-      if (fnmatchcase(f, code) || fnmatchcase(f, code.replaceAll('**', '*')) || (code.endsWith('/**') && f.startsWith(code.slice(0, -3) + '/'))) {
+      // fnmatchcase reads "**" as "*", and "*" also matches "/", so "src/**" matches "src/a/b.cs" here.
+      if (fnmatchcase(f, code) || (code.endsWith('/**') && f.startsWith(code.slice(0, -3) + '/'))) {
         for (const d of dlist) {
           if (!hits.has(d)) hits.set(d, new Set());
           hits.get(d).add(f);
@@ -401,9 +411,9 @@ try {
     print(`docs_check: ${e.message}`);
   } else {
     print(`docs_check: unexpected error: ${e?.message ?? e}`);
-    process.stderr.write(`${e?.stack ?? e}\n`);
+    process.stderr.write(`${escapeControls(String(e?.stack ?? e))}\n`);
   }
   code = 2;
 }
-process.stdout.write(lines.length ? lines.join('\n') + '\n' : '');
+writeReport(lines.length ? lines.join('\n') + '\n' : '');
 process.exitCode = code;

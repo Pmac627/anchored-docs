@@ -106,7 +106,7 @@ The full license text is in [LICENSE](LICENSE). Add a copyright notice with the 
 ```bash
 node --test "tests/unit/*.test.mjs"                        # unit tests
 node tests/run-cases.mjs run --skill skills/anchored-docs --out /tmp/out
-node tests/run-cases.mjs compare tests/golden/1.2.0 /tmp/out   # 41 cases against the 1.2.0 baseline
+node tests/run-cases.mjs compare tests/golden/2.0.1 /tmp/out   # 41 cases against the recorded baseline
 node tools/build-skill.mjs build                           # build dist/anchored-docs.skill from the staged files
 ```
 
@@ -115,7 +115,7 @@ See [tests/README.md](tests/README.md) for what the baseline records and what it
 
 ### Releases
 
-CI (`.github/workflows/ci.yml`) runs the unit tests, the parity cases, and a build on Linux, Windows, and macOS for every pull request and push to main. To release, set `version` in `skills/anchored-docs/SKILL.md`, add a `### <version>` entry to its changelog, commit, and push a tag:
+CI (`.github/workflows/ci.yml`) runs the unit tests, the parity cases, and a build on Linux, Windows, and macOS for every pull request and push to main. To release, set `metadata.version` in `skills/anchored-docs/SKILL.md`, add a `### <version>` entry to its changelog, commit, and push a tag:
 
 - `v2.1.0` publishes a release. The `releases/latest/download` link above then points at it.
 - `v2.1.0-rc.1` publishes a pre-release of 2.1.0 for testing. `releases/latest` skips it.

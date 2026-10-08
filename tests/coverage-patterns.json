@@ -93,15 +93,15 @@
   },
   {
     "id": "map-wrote",
-    "pattern": "map: wrote docs/_map\\.yaml"
+    "pattern": "map: wrote docs/_map\\.json"
   },
   {
     "id": "map-out-of-date",
-    "pattern": "map: _map\\.yaml is out of date"
+    "pattern": "map: _map\\.json is out of date"
   },
   {
     "id": "map-matches",
-    "pattern": "map: _map\\.yaml matches sources"
+    "pattern": "map: _map\\.json matches sources"
   },
   {
     "id": "stale-marker",
@@ -301,10 +301,10 @@
   },
   {
     "id": "usage-docs-check",
-    "pattern": "docs_check\\.py: structural checks"
+    "pattern": "docs_check\\.mjs: structural checks"
   },
   {
     "id": "usage-ste-check",
-    "pattern": "ste_check\\.py: ASD-STE100"
+    "pattern": "ste_check\\.mjs: ASD-STE100"
   }
 ]

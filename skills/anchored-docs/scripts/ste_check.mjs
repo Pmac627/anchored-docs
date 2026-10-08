@@ -4,10 +4,9 @@
 
 import { readFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
-import { homedir } from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { findDocsRoot, findOrgGlossary, loadGlossaries, parseGlossaryFile, readDoc, GlossaryError, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
-import { WHITESPACE, valueText, strip, stripChars, readText, splitlines, FileReadError } from './_compat.mjs';
+import { expandUser, findDocsRoot, findOrgGlossary, loadGlossaries, parseGlossaryFile, readDoc, GlossaryError, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
+import { WHITESPACE, valueText, strip, stripChars, readText, splitlines, writeReport, replacePaths, escapeControls, FileReadError } from './_compat.mjs';
 import { comparePaths, exists, isDir, isFile, pathParts, purePath, fileSuffix, rglobAll, sortPaths } from './_fs.mjs';
 import { APPROVED_ING, FUNCTION_WORDS, IMPERATIVE_VERBS, PASSIVE_PARTICIPLES, PHRASAL, STEP_OK_STARTS, USAGE } from './_ste_data.mjs';
 
@@ -100,12 +99,6 @@ function loadUnapproved() {
 function describeLexicon(lex) {
   if (lex.source === 'pack') return `pack (Issue 9: ${lex.nApproved} approved, ${lex.nUnapproved} unapproved) at ${lex.path}`;
   return `wordlist (${lex.nApproved} words) at ${lex.path}`;
-}
-
-function expandUser(p) {
-  if (p === '~') return homedir();
-  if (p.startsWith('~/')) return join(homedir(), p.slice(2));
-  return p;
 }
 
 function findAgentPack() {
@@ -252,7 +245,7 @@ const INLINE_STEPS = [
   [/!\[[^\]]*\]\([^)]*\)/g, ' IMAGE '],
   [/\[([^\]]+)\]\([^)]*\)/g, '$1'],
   [new RegExp(`https?://${NS}+|www\\.${NS}+`, 'gu'), ' URL '],
-  [new RegExp(`(?<!${W})(?:\\.{0,2}/)?[\\p{L}\\p{N}_.-]+(?:/[\\p{L}\\p{N}_.-]+)+(?::${D}+)?`, 'gu'), ' PATH '],
+  [replacePaths, ' PATH '],   // a linear scan; the regex it replaces is in its comment
   [new RegExp(`\\[\\^[\\p{L}\\p{N}_-]+\\]`, 'gu'), ''],
   [new RegExp(`\\*\\*|__|(?<!${W})[*_](?=${W})|(?<=${W})[*_](?!${W})`, 'gu'), ''],
   [/<[^>\n]+>/g, ' '],
@@ -261,7 +254,7 @@ const INLINE_STEPS = [
 /** Replace exempt inline regions with single placeholder tokens. */
 function stripInline(text) {
   let t = text;
-  for (const [re, rep] of INLINE_STEPS) t = t.replace(re, rep);
+  for (const [re, rep] of INLINE_STEPS) t = typeof re === 'function' ? re(t, rep) : t.replace(re, rep);
   return t;
 }
 
@@ -600,7 +593,7 @@ function checkPath(p, rep, unapproved, lex, glossaryCache) {
 
 const out = [];
 const print = (s = '') => out.push(s);
-const eprint = (s) => process.stderr.write(s + '\n');
+const eprint = (s) => process.stderr.write(escapeControls(s) + '\n');
 const pad4 = (n) => String(n).padStart(4);
 
 function glossaryReport(root) {
@@ -779,5 +772,5 @@ try {
   }
   code = 2;
 }
-process.stdout.write(out.length ? out.join('\n') + '\n' : '');
+writeReport(out.length ? out.join('\n') + '\n' : '');
 process.exitCode = code;

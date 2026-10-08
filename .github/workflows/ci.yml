@@ -32,11 +32,11 @@ jobs:
       - name: Unit tests
         run: node --test "tests/unit/*.test.mjs"
 
-      - name: Parity with the 1.2.0 baseline
+      - name: Parity with the recorded baseline
         run: |
           node tests/run-cases.mjs run --skill skills/anchored-docs --out "$RUNNER_TEMP/parity"
-          node tests/run-cases.mjs compare tests/golden/1.2.0 "$RUNNER_TEMP/parity"
-          node tests/run-cases.mjs coverage tests/golden/1.2.0
+          node tests/run-cases.mjs compare tests/golden/2.0.1 "$RUNNER_TEMP/parity"
+          node tests/run-cases.mjs coverage tests/golden/2.0.1
 
       - name: Build the archive
         run: node tools/build-skill.mjs build --out "$RUNNER_TEMP/anchored-docs.skill"

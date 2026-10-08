@@ -1,0 +1,15 @@
+{
+  "id": "ste-status-none",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "--status"
+      ],
+      "code": 0,
+      "stdout": "org glossary: <SKILL>/references/org-glossary.json (0 terms; approved in every repo that runs this skill)\nSTE word source: none. Rule 1.1 runs on the built-in non-STE list only (1.1 partial).\nInstall the ASD-STE100 agent pack at <SKILL>/references/asd-ste100-agent-pack or set STE_AGENT_PACK=/path/to/pack.\nWithout the pack, STE_DICTIONARY=/path/to/words.txt (one approved word per line) enables a word-list check.\nSee INSTALL.md, section \"Add the ASD-STE100 agent pack\".\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

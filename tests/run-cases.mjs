@@ -17,7 +17,7 @@
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, realpathSync, cpSync, readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve, dirname } from 'node:path';
+import { basename, join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs, isDeepStrictEqual } from 'node:util';
 
@@ -127,8 +127,15 @@ function firstDiff(a, b) {
   return '';
 }
 
+// The rules rewrite 1.x file names in the 1.2.0 baseline. A newer baseline already has the 2.0 names, and
+// its legacy-file notices must keep the 1.x names, so the rules apply to the 1.2.0 baseline only.
+function rulesFor(goldenDir) {
+  const intended = readJson(join(HERE, 'intended-differences.json'));
+  return process.argv.includes('--no-intended') || basename(goldenDir) !== intended.golden ? [] : intended.rules;
+}
+
 function cmdCompare(goldenDir, candDir, partial) {
-  const rules = process.argv.includes('--no-intended') ? [] : readJson(join(HERE, 'intended-differences.json')).rules;
+  const rules = rulesFor(goldenDir);
   const ids = readdirSync(goldenDir).filter((f) => f.endsWith('.json')).sort();
   let bad = 0;
   for (const f of ids) {
@@ -157,8 +164,9 @@ function cmdCompare(goldenDir, candDir, partial) {
 
 function cmdCoverage(goldenDir) {
   const patterns = readJson(join(HERE, 'coverage-patterns.json'));
+  const rules = rulesFor(goldenDir);   // the patterns use the 2.0 file names
   const corpus = readdirSync(goldenDir).filter((f) => f.endsWith('.json'))
-    .map((f) => readJson(join(goldenDir, f)))
+    .map((f) => applyIntendedToResult(readJson(join(goldenDir, f)), rules))
     .flatMap((r) => r.steps.map((s) => `${r.id}\u0000${s.stdout}\n${s.stderr}`)).join('\n');
   const missing = patterns.filter((p) => !new RegExp(p.pattern, 'm').test(corpus));
   for (const p of missing) console.log(`NOT COVERED ${p.id}: /${p.pattern}/`);

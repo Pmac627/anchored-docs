@@ -1,0 +1,16 @@
+{
+  "id": "ste-pack-categories-override",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "docs/overview.md",
+        "docs/architecture.md"
+      ],
+      "code": 1,
+      "stdout": "docs/_glossary.json:1: [H] 1.8: glossary: project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)\ndocs/_glossary.json:1: [H] 1.8: glossary: project glossary repeats org term \"ingest\" (redundant; delete it, or move its synonyms to the org glossary)\ndocs/_glossary.json:1: [M] 1.8: glossary conflict: project glossary approves \"tripwire\", which the org glossary lists as an unapproved synonym of \"ripwire\"\ndocs/_glossary.json:1: [M] 1.8: glossary conflict: project glossary lists org term \"gate\" as an unapproved synonym of \"checkpointer\"\ndocs/_glossary.json:1: [M] 1.8: glossary conflict: project glossary redefines org term \"ripwire\" with a different meaning (org: \"the code-structure tool\"; project: \"a different meaning for the same word\"). Use a different name for the project's item.\ndocs/architecture.md:17: [H] 1.5: 1 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): each\ndocs/overview.md:15: [H] 1.5: 8 words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): accepts, customers, each, questions, scratch, see, function, web\n\nste_check: 2 files, 7 sentences, 3 mechanical, 4 heuristic (1.5=2, 1.8=2), 0 waived, dictionary=pack\nDocs-STE: fail(3 mechanical)\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

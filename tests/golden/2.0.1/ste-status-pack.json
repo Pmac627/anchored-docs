@@ -1,0 +1,15 @@
+{
+  "id": "ste-status-pack",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "--status"
+      ],
+      "code": 0,
+      "stdout": "org glossary: <FIXTURES>/glossary/org-glossary.json (4 terms; approved in every repo that runs this skill)\nSTE word source: pack (Issue 9: 57 approved, 10 unapproved) at <FIXTURES>/synthetic-pack\ntechnical categories permitted without a glossary entry: tn 6,7,15,19; tv 2 (22 example words). Override with STE_TECH_CATEGORIES.\nmulti-word unapproved phrases checked: 1\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

@@ -1,0 +1,16 @@
+{
+  "id": "dc-usage-not-a-dir",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "okf",
+        "nope"
+      ],
+      "code": 2,
+      "stdout": "docs_check: <REPO>/nope is not a directory\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

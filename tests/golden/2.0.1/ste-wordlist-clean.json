@@ -1,0 +1,15 @@
+{
+  "id": "ste-wordlist-clean",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "docs/overview.md"
+      ],
+      "code": 1,
+      "stdout": "docs/_glossary.json:1: [H] 1.8: glossary: project glossary repeats org term \"queue\" (redundant; delete it, or move its synonyms to the org glossary)\ndocs/_glossary.json:1: [H] 1.8: glossary: project glossary repeats org term \"ingest\" (redundant; delete it, or move its synonyms to the org glossary)\ndocs/overview.md:15: [M] 1.1: \"orders\" is not in the STE dictionary or the glossary\n\nste_check: 1 files, 3 sentences, 1 mechanical, 2 heuristic (1.8=2), 0 waived, dictionary=wordlist\nDocs-STE: fail(1 mechanical)\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

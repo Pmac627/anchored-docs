@@ -8,9 +8,10 @@
 //        The files come from git, not the working folder: the staged index by default, or <commit> with --ref.
 //        Ignored files, such as a local ASD-STE100 agent pack, therefore cannot enter the archive.
 //        Entries are sorted and every timestamp is the commit time, so the same input gives the same bytes.
-//        It refuses to build when the frontmatter name differs from the folder name, when --tag is neither
-//        v<version> nor a pre-release v<version>-<suffix>, when SKILL.md has no changelog entry for its version,
-//        or when agent pack files are tracked.
+//        It refuses to build when the frontmatter name differs from the folder name, when the frontmatter has a
+//        top-level key the Agent Skills specification does not allow, when --tag is neither v<version> nor a
+//        pre-release v<version>-<suffix> (<version> is metadata.version), when SKILL.md has no changelog entry
+//        for its version, or when agent pack files are tracked.
 // notes  Prints the SKILL.md changelog section for <version>, for use as release notes. A tag such as v2.0.0-rc.1
 //        selects the section of its version, 2.0.0.
 
@@ -125,11 +126,44 @@ export function buildZip(files, epochSeconds) {
 
 // ---------- SKILL.md ----------
 
-export function frontmatterField(text, key) {
+// The top-level keys the Agent Skills specification allows (https://agentskills.io/specification).
+// Validators such as skills-ref reject any other key, so the version lives in metadata.version.
+const SPEC_KEYS = new Set(['name', 'description', 'license', 'compatibility', 'metadata', 'allowed-tools']);
+
+function frontmatterBlock(text) {
   const m = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/.exec(text);
-  if (!m) return null;
-  const line = new RegExp(`^${key}:[ \\t]*(.*?)[ \\t]*$`, 'm').exec(m[1].replace(/\r/g, ''));
-  return line && line[1] !== '' ? line[1] : null;
+  return m ? m[1].replace(/\r/g, '') : null;
+}
+
+const unquote = (v) => v.replace(/^(["'])(.*)\1$/, '$2');
+
+/** Returns the value of a top-level frontmatter key, without quotes, or null. */
+export function frontmatterField(text, key) {
+  const fm = frontmatterBlock(text);
+  if (fm === null) return null;
+  const line = new RegExp(`^${key}:[ \\t]*(.*?)[ \\t]*$`, 'm').exec(fm);
+  return line && line[1] !== '' ? unquote(line[1]) : null;
+}
+
+/** Returns the top-level frontmatter keys, in order. */
+export function frontmatterKeys(text) {
+  const fm = frontmatterBlock(text);
+  return fm === null ? [] : [...fm.matchAll(/^([A-Za-z][\w-]*):/gm)].map((m) => m[1]);
+}
+
+/** Returns the value of `key` in the indented `metadata:` map, without quotes, or null. */
+export function metadataField(text, key) {
+  const fm = frontmatterBlock(text);
+  if (fm === null) return null;
+  const lines = fm.split('\n');
+  const start = lines.findIndex((l) => /^metadata:[ \t]*$/.test(l));
+  if (start < 0) return null;
+  for (const l of lines.slice(start + 1)) {
+    if (!/^[ \t]/.test(l)) break;
+    const m = new RegExp(`^[ \\t]+${key}:[ \\t]*(.*?)[ \\t]*$`).exec(l);
+    if (m) return m[1] === '' ? null : unquote(m[1]);
+  }
+  return null;
 }
 
 /** Returns the body of "### <version>" under "## Changelog", without surrounding blank lines, or null. */
@@ -164,9 +198,11 @@ export function checkSkill({ folder, files, skillText, tag }) {
   if (!files.includes('SKILL.md')) return [`${folder}/SKILL.md is not tracked by git`];
 
   const name = frontmatterField(skillText, 'name');
-  const version = frontmatterField(skillText, 'version');
+  const version = metadataField(skillText, 'version');
   if (name !== folder) errors.push(`SKILL.md name "${name}" differs from the folder name "${folder}"`);
-  if (!version) errors.push('SKILL.md has no version');
+  const extra = frontmatterKeys(skillText).filter((k) => !SPEC_KEYS.has(k));
+  if (extra.length) errors.push(`SKILL.md frontmatter has keys the Agent Skills specification does not allow: ${extra.join(', ')} (put a version in metadata.version)`);
+  if (!version) errors.push('SKILL.md has no metadata.version');
   else {
     if (tag !== undefined && tagVersion(tag) !== version) errors.push(`tag "${tag}" differs from the SKILL.md version "v${version}"`);
     if (extractNotes(skillText, version) === null) errors.push(`SKILL.md has no changelog entry "### ${version}"`);

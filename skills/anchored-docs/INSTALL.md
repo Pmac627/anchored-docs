@@ -1,6 +1,6 @@
 # Installing anchored-docs
 
-The skill is one folder, `anchored-docs/`, with `SKILL.md` at its root. Claude, Codex, and GitHub Copilot all read this Agent Skills layout. The frontmatter carries only `name` and `description`, so no tool rejects it.
+The skill is one folder, `anchored-docs/`, with `SKILL.md` at its root. Claude, Codex, and GitHub Copilot all read this Agent Skills layout. The frontmatter uses only keys from the Agent Skills specification (https://agentskills.io/specification): `name`, `description`, and `metadata`, which holds the skill version. Strict validators, such as `skills-ref validate`, accept it.
 
 Prerequisite in every tool: `ripwire` on `PATH` (or `RIPWIRE_BIN` set), and Node.js 22 or newer for the scripts (they have no packages to install). Recommended: the ASD-STE100 agent pack, added after install (section "Add the ASD-STE100 agent pack" below). Without it the STE word check is partial. If you distribute the skill inside an organization, fill in the organization glossary before you do (section "Maintain the organization glossary").
 

@@ -1,0 +1,16 @@
+{
+  "id": "dc-links-clean",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "links",
+        "docs"
+      ],
+      "code": 0,
+      "stdout": "links: 8 docs, 2 code back-links, 0 findings\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

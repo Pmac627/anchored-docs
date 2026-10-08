@@ -87,7 +87,9 @@ export function fnmatchcase(name, pattern) {
 
 const isWildcard = (seg) => seg.includes('*') || seg.includes('?') || seg.includes('[');
 
+/** dir and every folder under it, or nothing when dir is not a folder. */
 function subdirs(dir) {
+  if (!isDir(dir)) return [];
   const out = [dir];
   const walk = (d) => {
     for (const e of listDir(d)) {
