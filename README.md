@@ -106,7 +106,7 @@ The full license text is in [LICENSE](LICENSE). Add a copyright notice with the 
 ```bash
 node --test "tests/unit/*.test.mjs"                        # unit tests
 node tests/run-cases.mjs run --skill skills/anchored-docs --out /tmp/out
-node tests/run-cases.mjs compare tests/golden/1.2.0 /tmp/out   # 41 cases against the 1.2.0 baseline
+node tests/run-cases.mjs compare tests/golden/2.0.1 /tmp/out   # 41 cases against the recorded baseline
 node tools/build-skill.mjs build                           # build dist/anchored-docs.skill from the staged files
 ```
 

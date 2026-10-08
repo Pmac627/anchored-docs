@@ -1,0 +1,17 @@
+{
+  "id": "dc-affected-none",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "affected",
+        "docs",
+        "README.md"
+      ],
+      "code": 0,
+      "stdout": "affected: no doc's sources match the changed files\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

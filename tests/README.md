@@ -18,26 +18,31 @@ without the real agent pack, and found byte-identical `ste_check` output.
 | `fixtures/synthetic-pack/` | An invented agent pack in the real pack's file layout. It contains no ASD content, so it is safe to commit. |
 | `fixtures/wordlist.txt` | An invented `STE_DICTIONARY` word list. |
 | `fixtures/glossary/` | An invented organization glossary. |
-| `golden/1.2.0/` | The baseline: the recorded 1.2.0 output for every case. |
+| `golden/2.0.1/` | The baseline that CI compares with: the 2.0.1 output for every case. |
+| `golden/1.2.0/` | The recorded 1.2.0 output for every case. 2.0.1 still matches it once the renames below are applied. |
 | `golden/fm-1.2.0.json` | Recorded 1.2.0 frontmatter results on 40 YAML cases, 14 split cases, 37 real docs and templates, 11 glossary scenarios, and 13 directory layouts. |
 | `golden/glob-1.2.0.json` | Recorded 1.2.0 pattern-matching, glob, date-parsing, and path-order results. |
 | `unit/*.test.mjs` | `node:test` suites that hold `_compat.mjs`, `_fm.mjs`, and `_glob.mjs` to those records, and test the 2.0 behavior of `docs_check.mjs` and `ste_check.mjs`. |
-| `intended-differences.json` | Text changes that 2.0 makes on purpose (file renames). |
+| `intended-differences.json` | Text changes that 2.0 makes on purpose (file renames). Applied to `golden/1.2.0` only. |
 | `coverage-patterns.json` | 77 expected finding messages. `coverage` fails if the goldens miss one. |
 
-The goldens are fixed. 1.2.0 does not change, so they are not captured again. Text in them that 2.0 changes on
-purpose, such as the old script and data file names, is rewritten by `intended-differences.json` before each
-comparison. Frontmatter stays YAML in both versions because OKF requires it.
+`golden/2.0.1/` is the baseline from 2.0.1 on. It was recorded from 2.0.1 after 2.0.1 matched `golden/1.2.0` on all
+41 cases, so it holds the 1.x behavior with the 2.0 file names. When a later change alters output on purpose, record
+a new baseline (`run --out tests/golden/<version>`), point CI at it, and give the reason in the changelog.
+
+`golden/1.2.0/` does not change. Text in it that 2.0 changes on purpose, such as the old script and data file names,
+is rewritten by `intended-differences.json` before a comparison or a coverage check. Frontmatter stays YAML in both
+versions because OKF requires it.
 
 ## Commands
 
 ```bash
 # Check the scripts against the baseline
 node tests/run-cases.mjs run --skill skills/anchored-docs --out /tmp/results
-node tests/run-cases.mjs compare tests/golden/1.2.0 /tmp/results
+node tests/run-cases.mjs compare tests/golden/2.0.1 /tmp/results
 
 # Prove the corpus still triggers every expected finding
-node tests/run-cases.mjs coverage tests/golden/1.2.0
+node tests/run-cases.mjs coverage tests/golden/2.0.1
 ```
 
 The harness copies each fixture to a temp directory, so `map` can write without touching the fixtures.

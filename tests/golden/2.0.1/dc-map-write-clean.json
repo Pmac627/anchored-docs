@@ -1,0 +1,41 @@
+{
+  "id": "dc-map-write-clean",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "map",
+        "docs"
+      ],
+      "code": 0,
+      "stdout": "map: wrote docs/_map.json (3 code paths)\n",
+      "stderr": ""
+    }
+  ],
+  "files": {
+    "docs/_map": {
+      "generated": "<DATE>",
+      "map": [
+        {
+          "code": "src/Orders/**",
+          "docs": [
+            "docs/overview.md"
+          ]
+        },
+        {
+          "code": "src/Orders/OrderService.cs",
+          "docs": [
+            "docs/decisions/0001-use-queue.md",
+            "docs/flows/order-fulfillment.md"
+          ]
+        },
+        {
+          "code": "src/tools/ingest.py",
+          "docs": [
+            "docs/flows/ingest.md"
+          ]
+        }
+      ]
+    }
+  }
+}

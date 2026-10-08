@@ -1,0 +1,15 @@
+{
+  "id": "ste-clean-builtin",
+  "tool": "ste_check",
+  "steps": [
+    {
+      "args": [
+        "docs"
+      ],
+      "code": 0,
+      "stdout": "\nste_check: 8 files, 11 sentences, 0 mechanical, 0 heuristic, 0 waived, dictionary=no (1.1 partial)\nDocs-STE: pass (1.1 partial)\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

@@ -1,0 +1,17 @@
+{
+  "id": "dc-map-check-clean",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "map",
+        "docs",
+        "--check"
+      ],
+      "code": 0,
+      "stdout": "map: _map.json matches sources\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

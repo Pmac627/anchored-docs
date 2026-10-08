@@ -1,5 +1,6 @@
 {
-  "comment": "Text changes that 2.0 makes on purpose. Each rule is applied to the 1.x golden before it is compared with Node output. Add a rule only with a reason; an unexplained difference is a bug in the port.",
+  "comment": "Text changes that 2.0 makes on purpose. Each rule is applied to the 1.x golden (tests/golden/1.2.0 only) before it is compared with Node output. Add a rule only with a reason; an unexplained difference is a bug in the port.",
+  "golden": "1.2.0",
   "rules": [
     {
       "pattern": "org-glossary\\.yaml",
