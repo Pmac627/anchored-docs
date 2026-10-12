@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Parity harness for the anchored-docs 2.0 rewrite (Node 22+, zero dependencies).
+// Parity harness for anchored-docs (Node 22+, zero dependencies).
 //
 //   node tests/run-cases.mjs run      --skill <skill dir> --out <dir> [--only <id>]
 //   node tests/run-cases.mjs compare  <golden dir> <candidate dir>
@@ -7,10 +7,9 @@
 //
 // run       (--prefix dc- runs one tool's cases; --pack <dir> points the pack cases at a real agent pack)
 //           Executes every case in tests/cases.json against the scripts in <skill dir> and writes one
-//           normalized JSON result per case. The baseline in tests/golden/1.2.0 is the recorded output of
-//           1.2.0 on these cases; it is fixed and is not captured again.
-// compare   Diffs two result directories. Known, intended 2.0 text changes (file renames) are applied
-//           to the golden side first, from tests/intended-differences.json.
+//           normalized JSON result per case. The baseline in tests/golden/2.1.0 is the recorded output of
+//           2.1.0 on these cases, and CI compares against it.
+// compare   Diffs two result directories.
 // coverage  Lists the expected finding messages (tests/coverage-patterns.json) that no case output
 //           contains, so a corpus gap is visible before the port starts.
 
@@ -104,21 +103,6 @@ function cmdRun(opts) {
 
 // ---------- compare ----------
 
-function applyIntended(text, rules) {
-  let t = text;
-  for (const r of rules) t = t.replace(new RegExp(r.pattern, r.flags ?? 'g'), r.replace);
-  return t;
-}
-
-function applyIntendedToResult(res, rules) {
-  const copy = structuredClone(res);
-  for (const s of copy.steps) {
-    s.stdout = applyIntended(s.stdout, rules);
-    s.stderr = applyIntended(s.stderr, rules);
-  }
-  return copy;
-}
-
 function firstDiff(a, b) {
   const al = a.split('\n'), bl = b.split('\n');
   for (let i = 0; i < Math.max(al.length, bl.length); i++) {
@@ -127,19 +111,11 @@ function firstDiff(a, b) {
   return '';
 }
 
-// The rules rewrite 1.x file names in the 1.2.0 baseline. A newer baseline already has the 2.0 names, and
-// its legacy-file notices must keep the 1.x names, so the rules apply to the 1.2.0 baseline only.
-function rulesFor(goldenDir) {
-  const intended = readJson(join(HERE, 'intended-differences.json'));
-  return process.argv.includes('--no-intended') || basename(goldenDir) !== intended.golden ? [] : intended.rules;
-}
-
 function cmdCompare(goldenDir, candDir, partial) {
-  const rules = rulesFor(goldenDir);
   const ids = readdirSync(goldenDir).filter((f) => f.endsWith('.json')).sort();
   let bad = 0;
   for (const f of ids) {
-    const golden = applyIntendedToResult(readJson(join(goldenDir, f)), rules);
+    const golden = readJson(join(goldenDir, f));
     const candPath = join(candDir, f);
     if (!existsSync(candPath)) { if (!partial) { console.log(`MISSING ${f}`); bad++; } continue; }
     const cand = readJson(candPath);
@@ -164,9 +140,8 @@ function cmdCompare(goldenDir, candDir, partial) {
 
 function cmdCoverage(goldenDir) {
   const patterns = readJson(join(HERE, 'coverage-patterns.json'));
-  const rules = rulesFor(goldenDir);   // the patterns use the 2.0 file names
   const corpus = readdirSync(goldenDir).filter((f) => f.endsWith('.json'))
-    .map((f) => applyIntendedToResult(readJson(join(goldenDir, f)), rules))
+    .map((f) => readJson(join(goldenDir, f)))
     .flatMap((r) => r.steps.map((s) => `${r.id}\u0000${s.stdout}\n${s.stderr}`)).join('\n');
   const missing = patterns.filter((p) => !new RegExp(p.pattern, 'm').test(corpus));
   for (const p of missing) console.log(`NOT COVERED ${p.id}: /${p.pattern}/`);

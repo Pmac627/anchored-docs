@@ -373,12 +373,6 @@ export function loadGlossaries(docsRoot) {
   return g;
 }
 
-/** Returns [approved Set, unapproved Map] for the effective glossary. */
-export function loadGlossary(docsRoot) {
-  const g = loadGlossaries(docsRoot);
-  return [g.approved, g.unapproved];
-}
-
 function isDir(p) {
   try {
     return statSync(p).isDirectory();

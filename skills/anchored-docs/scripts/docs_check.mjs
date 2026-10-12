@@ -329,7 +329,7 @@ function cmdGlossary(docs, showTerms) {
     for (const t of [...g.approved].sort()) {
       const e = g.entries.get(t)[0];
       const syns = [...new Set(g.entries.get(t).flatMap((x) => x.unapproved))].sort();
-      let line = `  ${padCodePoints(t, 32)} ${padCodePoints(e.kind, 5)} ${padCodePoints(g.origin.get(t) ?? '', 8)}`;
+      let line = `  ${padCodePoints(t, 32)} ${padCodePoints(e.kind, 5)} ${padCodePoints(g.origin.get(t), 8)}`;
       if (e.meaning) line += `  ${e.meaning}`;
       if (syns.length) line += `  (not: ${syns.join(', ')})`;
       print(line);
@@ -440,10 +440,11 @@ try {
   if (e instanceof GlossaryError || e instanceof MapError || e instanceof FileReadError) {
     print(`docs_check: ${e.message}`);
   } else {
-    print(`docs_check: unexpected error: ${e?.message ?? e}`);
-    process.stderr.write(`${escapeControls(String(e?.stack ?? e))}\n`);
+    print(`docs_check: unexpected error: ${e.message}`);
+    process.stderr.write(`${escapeControls(String(e.stack))}\n`);
   }
   code = 2;
 }
-writeReport(lines.length ? lines.join('\n') + '\n' : '');
+// Every path through main and the catch above prints at least one line, so the report is never empty.
+writeReport(lines.join('\n') + '\n');
 process.exitCode = code;

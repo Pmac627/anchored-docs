@@ -96,7 +96,7 @@ export function listDir(dir) {
 export function purePath(p) {
   if (p === '') return '.';
   const abs = p.startsWith('/') || p.startsWith(sep);
-  const segs = p.split(sep === '\\' ? /[\\/]/ : '/').filter((s) => s !== '' && s !== '.');
+  const segs = p.split(sep).flatMap((s) => s.split('/')).filter((s) => s !== '' && s !== '.');
   return (abs ? sep : '') + (segs.join(sep) || (abs ? '' : '.'));
 }
 

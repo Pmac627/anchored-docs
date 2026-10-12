@@ -59,7 +59,6 @@ export function fnmatchTranslate(pat) {
         stuff = stuff.replaceAll(']', '\\]');
         i = j + 1;
         if (!stuff) out.push('(?!)');
-        else if (stuff === '!') out.push('[\\s\\S]');
         else {
           if (stuff[0] === '!') stuff = '^' + stuff.slice(1);
           else if (stuff[0] === '^' || stuff[0] === '[') stuff = '\\' + stuff;
