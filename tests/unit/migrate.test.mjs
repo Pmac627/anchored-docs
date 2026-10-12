@@ -84,7 +84,8 @@ test('apply moves the bundle and rewrites every link that points at it', () => {
 test('apply writes a dated log entry at the top of the newest-first groups', () => {
   withLegacyCopy((repo) => {
     applyPlan(planMigration(repo), '2026-10-11');
-    const log = read(repo, 'docs/anchored-docs/log.md');
+    // Windows checkouts can store the log with CRLF. The writer keeps the file's line endings, so compare with LF.
+    const log = read(repo, 'docs/anchored-docs/log.md').replace(/\r\n/g, '\n');
     assert.ok(log.startsWith('# Docs update log\n\n## 2026-10-11\n\n* **Update**: Moved 10 bundle file(s)'));
     assert.ok(log.indexOf('## 2026-10-11') < log.indexOf('## 2026-01-10'));
   });
