@@ -406,7 +406,7 @@ function sourceBlocks(path, lang) {
     }
   } else if (lang === 'py') {
     for (const m of text.matchAll(PY_DOCSTRING_RE)) {
-      const ln = (text.slice(0, m.indices[1][0]).match(/\n/g) ?? []).length + 1;
+      const ln = text.slice(0, m.indices[1][0]).match(/\n/g).length + 1;
       blocks.push({ line: ln, text: strip(m[1].replace(WS_RUN, ' ')), procedural: false, kind: 'para' });
     }
   }
@@ -428,7 +428,7 @@ function checkBlock(b, path, rep, unapproved, glossaryTerms, glossaryUnapproved,
   const blockReported = new Set();
 
   const skip = (rule) => {
-    if (allowed.has('all') || allowed.has(rule) || [...allowed].some((a) => a.endsWith('.') && rule.startsWith(a))) {
+    if (allowed.has('all') || allowed.has(rule)) {
       rep.waivers += 1;
       return true;
     }
@@ -618,7 +618,7 @@ function glossaryReport(root) {
   print(`project terms no doc names in a code span: ${unused.length}`);
   for (const t of unused) print(`  ${t}`);
   // Highest count first. Ties sort alphabetically: 1.x left them in directory-scan order, which changes between machines.
-  const ranked = [...used.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0));
+  const ranked = [...used.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1));
   const cands = ranked.filter(([k]) => !terms.has(k) && new RegExp(`^[A-Za-z][\\p{L}\\p{N}_ .:-]*$`, 'u').test(k));
   print('code-span names not in the glossary (top 40 by count):');
   for (const [k, v] of cands.slice(0, 40)) print(`  ${pad4(v)}  ${k}`);
@@ -656,8 +656,7 @@ function lookup(lex, words) {
   const catText = (cat) => cat.map(([k, n, t]) => `${k.toUpperCase()} ${n} ${t}`).join('; ');
   for (const raw of words) {
     const q = strip(raw).toLowerCase();
-    let found = [...new Set(stems(q))].filter((c) => lex.entries.has(c));
-    if (!found.length && q.includes(' ')) found = lex.entries.has(q) ? [q] : [];
+    const found = [...new Set(stems(q))].filter((c) => lex.entries.has(c));
     print(`== ${raw}`);
     if (!found.length) {
       const cat = lex.categories.get(q);
@@ -738,7 +737,7 @@ function main(argv) {
   const cache = new Map();
   for (const f of files) checkPath(f, rep, unapproved, lex, cache);
   for (const [path, words] of rep.unknown) { // one heuristic finding per file for the technical-noun candidates
-    const ordered = [...words.keys()].sort((a, b) => words.get(a) - words.get(b) || (a < b ? -1 : a > b ? 1 : 0));
+    const ordered = [...words.keys()].sort((a, b) => words.get(a) - words.get(b) || (a < b ? -1 : 1));
     const shown = ordered.slice(0, 40).join(', ') + (ordered.length > 40 ? `, +${ordered.length - 40} more` : '');
     add(rep, path, Math.min(...words.values()), 'H', '1.5', `${ordered.length} words not in the STE dictionary (technical-noun or technical-verb candidates: glossary them or replace them): ${shown}`);
   }

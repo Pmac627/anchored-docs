@@ -1,13 +1,109 @@
-// _compat.mjs must keep the 1.2.0 text rules. The expected values are the recorded 1.2.0 results (golden/fm-1.2.0.json).
+import { spawnSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
+// _compat.mjs must keep the text rules recorded from 1.x. The expected values are inline, copied from those recorded results.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { splitlines, strip, stripEnd, stripChars, formatValue, valueText, replacePaths, escapeControls } from '../../skills/anchored-docs/scripts/_compat.mjs';
+import { splitlines, strip, stripEnd, stripChars, formatValue, valueText, replacePaths, escapeControls, padCodePoints, writeReport, FileReadError } from '../../skills/anchored-docs/scripts/_compat.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const golden = JSON.parse(readFileSync(join(HERE, '..', 'golden', 'fm-1.2.0.json'), 'utf8')).compat;
+// Recorded 1.2.0 text-rule results. Expected values are the behavior this port keeps.
+const golden = {
+  splitlines: [
+    {"input":"","output":[]},
+    {"input":"a","output":["a"]},
+    {"input":"a\n","output":["a"]},
+    {"input":"a\n\n","output":["a",""]},
+    {"input":"a\r\nb","output":["a","b"]},
+    {"input":"a\rb","output":["a","b"]},
+    {"input":"a\u000bb\fc","output":["a","b","c"]},
+    {"input":"a\u001cb\u001dc\u001ed","output":["a","b","c","d"]},
+    {"input":"ab","output":["a","b"]},
+    {"input":"a b c","output":["a","b","c"]},
+    {"input":"\n","output":[""]},
+    {"input":"\r\n\r\n","output":["",""]},
+    {"input":"a\nb\n","output":["a","b"]},
+    {"input":"  a  \n  b  ","output":["  a  ","  b  "]},
+  ],
+  strip: [
+    {"input":"  a  ","strip":"a","rstrip":"  a"},
+    {"input":"\t\na\r\n","strip":"a","rstrip":"\t\na"},
+    {"input":" a ","strip":"a","rstrip":" a"},
+    {"input":"﻿a﻿","strip":"﻿a﻿","rstrip":"﻿a﻿"},
+    {"input":"\u001ca\u001f","strip":"a","rstrip":"\u001ca"},
+    {"input":"a","strip":"a","rstrip":"a"},
+    {"input":" a　","strip":"a","rstrip":" a"},
+    {"input":"","strip":"","rstrip":""},
+    {"input":"   ","strip":"","rstrip":""},
+    {"input":"a b","strip":"a b","rstrip":"a b"},
+  ],
+  repr: [
+    {"value":null,"output":"None"},
+    {"value":true,"output":"True"},
+    {"value":false,"output":"False"},
+    {"value":0,"output":"0"},
+    {"value":42,"output":"42"},
+    {"value":-7,"output":"-7"},
+    {"value":"","output":"''"},
+    {"value":"plain","output":"'plain'"},
+    {"value":"it's","output":"\"it's\""},
+    {"value":"say \"hi\"","output":"'say \"hi\"'"},
+    {"value":"both ' and \"","output":"'both \\' and \"'"},
+    {"value":"tab\there","output":"'tab\\there'"},
+    {"value":"nl\nhere","output":"'nl\\nhere'"},
+    {"value":"cr\rhere","output":"'cr\\rhere'"},
+    {"value":"back\\slash","output":"'back\\\\slash'"},
+    {"value":"ctl\u0001","output":"'ctl\\x01\\x7f'"},
+    {"value":"nbsp x","output":"'nbsp\\xa0x'"},
+    {"value":"café","output":"'café'"},
+    {"value":" sep","output":"'\\u2028sep'"},
+    {"value":"﻿bom","output":"'\\ufeffbom'"},
+    {"value":"emoji 😀","output":"'emoji 😀'"},
+    {"value":"","output":"'\\x80\\x9f'"},
+    {"value":[],"output":"[]"},
+    {"value":[1,"a",null],"output":"[1, 'a', None]"},
+    {"value":["it's","q\"q"],"output":"[\"it's\", 'q\"q']"},
+    {"value":{},"output":"{}"},
+    {"value":{"a":1,"b":[1,2],"c":{"d":null}},"output":"{'a': 1, 'b': [1, 2], 'c': {'d': None}}"},
+    {"value":{"by":"nobody","at":"2026-01-10T10:00:00Z"},"output":"{'by': 'nobody', 'at': '2026-01-10T10:00:00Z'}"},
+    {"value":["explanation","how-to","reference","tutorial"],"output":"['explanation', 'how-to', 'reference', 'tutorial']"},
+    {"value":{"id":"b"},"output":"{'id': 'b'}"},
+  ],
+  str: [
+    {"value":null,"output":"None"},
+    {"value":true,"output":"True"},
+    {"value":false,"output":"False"},
+    {"value":0,"output":"0"},
+    {"value":42,"output":"42"},
+    {"value":-7,"output":"-7"},
+    {"value":"","output":""},
+    {"value":"plain","output":"plain"},
+    {"value":"it's","output":"it's"},
+    {"value":"say \"hi\"","output":"say \"hi\""},
+    {"value":"both ' and \"","output":"both ' and \""},
+    {"value":"tab\there","output":"tab\there"},
+    {"value":"nl\nhere","output":"nl\nhere"},
+    {"value":"cr\rhere","output":"cr\rhere"},
+    {"value":"back\\slash","output":"back\\slash"},
+    {"value":"ctl\u0001","output":"ctl\u0001"},
+    {"value":"nbsp x","output":"nbsp x"},
+    {"value":"café","output":"café"},
+    {"value":" sep","output":" sep"},
+    {"value":"﻿bom","output":"﻿bom"},
+    {"value":"emoji 😀","output":"emoji 😀"},
+    {"value":"","output":""},
+    {"value":[],"output":"[]"},
+    {"value":[1,"a",null],"output":"[1, 'a', None]"},
+    {"value":["it's","q\"q"],"output":"[\"it's\", 'q\"q']"},
+    {"value":{},"output":"{}"},
+    {"value":{"a":1,"b":[1,2],"c":{"d":null}},"output":"{'a': 1, 'b': [1, 2], 'c': {'d': None}}"},
+    {"value":{"by":"nobody","at":"2026-01-10T10:00:00Z"},"output":"{'by': 'nobody', 'at': '2026-01-10T10:00:00Z'}"},
+    {"value":["explanation","how-to","reference","tutorial"],"output":"['explanation', 'how-to', 'reference', 'tutorial']"},
+    {"value":{"id":"b"},"output":"{'id': 'b'}"},
+  ],
+};
 
 test('splitlines matches the 1.2.0 record', () => {
   for (const c of golden.splitlines) assert.deepEqual(splitlines(c.input), c.output, JSON.stringify(c.input));
@@ -92,4 +188,42 @@ test('escapeControls shows control characters as escapes and keeps tabs, newline
   assert.equal(escapeControls('\x00\x7f\x85\x9f'), '\\x00\\x7f\\x85\\x9f');
   assert.equal(escapeControls('a\u202eb\u2066c'), 'a\\u202eb\\u2066c');
   assert.equal(escapeControls('\u00e9 \u00a0 \u200b'), '\u00e9 \u00a0 \u200b');
+});
+
+test('formatValue shows None for null and undefined', () => {
+  assert.equal(formatValue(null), 'None');
+  assert.equal(formatValue(undefined), 'None');
+});
+
+test('reprString writes astral non-printable characters as \\U escapes', () => {
+  assert.equal(formatValue('\u{E0001}'), "'\\U000e0001'");
+});
+
+test('padCodePoints pads by code points, and leaves text at or past the width alone', () => {
+  assert.equal(padCodePoints('\u00e9\u{1F600}', 4), '\u00e9\u{1F600}  ');
+  assert.equal(padCodePoints('abc', 2), 'abc');
+});
+
+test('FileReadError names the file and uses the message when the cause has no code', () => {
+  const err = new FileReadError('docs/a.md', new Error('boom'));
+  assert.equal(err.message, 'docs/a.md: cannot read (boom)');
+  assert.equal(err.code, undefined);
+});
+
+// writeReport installs its stdout handler in a child process, so a test can emit a real error on that stream.
+function emitOnStdout(code) {
+  const url = pathToFileURL(join(HERE, '..', '..', 'skills', 'anchored-docs', 'scripts', '_compat.mjs')).href;
+  const script = "const m = await import(process.argv[1]); m.writeReport('report\\n'); process.stdout.emit('error', Object.assign(new Error('stream'), { code: process.argv[2] }));";
+  return spawnSync(process.execPath, ['--input-type=module', '-e', script, url, code], { encoding: 'utf8' });
+}
+
+test('writeReport ignores a closed pipe (EPIPE), so a reader such as head does not fail the check', () => {
+  const r = emitOnStdout('EPIPE');
+  assert.equal(r.status, 0, r.stderr);
+});
+
+test('writeReport rethrows any other stream error', () => {
+  const r = emitOnStdout('EIO');
+  assert.notEqual(r.status, 0);
+  assert.match(r.stderr, /EIO/);
 });

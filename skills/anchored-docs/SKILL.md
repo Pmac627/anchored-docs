@@ -2,7 +2,7 @@
 name: anchored-docs
 description: Keep a repository's living developer documentation in docs/anchored-docs/ true to the code, and migrate a 2.0 bundle from docs/ when asked, written in ASD-STE100 Simplified Technical English, stored as an OKF (Open Knowledge Format) bundle, and verified with ripwire. Use this whenever you finish a code change, prepare a commit or pull request, write an implementation plan, or are asked to document, update docs, refresh the wiki, check docs for drift, or bootstrap docs for a repo. Treat updating the affected documentation as part of the definition of done for every code change in a repo that has a docs/anchored-docs/ folder, unless the user says not to. Triggers even when the user does not say "documentation", for example after "add a field to the order request", "refactor the ingest pass", "open a PR for this", or "is this doc still right". Also use it to rewrite any docs/anchored-docs/ prose into STE, or to run the docs lint.
 metadata:
-  version: "2.1.0"
+  version: "2.1.1"
 ---
 
 # anchored-docs
@@ -336,6 +336,10 @@ Use migrate mode only when the user tells you to. It moves a 2.0 bundle from `do
 7. Do not write or change a doc in the same task as the move. Run delta mode after the move is complete.
 
 ## Changelog
+
+### 2.1.1
+- Changed: removed code that could not run (`ste_check.mjs`, `docs_check.mjs`, `_glob.mjs`). The findings and exit codes are the same. The 45 parity cases still match the 2.1.0 baseline.
+- Changed: the `docs_check.mjs` error handler reports the message of an error, and the stack when there is one.
 
 ### 2.1.0
 - New: the bundle lives in `docs/anchored-docs/`. The prose and the scripts use this path. The project's own `docs/` folder is free for other files.
