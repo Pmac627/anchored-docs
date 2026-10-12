@@ -1,39 +1,39 @@
 # anchored-docs
 
-`anchored-docs` is an agent-agnostic skill for keeping a repository's developer documentation true to its code.
+`anchored-docs` is an agent-agnostic skill. It keeps the technical documentation of a repository correct for its code.
 
-It combines three required parts:
+It has three necessary parts:
 
-- [Ripwire](https://github.com/redhat-et/ripwire) checks documentation anchors against the repository and identifies the documentation affected by a code change.
-- [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/) guides clear, controlled technical prose.
-- [Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format) (OKF) frontmatter records each document's provenance, verification state, and current status.
+- [Ripwire](https://github.com/redhat-et/ripwire) compares the documentation anchors with the repository. It also finds the documentation that is related to a code change.
+- [ASD-STE100 Simplified Technical English](https://www.asd-ste100.org/) gives rules for clear, controlled technical prose.
+- [Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format) (OKF) frontmatter records the provenance, the verification condition, and the current status of each document.
 
-An optional fourth part, [qmd](https://github.com/tobi/qmd), a local hybrid search engine over markdown, finds documentation gaps that Ripwire's symbol index cannot: areas the code clearly has but no doc discusses in any words. It never verifies anything and the skill runs fully without it. See "What it does" below.
+An optional fourth part is [qmd](https://github.com/tobi/qmd). It is a local hybrid search engine for markdown. It finds missing documentation that the symbol index of Ripwire cannot find: areas that the code has, but that no doc discusses in words. It does not make sure that a claim is correct, and the skill runs fully without it. See "What it does" below.
 
-The skill treats documentation as a maintained engineering artifact. It reads the code before it writes a claim, links documentation to concrete symbols and paths, checks those links, and reports what it verified.
+The skill keeps the documentation as an engineering artifact. It reads the code before it writes a claim. It links the documentation to symbols and paths, checks those links, and reports the checks that it made.
 
 ## Agent-agnostic by design
 
-The skill is designed to work with Codex, GitHub Copilot, Grok, Gemini, Claude, and other coding agents. Its core is a portable `SKILL.md` folder with plain Markdown, JSON data files, and Node.js scripts. Document frontmatter is YAML, because OKF requires it. It does not require a vendor-specific API, model, prompt syntax, or proprietary tool integration.
+The skill works with Codex, GitHub Copilot, Grok, Gemini, Claude, and other coding agents. Its core is a portable `SKILL.md` folder with plain Markdown, JSON data files, and Node.js scripts. The frontmatter of a document is YAML, because it is necessary for OKF. The skill works without a vendor-specific API, model, prompt syntax, or proprietary tool integration.
 
-An agent host needs these capabilities:
+An agent host must have these functions:
 
 - Read and update files in the target repository.
-- Run local commands, including Node.js 22 or newer and Ripwire.
+- Run local commands, with Node.js 22 or newer and Ripwire.
 - Load a local skill folder or accept the skill instructions as an attached artifact.
 
-Ripwire can be called through its CLI or optional MCP server. The choice is an adapter for the host, not a change to the documentation workflow. See [INSTALL.md](skills/anchored-docs/INSTALL.md) for platform-specific installation locations and the Windows WSL setup.
+A host can use Ripwire through its CLI or its optional MCP server. The selection is an adapter for the host. It does not change the documentation workflow. See [INSTALL.md](skills/anchored-docs/INSTALL.md) for platform-specific installation locations and the Windows WSL setup.
 
 ## What it does
 
-- Maintains living developer documentation in `docs/` as a description of the code, not a parallel source of guesses.
-- Finds documentation affected by changed symbols and source paths.
-- Checks backticked symbols, source locations, constants, and array extents for drift with Ripwire.
-- Writes and checks prose against ASD-STE100 rules, with a project glossary for legitimate technical vocabulary.
-- Records sources, verification evidence, and document state in OKF frontmatter.
-- Marks a document `STATUS: STALE` when it cannot be reconciled with the code.
-- Produces a self-report that states which files were read, what documentation changed, and the Ripwire and STE results.
-- When [qmd](https://github.com/tobi/qmd) is installed, checks a freshly bootstrapped bundle for conceptual coverage gaps, and finds documentation for a change on request, beyond what Ripwire's symbol index and the declared source map cover.
+- Keeps the living technical documentation in `docs/anchored-docs/` as a description of the code, not a parallel source of guesses.
+- Finds the documentation that is related to changed symbols and source paths.
+- Checks backticked symbols, source locations, constants, and array lengths for drift with Ripwire.
+- Writes and checks prose against ASD-STE100 rules, with a project glossary for correct technical vocabulary.
+- Records sources, verification proof, and document condition in OKF frontmatter.
+- Marks a document `STATUS: STALE` when it cannot make the document agree with the code.
+- Gives a self-report that tells which files the agent read, what documentation changed, and the Ripwire and STE results.
+- When [qmd](https://github.com/tobi/qmd) is installed, the skill checks a new bundle for missing concepts. On request, it also finds documentation for a change. The symbol index of Ripwire and the declared source map do not find this documentation.
 
 ## Contents
 
@@ -54,59 +54,61 @@ anchored-docs/
 ## Quick start
 
 1. Install Ripwire and make it available on `PATH`, set `RIPWIRE_BIN`, or configure its MCP server.
-2. Download [anchored-docs.skill](https://github.com/Pmac627/anchored-docs/releases/latest/download/anchored-docs.skill) from the latest release, extract it, and install the `anchored-docs/` folder where the selected agent discovers skills. With the GitHub CLI, `gh skill install Pmac627/anchored-docs anchored-docs` installs the folder from this repository instead. Use [INSTALL.md](skills/anchored-docs/INSTALL.md) for known host locations.
+2. Download [anchored-docs.skill](https://github.com/Pmac627/anchored-docs/releases/latest/download/anchored-docs.skill) from the latest release, unzip it, and install the `anchored-docs/` folder where the selected agent finds skills. With the GitHub CLI, `gh skill install Pmac627/anchored-docs anchored-docs` is an alternative that installs the folder from this repository. Use [INSTALL.md](skills/anchored-docs/INSTALL.md) for known host locations.
 3. Give the agent a task such as: `Use anchored-docs to update the documentation affected by this change.`
-4. Let the agent read the relevant code, update only the affected documentation, run the checks, and return the skill's self-report.
+4. Let the agent read the related code and update only the documentation for the change. Then let the agent run the checks and give the self-report of the skill.
 
-For a host that cannot discover skills automatically, attach the archive or provide the contents of `SKILL.md` as the task instructions. The runtime workflow remains the same.
+For a host that cannot find skills automatically, attach the archive or supply the contents of `SKILL.md` as the task instructions. The runtime workflow stays the same.
 
 ## Requirements
 
-| Requirement | Purpose | Required |
+| Requirement | Purpose | Necessary |
 | --- | --- | --- |
-| Ripwire | Finds changed symbols and verifies documentation anchors. | Yes |
+| Ripwire | Finds changed symbols and makes sure that the documentation anchors are correct. | Yes |
 | Node.js 22 or newer | Runs `docs_check.mjs` and `ste_check.mjs`. The scripts have no packages to install. | Yes |
-| ASD-STE100 agent pack | Provides the official dictionary and complete word checks. | Recommended |
-| Project `docs/` directory | Target for normal delta maintenance. | Required for delta mode |
-| [qmd](https://github.com/tobi/qmd) | Finds documentation coverage gaps by meaning, not declared anchors. | Optional |
+| ASD-STE100 agent pack | Gives the official dictionary and complete word checks. | Recommended |
+| Project `docs/anchored-docs/` bundle | Target for normal delta maintenance. Bootstrap makes it. | Necessary for delta mode |
+| [qmd](https://github.com/tobi/qmd) | Finds missing documentation by meaning, not by declared anchors. | Optional |
 
-Without the ASD-STE100 agent pack, the checker uses a limited built-in list and reports that rule 1.1 is partial. The skill can still run, but it cannot claim complete dictionary coverage.
+Without the ASD-STE100 agent pack, the checker uses a limited built-in list and reports that rule 1.1 is not fully checked. The skill can run, but it cannot claim complete dictionary coverage.
 
 Version 2.0 replaces Python with Node.js and moves the skill's own data files (`_glossary`, `_map`, `org-glossary`) from YAML to JSON. If you used 1.x, follow "Upgrading from 1.x" in [INSTALL.md](skills/anchored-docs/INSTALL.md).
 
-Without qmd, the skill runs exactly as documented above; bootstrap mode skips its coverage check and delta mode's on-request lookup is simply unavailable. Neither affects Ripwire verification or the self-report's `Docs-Updated` result.
+Version 2.1 keeps the bundle in `docs/anchored-docs/`, so the project's own `docs/` folder is free for other files. A 2.0 bundle in `docs/` keeps working until you run `docs_check.mjs migrate <repo> --apply`. The migration moves the files, rewrites the links, and keeps the history. See [references/migrate.md](skills/anchored-docs/references/migrate.md).
+
+Without qmd, the skill runs as documented above. Bootstrap mode skips its coverage check, and the on-request lookup of delta mode is not available. The Ripwire verification and the `Docs-Updated` result of the self-report stay the same.
 
 ## ASD-STE100 content and terminology
 
-ASD-STE100 is an ASD copyright and trademark. This repository provides workflow guidance and a checker integration. It does not include or redistribute the official specification, dictionary, or derived agent pack.
+ASD-STE100 is an ASD copyright and trademark. This repository gives workflow guidance and a checker integration. It does not include or redistribute the official specification, dictionary, or derived agent pack.
 
-Obtain the official material from [ASD Simplified Technical English Maintenance Group](https://www.asd-ste100.org/). Generate a private pack with the [ASD-STE100 Generator Kit](https://github.com/Pmac627/ste-generator-kit). Keep the PDF and generated pack private, do not commit either to a public repository, and retain the archive's ignore rule for that content. See the installation guide for the expected pack location and setup procedure.
+Get the official material from [ASD Simplified Technical English Maintenance Group](https://www.asd-ste100.org/). Make a private pack with the [ASD-STE100 Generator Kit](https://github.com/Pmac627/ste-generator-kit). Keep the PDF and the pack private. Do not commit the PDF or the pack to a public repository. Keep the ignore rule of the archive for that content. See the installation instructions for the pack location and the setup procedure.
 
 ## Verification model
 
-The skill has two distinct checks:
+The skill has two checks:
 
-1. Ripwire verifies anchors, not whether every sentence accurately explains the system.
-2. The STE checker enforces mechanical rules and flags likely style issues, but does not prove prose is clear or complete.
+1. Ripwire makes sure that the anchors are correct. It does not make sure that each sentence is a correct description of the system.
+2. The STE checker applies the mechanical rules and flags likely style issues. It does not prove that the prose is clear or complete.
 
-For that reason, the workflow requires the agent to read the relevant code before writing. When the code and document cannot be reconciled with confidence, the correct result is a visible stale marker, not an invented update.
+Thus, the workflow makes the agent read the related code before it writes. When the agent cannot make the code and the document agree with confidence, the correct result is a stale marker, not an invented update. A reader can see the marker.
 
-qmd is not a third check. It finds candidate documentation by meaning, the way a search engine does, and never verifies a claim. A qmd result is a lead for the agent to read and confirm, exactly like a Ripwire mention; it carries no weight in `Docs-Updated`, `Docs-Drift`, or any pass/fail outcome.
+qmd is not a third check. It finds candidate documentation by meaning, as a search engine does. It does not make sure that a claim is correct. A qmd result is a pointer for the agent to read and check. A result from Ripwire is the same. A qmd result has no weight in `Docs-Updated`, `Docs-Drift`, or a pass/fail outcome.
 
 ## License recommendation
 
-Use **Apache License 2.0** for this skill repository. It is a permissive license with an explicit patent grant, is widely understood in enterprise environments, and aligns with Ripwire's Apache-2.0 license. It does not grant rights to ASD-STE100 content, trademarks, or any separately obtained official materials.
+Use **Apache License 2.0** for this skill repository. It is a permissive license with an explicit patent grant, is widely understood in enterprise environments, and aligns with Ripwire's Apache-2.0 license. The license does not grant rights to ASD-STE100 content, trademarks, or official materials that you get from a different source.
 
-The full license text is in [LICENSE](LICENSE). Add a copyright notice with the repository owner and year to source files or other suitable project materials before the first public release. It does not grant rights to ASD-STE100 content, trademarks, or any separately obtained official materials.
+The full license text is in [LICENSE](LICENSE). Add a copyright notice with the repository owner and year to source files or other applicable project materials before the first public release. The license does not grant rights to ASD-STE100 content, trademarks, or official materials that you get from a different source.
 
 ## Development
 
-`skills/anchored-docs/` is the unpacked skill. The release workflow builds `anchored-docs.skill` from that folder; the archive is not committed. `tests/` proves the scripts match the recorded behavior of 1.2.0, the version they replaced.
+`skills/anchored-docs/` is the skill source folder. The release workflow builds `anchored-docs.skill` from that folder. The archive is not committed. `tests/` proves that the scripts agree with the recorded behavior of 1.2.0, the version that they replaced.
 
 ```bash
 node --test "tests/unit/*.test.mjs"                        # unit tests
 node tests/run-cases.mjs run --skill skills/anchored-docs --out /tmp/out
-node tests/run-cases.mjs compare tests/golden/2.0.1 /tmp/out   # 41 cases against the recorded baseline
+node tests/run-cases.mjs compare tests/golden/2.1.0 /tmp/out   # 45 cases against the recorded baseline
 node tools/build-skill.mjs build                           # build dist/anchored-docs.skill from the staged files
 ```
 
@@ -115,9 +117,9 @@ See [tests/README.md](tests/README.md) for what the baseline records and what it
 
 ### Releases
 
-CI (`.github/workflows/ci.yml`) runs the unit tests, the parity cases, and a build on Linux, Windows, and macOS for every pull request and push to main. To release, set `metadata.version` in `skills/anchored-docs/SKILL.md`, add a `### <version>` entry to its changelog, commit, and push a tag:
+CI (`.github/workflows/ci.yml`) runs the unit tests, the parity checks, and a build on Linux, Windows, and macOS. It does this for each pull request and for each push to `main`. To release, set `metadata.version` in `skills/anchored-docs/SKILL.md`, add a `### <version>` entry to its changelog, commit, and push a tag:
 
 - `v2.1.0` publishes a release. The `releases/latest/download` link above then points at it.
 - `v2.1.0-rc.1` publishes a pre-release of 2.1.0 for testing. `releases/latest` skips it.
 
-`.github/workflows/release.yml` runs CI again, then builds the archive from the tagged commit and attaches it to a GitHub release with that changelog entry as the notes. The build stops if the tag does not match the version, if the changelog entry is missing, or if any ASD-STE100 agent pack file other than `HOW-TO-INSTALL.md` is tracked.
+`.github/workflows/release.yml` runs CI again. Then it builds the archive from the tagged commit. It attaches the archive to a GitHub release, with that changelog entry as the notes. The build stops if the tag does not agree with the version. The build also stops if the changelog entry is missing. It stops too if a file of the ASD-STE100 agent pack, other than `HOW-TO-INSTALL.md`, is in the git index.

@@ -1,0 +1,24 @@
+{
+  "generated": "2026-01-10",
+  "map": [
+    {
+      "code": "src/Orders/**",
+      "docs": [
+        "docs/overview.md"
+      ]
+    },
+    {
+      "code": "src/Orders/OrderService.cs",
+      "docs": [
+        "docs/decisions/0001-use-queue.md",
+        "docs/flows/order-fulfillment.md"
+      ]
+    },
+    {
+      "code": "src/tools/ingest.py",
+      "docs": [
+        "docs/flows/ingest.md"
+      ]
+    }
+  ]
+}
