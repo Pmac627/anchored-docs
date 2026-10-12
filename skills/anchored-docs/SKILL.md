@@ -1,17 +1,17 @@
 ---
 name: anchored-docs
-description: Keep a repository's living developer documentation in docs/ true to the code, written in ASD-STE100 Simplified Technical English, stored as an OKF (Open Knowledge Format) bundle, and verified with ripwire. Use this whenever you finish a code change, prepare a commit or pull request, write an implementation plan, or are asked to document, update docs, refresh the wiki, check docs for drift, or bootstrap docs for a repo. Treat updating the affected documentation as part of the definition of done for every code change in a repo that has a docs/ folder, unless the user says not to. Triggers even when the user does not say "documentation", for example after "add a field to the order request", "refactor the ingest pass", "open a PR for this", or "is this doc still right". Also use it to rewrite any docs/ prose into STE, or to run the docs lint.
+description: Keep a repository's living developer documentation in docs/anchored-docs/ true to the code, and migrate a 2.0 bundle from docs/ when asked, written in ASD-STE100 Simplified Technical English, stored as an OKF (Open Knowledge Format) bundle, and verified with ripwire. Use this whenever you finish a code change, prepare a commit or pull request, write an implementation plan, or are asked to document, update docs, refresh the wiki, check docs for drift, or bootstrap docs for a repo. Treat updating the affected documentation as part of the definition of done for every code change in a repo that has a docs/anchored-docs/ folder, unless the user says not to. Triggers even when the user does not say "documentation", for example after "add a field to the order request", "refactor the ingest pass", "open a PR for this", or "is this doc still right". Also use it to rewrite any docs/anchored-docs/ prose into STE, or to run the docs lint.
 metadata:
-  version: "2.0.1"
+  version: "2.1.0"
 ---
 
 # anchored-docs
 
-This skill keeps `docs/` correct, so that an agent can read the docs and not read all of the code again. The code is the source of correct data. You keep the docs. Three tools let a person or an agent check the docs. A fourth tool is optional. The fourth tool helps to find the subjects that the docs do not have.
+This skill keeps `docs/anchored-docs/` correct, so that an agent can read the docs and not read all of the code again. The code is the source of correct data. You keep the docs. Three tools let a person or an agent check the docs. A fourth tool is optional. The fourth tool helps to find the subjects that the docs do not have.
 
 - **ripwire** compares the doc anchors with the code (`--doc-drift`). Ripwire finds the docs that a changed symbol touches (`--mentions`). Ripwire gives the changed symbols of a diff (`--pr-context`). The skill must have ripwire. Read `references/ripwire.md`.
 - **OKF v0.2** frontmatter records the code that each doc comes from (`sources`). The frontmatter records the author and the persons who examined the doc (`generated`, `verified`). The frontmatter also records if the doc is current (`status`, `stale_after`). Read `references/okf.md`.
-- **ASD-STE100 Issue 9** is the writing standard for each sentence of prose in `docs/`. `scripts/ste_check.mjs` is the gate. Read `references/ste-rules.md` before you write. When the ASD-STE100 agent pack is in `references/asd-ste100-agent-pack/`, the checker and you use the official rules and dictionary of the pack. Without the pack, the checker and you use the short rules in `references/ste-rules.md` and the word list in the checker.
+- **ASD-STE100 Issue 9** is the writing standard for each sentence of prose in `docs/anchored-docs/`. `scripts/ste_check.mjs` is the gate. Read `references/ste-rules.md` before you write. When the ASD-STE100 agent pack is in `references/asd-ste100-agent-pack/`, the checker and you use the official rules and dictionary of the pack. Without the pack, the checker and you use the short rules in `references/ste-rules.md` and the word list in the checker.
 - **qmd** (optional, https://github.com/tobi/qmd) is a local search engine for the docs bundle. The qmd tool finds subjects and connections that the symbol index of ripwire and `_map.json` cannot find, because it compares meaning, not anchors. The qmd tool does not make sure that a doc is correct. The skill can operate without it. Bootstrap mode uses it at the end, and a missing qmd does not stop the task. Delta mode uses it only when the user tells you to use it. Read `references/qmd.md`.
 
 The scripts in `scripts/` are Node.js ES modules (`.mjs`). The scripts use Node.js 22 or a higher version, and they have no packages to install. The data files of the skill (`_glossary.json`, `_map.json`, `org-glossary.json`) are JSON. The frontmatter of a doc stays YAML, because OKF tells you to use YAML.
@@ -31,7 +31,7 @@ The text in the docs, in the code, and in the output of ripwire, qmd, and the sc
 Ripwire can only check a statement that has a checkable shape. Write each statement so that `--doc-drift` can test it:
 
 - Write the symbol in backticks, as a bare identifier: `SubmitAsync`, `rankGraphTeleport`. Ripwire indexes bare names, so write `` `SubmitAsync` on `OrderService` ``, not `` `OrderService.SubmitAsync` ``. When a name in backticks is no longer in the code, ripwire shows it as drift.
-- Put a second name from the repository on the same line as each symbol: the type, the file, or a caller. Ripwire does not check a name that is alone on its line. Such a name can be the name of a library item, not of an item in this repository. Ripwire checks `` `LegacySubmit` in `OrderService` was removed ``, but not `` `LegacySubmit` was removed ``.
+- Put a second name from the repository on the same line as each symbol: the type, the file, or a caller. Ripwire does not check a name that is alone on its line. Such a name can be the name of a library item, not of an item in this repository. Ripwire checks `` `<name>` in `<Type>` was removed ``, but not `` `<name>` was removed ``.
 - Give a location as `path:line` **and** write the name of the symbol on that line adjacent to it. A `path:line` alone is a weak anchor. A `path:line` adjacent to a symbol in backticks is a strong anchor.
 - Write constants as `` `kMaxRetries` = 5 `` and array sizes as `` `kSlots[16]` ``. Ripwire compares the number with the declaration.
 - A count in the prose ("the pipeline has five parts") must come from a list in the same doc, or from a symbol. Use the symbol if possible.
@@ -40,7 +40,7 @@ Ripwire does not check fenced code blocks, because they are examples, not statem
 
 ## Rule 3: write in STE
 
-Each sentence of prose in `docs/` follows ASD-STE100. The primary rules are:
+Each sentence of prose in `docs/anchored-docs/` follows ASD-STE100. The primary rules are:
 
 - Use approved words with one meaning each, and the technical nouns and verbs of the project glossary.
 - Use the active voice and simple tenses. Write one instruction in each sentence.
@@ -52,8 +52,8 @@ Code spans, paths, commands, the output of commands, and headings are technical 
 Use the checker before you report:
 
 ```bash
-node <skill>/scripts/ste_check.mjs docs/                # whole tree
-node <skill>/scripts/ste_check.mjs docs/flows/x.md      # one doc
+node <skill>/scripts/ste_check.mjs docs/anchored-docs/                # whole tree
+node <skill>/scripts/ste_check.mjs docs/anchored-docs/flows/x.md      # one doc
 ```
 
 The skill does not contain the STE dictionary. ASD gives the dictionary at no cost, but you must not give copies to other persons. The checker gets its words from the first of these sources that it finds:
@@ -82,20 +82,20 @@ If you cannot get access to ripwire, stop and tell the user. This skill does not
 
 ## Keep the code's own doc comments current
 
-The documentation has two connected layers: the Markdown in `docs/`, and the doc comments in the source. The comment on the primary symbols of a flow gives the path of the flow doc, so a reader can go from code to doc. The symbols in backticks and the `sources` of the doc go from doc to code, and `--mentions` makes sure that this connection is correct.
+The documentation has two connected layers: the Markdown in `docs/anchored-docs/`, and the doc comments in the source. The comment on the primary symbols of a flow gives the path of the flow doc, so a reader can go from code to doc. The symbols in backticks and the `sources` of the doc go from doc to code, and `--mentions` makes sure that this connection is correct.
 
-When you change code, update the comment on the public symbols that the change touches, in the same work. Use the format of the language: C# XML `<seealso href>`, C++ `/// See: docs/...`, Python docstring `See also:`, TypeScript JSDoc `@see`. `references/conventions.md` gives the formats of the tags. Comments must have the same quality as the Markdown: read the code, keep the comments correct, and write them in STE.
+When you change code, update the comment on the public symbols that the change touches, in the same work. Use the format of the language: C# XML `<seealso href>`, C++ `/// See: docs/anchored-docs/...`, Python docstring `See also:`, TypeScript JSDoc `@see`. `references/conventions.md` gives the formats of the tags. Comments must have the same quality as the Markdown: read the code, keep the comments correct, and write them in STE.
 
 ## Configuration documentation
 
 Each repository that gets configuration from a source that is not the code keeps two different documents. These documents record *what* configuration is possible and *how* it gets to the application. They do not record the values of a deployed system.
 
-- `docs/configuration-providers.md` tells how configuration gets to the application. The document gives the providers that the code adds, the order of precedence, and the location in the source where the code adds each provider. This document is necessary only when the code adds providers. The document changes only a small number of times.
-- `docs/configuration.md` tells what configuration the application uses. The document gives all of the keys in the configuration files. The document also shows the keys that the code uses and the keys that the code does not use. This document is necessary when the repository has a configuration file or code that reads configuration. The document changes when a configuration file, a binding class, or the code that reads configuration changes.
+- `docs/anchored-docs/configuration-providers.md` tells how configuration gets to the application. The document gives the providers that the code adds, the order of precedence, and the location in the source where the code adds each provider. This document is necessary only when the code adds providers. The document changes only a small number of times.
+- `docs/anchored-docs/configuration.md` tells what configuration the application uses. The document gives all of the keys in the configuration files. The document also shows the keys that the code uses and the keys that the code does not use. This document is necessary when the repository has a configuration file or code that reads configuration. The document changes when a configuration file, a binding class, or the code that reads configuration changes.
 
 The two documents are not connected. Each document has its own conditions for an update. When the providers change, the key list can stay the same. When the keys change, the providers can stay the same.
 
-### Provider detection (`docs/configuration-providers.md`)
+### Provider detection (`docs/anchored-docs/configuration-providers.md`)
 
 Examine `Program.cs`, `Startup.cs`, and each file with `Host`, `Builder`, or `Configuration` in its name. Find the code that adds providers.
 
@@ -127,7 +127,7 @@ The configuration files in the repository do not contain the keys from providers
 
 When the code adds no provider, `Docs-Config-Providers: absent (no providers found)` is the correct result. Do not make the file in that condition.
 
-### Key inventory (`docs/configuration.md`)
+### Key inventory (`docs/anchored-docs/configuration.md`)
 
 Collect keys from three sources. Then compare the three sources and give each key a category.
 
@@ -174,7 +174,7 @@ Compare the three sources. Give a category to each key that you found in one or 
 |---|---|---|---|---|
 | 1 | Yes | Typed binding | Yes or no | none (ripwire checks it) |
 | 2 | Yes | Raw, checked | Yes or no | none (grep checks it) |
-| 3 | Yes | None found | — | `⚠️ NO CODE CONSUMER` |
+| 3 | Yes | None found | - | `⚠️ NO CODE CONSUMER` |
 | 4 | No | Raw, checked | Found | `provider: <name>` |
 | 5 | No | Raw, checked | None found | `⚠️ SOURCE UNKNOWN` |
 
@@ -195,7 +195,7 @@ Use the same tree as the configuration file. Use section headings with colons. G
 - **Provider:** `keyvault`
 - **Type:** `string`
 - **Required:** yes
-- **Default:** none — must be injected at deploy time
+- **Default:** none, must be injected at deploy time
 - **Access**
   - Typed: `ApiKey` on `PaymentsOptions`
   - Raw: `LegacyPaymentService` (`src/Services/LegacyPaymentService.cs:47`)
@@ -219,7 +219,7 @@ Use the same tree as the configuration file. Use section headings with colons. G
   Find out if nothing uses this key, or if it is for a planned feature.
 ```
 
-The `Default` field records the default value from the source code: a named constant, or a value in the binding class. The field does not record a value from a deployed configuration file. If only the deployed system can supply the value, write `none — must be injected`.
+The `Default` field records the default value from the source code: a named constant, or a value in the binding class. The field does not record a value from a deployed configuration file. If only the deployed system can supply the value, write `none, must be injected`.
 
 Ripwire checks the property names and class names in backticks on the `Access: Typed` lines (`--doc-drift`). The key strings on the `Access: Raw` lines are prose, and ripwire does not check them. Check them with this command:
 
@@ -227,13 +227,13 @@ Ripwire checks the property names and class names in backticks on the `Access: T
 grep -rEn 'configuration\["|GetValue<|GetSection\("|GetEnvironmentVariable\(' src/
 ```
 
-Compare the output of grep with the `Access: Raw` entries in `docs/configuration.md`. When the output of grep has a key that the doc does not have, you must add that key.
+Compare the output of grep with the `Access: Raw` entries in `docs/anchored-docs/configuration.md`. When the output of grep has a key that the doc does not have, you must add that key.
 
 ### Delta triggers
 
-**`docs/configuration-providers.md`**: update this document when a changed file contains code that adds a provider (an `Add*` method on an `IConfigurationBuilder`). `references/conventions.md` gives the provider patterns of the project.
+**`docs/anchored-docs/configuration-providers.md`**: update this document when a changed file contains code that adds a provider (an `Add*` method on an `IConfigurationBuilder`). `references/conventions.md` gives the provider patterns of the project.
 
-**`docs/configuration.md`**: update this document when a changed file agrees with one of these patterns:
+**`docs/anchored-docs/configuration.md`**: update this document when a changed file agrees with one of these patterns:
 
 - Config file patterns: `appsettings*.json`, `appsettings*.yaml`, `appsettings*.yml`, `*.config`, `Web.config`, `App.config`.
 - Binding class patterns: a class with a name that ends in `Options` or `Settings`.
@@ -243,23 +243,25 @@ When a trigger applies, always add the related document to the candidate docs. T
 
 ## Decide the mode
 
-1. Use **bootstrap mode** when there is no `docs/` folder. Also use it when the user tells you to bootstrap or to make docs for all of the code. Read `references/bootstrap.md`.
-2. Use **delta mode** in all other conditions. A code change occurred, or will occur, and you update only the docs that it touches. Read `references/delta-maintenance.md`. Delta mode is the usual mode.
-3. Use **lint mode** when the user tells you to check the health of the docs. A drift report and an STE check of the current docs also use lint mode. Read `references/lint.md`.
+1. Use **migrate mode** only when the user tells you to migrate the docs. Read `references/migrate.md`.
+2. Use **bootstrap mode** when there is no `docs/anchored-docs/` folder and no 2.0 bundle in `docs/`. Also use it when the user tells you to bootstrap or to make docs for all of the code. Read `references/bootstrap.md`.
+3. When a 2.0 bundle sits in `docs/` (a root `docs/index.md` with `okf_version`, or a `docs/_glossary.json`), work on that bundle without a move. Read each path of this skill that names `docs/anchored-docs/` as `docs/`. Do not bootstrap a second bundle. Tell the user one time that migrate mode is available, and do not run it on your own.
+4. Use **delta mode** in all other conditions. A code change occurred, or will occur, and you update only the docs that it touches. Read `references/delta-maintenance.md`. Delta mode is the usual mode.
+5. Use **lint mode** when the user tells you to check the health of the docs. A drift report and an STE check of the current docs also use lint mode. Read `references/lint.md`.
 
 Read `references/conventions.md` in each mode. That file gives the layout of the bundle, the frontmatter, the stale marker, and the glossary. That file also gives the derived map, the scratch area for tickets, and the configuration patterns for each language.
 
 ## Delta mode in brief
 
 1. Make sure that ripwire is available. Get the changes: `ripwire . --pr-context` (or `--pr-context=main`), and `git diff --name-only`. Then look for configuration changes:
-   - When a changed file adds a provider, add `docs/configuration-providers.md` to the candidate docs.
-   - When a changed file agrees with a configuration file pattern, a binding class, or a consumer pattern, add `docs/configuration.md` to the candidate docs.
-2. For each changed symbol, use `ripwire . --mentions=SYM`. Add the docs that `docs/_map.json` gives for the changed paths. The result is the full set of candidate docs.
+   - When a changed file adds a provider, add `docs/anchored-docs/configuration-providers.md` to the candidate docs.
+   - When a changed file agrees with a configuration file pattern, a binding class, or a consumer pattern, add `docs/anchored-docs/configuration.md` to the candidate docs.
+2. For each changed symbol, use `ripwire . --mentions=SYM`. Add the docs that `docs/anchored-docs/_map.json` gives for the changed paths. The result is the full set of candidate docs.
 3. Read the changed code. Then read the candidate docs.
 4. Update each doc that the change touches: the prose, the Mermaid diagrams, the anchors in backticks, and `sources`. Update the comments on the public symbols that the change touches. Keep one Diataxis type in each doc (`diataxis:`). For the configuration docs, do the steps of the key inventory in the Configuration documentation section above.
 5. Do not guess. When you cannot make a doc agree with the code, add `stale_after: <now>` and keep its `status`. Also add the `STATUS: STALE` callout to the body.
 6. Use `ripwire . --doc-drift` on the docs that you changed. Correct what it shows in your docs. Give the `at=` sha.
-7. Use `node <skill>/scripts/ste_check.mjs` on the docs that you changed. Correct the mechanical failures. With the agent pack, use `--lookup WORD` to find the approved alternative. Add the project technical nouns and verbs from the `1.5` candidate list to `docs/_glossary.json`. Do not waive them.
+7. Use `node <skill>/scripts/ste_check.mjs` on the docs that you changed. Correct the mechanical failures. With the agent pack, use `--lookup WORD` to find the approved alternative. Add the project technical nouns and verbs from the `1.5` candidate list to `docs/anchored-docs/_glossary.json`. Do not waive them.
 8. Update `verified` on each doc when you read the code that it covers. Add an entry to `log.md`. When `sources` changed, make `_map.json` again. Add a line to the index for each new doc.
 9. Write the self-report block.
 
@@ -267,10 +269,10 @@ Read `references/conventions.md` in each mode. That file gives the layout of the
 
 Bootstrap mode examines all of the code, one time. Do it in this sequence:
 
-- Do the configuration inventory first. Examine all configuration files to get the full key tree. Find the providers, the typed bindings, and the raw consumers, and do the two-stage check. Write `docs/configuration-providers.md` (if you found providers) and `docs/configuration.md` (if there is configuration).
+- Do the configuration inventory first. Examine all configuration files to get the full key tree. Find the providers, the typed bindings, and the raw consumers, and do the two-stage check. Write `docs/anchored-docs/configuration-providers.md` (if you found providers) and `docs/anchored-docs/configuration.md` (if there is configuration).
 - Use `ripwire . --report` and `--communities` to see the shape of the code.
 - Then do one flow at a time: use `--for=<flow>`, read the code, and write the doc from `assets/templates/flow.md`. Add the back-links in the code.
-- Make `docs/index.md`, `overview.md`, `architecture.md`, `flows/`, `decisions/`, `_glossary.json`, `_map.json`, and `log.md`.
+- Make `docs/anchored-docs/index.md`, `overview.md`, `architecture.md`, `flows/`, `decisions/`, `_glossary.json`, `_map.json`, and `log.md`.
 - Make the glossary first. With the agent pack, the `1.5` candidate list of the checker on your first docs shows the project words that the glossary does not have.
 - Each doc starts with `status: draft` and one agent entry in `verified`. A person adds `human:<id>` after the review of the doc.
 - If qmd is available, do the coverage check at the end (`references/qmd.md`). A missing qmd does not stop the task.
@@ -320,7 +322,31 @@ Ripwire checks anchors, not prose. Ripwire cannot tell you that a paragraph is i
 
 The configuration inventory uses grep. The inventory does not do an analysis of the code. The two-stage check of the receiver decreases the number of incorrect candidates, but some can stay. A person must examine the unresolved candidates and the category 3 keys. The doc is a start for that review. The doc does not replace the review.
 
+## Migrate mode in brief
+
+Use migrate mode only when the user tells you to. It moves a 2.0 bundle from `docs/` to `docs/anchored-docs/`. The move keeps the docs, so you do not write them again. Read `references/migrate.md` first.
+
+1. Run the dry run: `node <skill>/scripts/docs_check.mjs migrate <repo>`. Read the full plan. It lists the moves, the link changes, and the files that stay in `docs/`.
+2. A conflict stops the plan, and nothing moves. Resolve each conflict by hand. Then run the dry run again.
+3. Run the move: `node <skill>/scripts/docs_check.mjs migrate <repo> --apply`. The script moves the files, rewrites the links, regenerates `docs/anchored-docs/_map.json`, and adds a dated entry to `log.md`. It uses `git mv` in a git work tree.
+4. Run `docs_check.mjs okf docs/anchored-docs/` and `docs_check.mjs links docs/anchored-docs/ --repo <repo>`. The two commands must show no findings.
+<!-- ste-ok: 1.1 quoted script output -->
+5. Change each line that the script lists as "still names a moved path". The script does not change those lines.
+6. Update the references external to the repository, such as a global CLAUDE.md. The script cannot change them.
+7. Do not write or change a doc in the same task as the move. Run delta mode after the move is complete.
+
 ## Changelog
+
+### 2.1.0
+- New: the bundle lives in `docs/anchored-docs/`. The prose and the scripts use this path. The project's own `docs/` folder is free for other files.
+- New: `docs_check.mjs migrate <repo> [--apply]` moves a 2.0 bundle to `docs/anchored-docs/`, rewrites the links that point at it, regenerates `_map.json`, and logs the move. A dry run is the default. A second run changes nothing. A conflict stops the run before a file moves. Read `references/migrate.md`.
+- New: until a repository runs migrate, the scripts continue to find its bundle in `docs/`. When `ste_check.mjs --glossary-report` finds it there, it prints a notice that names the migrate command.
+- Changed: `docs/tickets/` stays adjacent to the bundle, not in the bundle. It keeps its `.gitignore` entry.
+- Changed: `ste_check.mjs` no longer names `docs/_glossary.json` in its messages. It names the project glossary in the bundle.
+- Changed: with a bundle at `docs/anchored-docs/`, `docs_check.mjs` uses the repository root as two levels above the bundle. So `sources` paths resolve without `--repo`. Before, the root was the parent of the bundle folder.
+- Changed: for a source file, `ste_check.mjs` finds the project glossary in `docs/anchored-docs/` first, then in `docs/`.
+- Changed: the help text of `docs_check.mjs` names `docs/anchored-docs/` and lists `migrate`. The `ste_check.mjs --glossary-report` example names `docs/anchored-docs/`.
+- New: when `docs_check.mjs` gets `docs/anchored-docs/` and that folder is missing, but `docs/` holds a 2.0 bundle, it prints where the bundle is.
 
 ### 2.0.1
 - Corrected: the version of the skill is in `metadata.version` in the frontmatter. Before this change, it was a top-level `version` key. The Agent Skills specification does not let a skill use that key, and strict validators such as `skills-ref validate` refuse it.

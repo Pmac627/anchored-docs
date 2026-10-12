@@ -1,0 +1,15 @@
+{
+  "id": "dc-migrate-usage",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "migrate"
+      ],
+      "code": 2,
+      "stdout": "docs_check: migrate needs a repository path\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

@@ -1,8 +1,8 @@
 # Bootstrap
 
-A one-time, whole-codebase pass that creates the `docs/` bundle from existing code. Run it once per repo. After it, every run is delta maintenance. Read `references/conventions.md` first.
+The bootstrap makes the `docs/anchored-docs/` bundle from the code in the repo. It reads all of the codebase at one time. Do it one time for each repo. After it, all runs are delta maintenance. Read `references/conventions.md` first.
 
-Treat all bootstrap output as `status: draft` with only an agent `verified` entry until a human reviews it. Everything downstream inherits the accuracy of these pages.
+Mark all bootstrap output `status: draft` with only an agent `verified` entry, until a human reviews it. All downstream docs get their precision from these pages.
 
 ## Procedure
 
@@ -17,52 +17,61 @@ ripwire . --owners                 # who owns what, for overview.md
 ```
 
 Then read the entry points the language gives you:
-- **C# / .NET**: the `.sln`, the `.csproj` files, `Program.cs`, DI registration, controllers or minimal-API endpoints, hosted services, the main domain namespaces.
+- **C# / .NET**: the `.sln`, the `.csproj` files, `Program.cs`, DI registration, controllers or minimal-API endpoints, hosted services, the primary domain namespaces.
 - **C / C++**: `CMakeLists.txt` targets, `main`, the CLI or argument parser, the public headers.
 - **Python**: `pyproject.toml` entry points, `__main__`, the package `__init__` surfaces.
 - **TypeScript**: `package.json` scripts and `main`/`exports`, route tables, the top-level `index.ts`.
 
-Identify the flows: the meaningful end-to-end paths (submit an order, rotate a key, ingest a file, rank a graph). Flows, not folders, are the unit of documentation. `--communities` suggests them; the code confirms them.
+Find the flows: the meaningful end-to-end paths (send an order, turn a key, load a file, rank a graph). The unit of documentation is the flow, not the folder. `--communities` suggests flows. The code shows if they are correct.
 
 ### 2. Build the glossary first
 
-Start with what the organization already approves: `node <skill>/scripts/docs_check.mjs glossary docs/ --terms` lists the organization glossary that ships inside the skill. Those terms are approved here and must not be repeated or contradicted (`references/conventions.md`, "The glossary: two levels"). Then create `docs/_glossary.json` from `assets/templates/_glossary.json` for this repository's own terms, before you write prose. Take technical nouns from the code's own names (types, modules, flags) and the README. Take technical verbs from the domain's operations. Where two names exist for one thing, choose the code's and list the other as unapproved. Every doc you write next uses these terms and the STE checker enforces them. With the agent pack installed, run `ste_check.mjs` on your first two or three drafts and read the `1.5` line: it lists every word the official dictionary does not know. Add the ones that are this repository's terms before you write the rest, so the later docs use one name for each thing. A word that is plainly shared across the organization's repositories (a platform name, `run`, `build`, `log`) goes in your bootstrap summary as a candidate for the organization glossary, not in the project file.
+Start with the approved terms of the organization. Run `node <skill>/scripts/docs_check.mjs glossary docs/anchored-docs/ --terms` to see the organization glossary that comes with the skill. These terms apply here. Do not write them again and do not contradict them (`references/conventions.md`, "The glossary: two levels"). Then make `docs/anchored-docs/_glossary.json` from `assets/templates/_glossary.json` for the terms of this repository. Do this before you write prose.
+
+Get technical nouns from the names in the code (types, modules, flags) and from the README. Get technical verbs from the operations of the domain. If one thing has two names, select the name in the code and list the other name as unapproved. All docs that you write next use these terms, and the STE checker makes sure of it.
+
+If you have the agent pack, run `ste_check.mjs` on your first two or three drafts and read the `1.5` line. It lists all words that the official dictionary does not know. Add the words that are terms of this repository before you write the other docs. Then the docs use one name for each thing.
+
+Some words are plainly shared across the repositories of the organization (a platform name, `run`, `build`, `log`). Put them in your bootstrap summary as candidates for the organization glossary. Do not put them in the project file.
 
 ### 3. Work area by area, not all at once
 
-Pick one flow. `ripwire . --for="<the flow in words>"` gives its ranked building blocks; `--around=SYM` and `--expand=SYM` give the neighborhood and bodies. Read the code. Write the doc. Move to the next flow. This keeps each pass small enough to read the code properly and keeps context lean. If subagents are available, let one read and summarize an area, then write the doc yourself from that summary plus a direct read of the key files.
+Pick one flow. `ripwire . --for="<the flow in words>"` gives its ranked building blocks. `--around=SYM` and `--expand=SYM` give the neighborhood and bodies. Read the code. Write the doc. Then go to the next flow.
+
+Each part stays small, so you can read the code correctly and the context stays lean. If subagents are available, let one subagent read and summarize an area. Then write the doc from that summary and from a read of the key files.
 
 ### 4. Create the scaffold
 
 From `assets/templates/`:
-- `docs/index.md` from `index.md`: `okf_version: "0.2"`, then one flat catalog section linking every page with its description.
-- `docs/overview.md` from `overview.md`: business purpose, users, system context (C4 context Mermaid), boundaries.
-- `docs/architecture.md` from `architecture.md`: C4 container view with Mermaid (`ripwire . --mermaid` is a starting point to trim). Shape, not per-method detail.
-- `docs/flows/<flow>.md` from `flow.md`, one per flow: `sources` pointing at the code, a Mermaid sequence or flowchart, Key behavior anchored to symbols, failure modes read from the code.
-- `docs/decisions/index.md` and ADRs from `adr.md`, only for decisions the code or history clearly supports (`git log`, the README's rationale, a CONTRIBUTING rule). Do not invent decisions. ADRs carry a `date:` key so ripwire treats them as dated records.
-- `docs/log.md` from `log.md` with one `**Initialization**` entry.
-- `docs/_map.json`: generated in step 6, never hand-written.
+- `docs/anchored-docs/index.md` from `index.md`: `okf_version: "0.2"`, then one flat catalog section that links each page with its description.
+- `docs/anchored-docs/overview.md` from `overview.md`: business purpose, users, system context (C4 context Mermaid), boundaries.
+- `docs/anchored-docs/architecture.md` from `architecture.md`: C4 container view with Mermaid (`ripwire . --mermaid` is a start that you can cut). Show the shape, not the instructions for each method.
+- `docs/anchored-docs/flows/<flow>.md` from `flow.md`, for each flow. It has `sources` that point at the code and a Mermaid sequence or flowchart. It has Key behavior anchored to symbols and failure modes read from the code.
+- `docs/anchored-docs/decisions/index.md` and ADRs from `adr.md`, only for decisions that the code or history clearly supports (`git log`, the README's rationale, a CONTRIBUTING rule). Do not invent decisions. ADRs have a `date:` key, so ripwire uses them as dated records.
+- `docs/anchored-docs/log.md` from `log.md` with one `**Initialization**` entry.
+- `docs/anchored-docs/_map.json`: made in step 6. Do not write it by hand.
 
-As you document each area, add or repair the code-side doc comments on that area's public surface and add the back-link to the flow doc (`references/conventions.md`, "Two coupled layers"). If large parts of the public surface have no comments, list that for the human as a separate backfill rather than rewrite every file in this pass.
+<!-- ste-ok: 1.1 quoted heading name in conventions.md -->
+As you document each area, add or repair the code-side doc comments on the public surface of that area. Add the back-link to the flow doc (`references/conventions.md`, "Two coupled layers"). If large parts of the public surface have no comments, give the human a list of them as a backfill. Do not rewrite all files in this task.
 
 ### 5. Verify and check
 
 ```bash
-ripwire . --doc-drift=docs/                     # every anchor you wrote, against the code you read
-node <skill>/scripts/ste_check.mjs docs/      # every sentence you wrote
-node <skill>/scripts/docs_check.mjs okf docs/ # frontmatter conformance
-node <skill>/scripts/docs_check.mjs links docs/ # code-side back-links resolve
+ripwire . --doc-drift=docs/anchored-docs/                     # every anchor you wrote, against the code you read
+node <skill>/scripts/ste_check.mjs docs/anchored-docs/      # every sentence you wrote
+node <skill>/scripts/docs_check.mjs okf docs/anchored-docs/ # frontmatter conformance
+node <skill>/scripts/docs_check.mjs links docs/anchored-docs/ # code-side back-links resolve
 ```
 
-Fix every drift row and every mechanical STE failure before you report. A bootstrap with drift on day one is a bootstrap that was written from names, not code.
+Repair each drift row and each mechanical STE failure before you report. A bootstrap with drift on day one was written from names, not from code.
 
 ### 6. Build the map, set status and dates
 
 ```bash
-node <skill>/scripts/docs_check.mjs map docs/
+node <skill>/scripts/docs_check.mjs map docs/anchored-docs/
 ```
 
-Every generated doc: `status: draft`, `generated` and one agent `verified` entry at now. The draft status says a human has not yet confirmed these pages.
+For each doc that you make: `status: draft`, `generated`, and one agent `verified` entry at the time of writing. The draft status shows that a human has not checked these pages.
 
 ### 7. Confirm the gitignore
 
@@ -70,12 +79,16 @@ Make sure `docs/tickets/` is in `.gitignore`. Add it if not.
 
 ### 8. Report
 
-Summarize: the flows you identified, the docs you wrote, the project glossary terms you chose and any you propose for the organization glossary, anything you could not confidently document (say so; do not guess), and the self-report block with `Files-Read` listing the code you read and `Ripwire`/`Docs-Drift`/`Docs-STE` from step 5.
+Summarize these items. List the flows you identified and the docs you wrote. List the project glossary terms you selected, and the terms you propose for the organization glossary. List all parts that you could not document with confidence. Say so, and do not guess. Add the self-report block with `Files-Read` that lists the code you read, and `Ripwire`/`Docs-Drift`/`Docs-STE` from step 5.
 
 ### 9. Coverage check, if qmd is available
 
-Optional and never blocking. If qmd (https://github.com/tobi/qmd) is installed, use it to check the bundle you just wrote for conceptual gaps that `--communities` found structurally but no doc ended up covering. Read `references/qmd.md`, "Bootstrap: the coverage check". If qmd is not available, skip this step and say so in the report; do not tell the user to install it more than once.
+Optional. Do not let it stop the work. If qmd (https://github.com/tobi/qmd) is installed, use it to check the bundle for conceptual holes. `--communities` found these holes in the structure, but no doc covers them. 
+
+Read `references/qmd.md`, "Bootstrap: the coverage check". If qmd is not available, skip this step and say so in the report. Do not tell the user to install it more than one time.
 
 ## Scope and honesty
 
-Document what the code does, not what it should do. Where the code is unclear or a flow seems incomplete, say so in the doc and leave it `draft`, or mark it stale, rather than fill the gap with a plausible guess. The value of the bundle depends on being trustworthy from the start.
+Document what the code does, not what it must do. If the code is unclear or a flow is not complete, say so in the doc. Keep the doc at `draft`, or mark it stale. Do not fill the hole with a plausible guess.
+
+The value of the bundle is its trust from the start.

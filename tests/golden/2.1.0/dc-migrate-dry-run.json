@@ -1,0 +1,16 @@
+{
+  "id": "dc-migrate-dry-run",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "migrate",
+        "."
+      ],
+      "code": 0,
+      "stdout": "migrate: docs/ -> docs/anchored-docs/\nmoves (10):\n  docs/_glossary.json -> docs/anchored-docs/_glossary.json\n  docs/_map.json -> docs/anchored-docs/_map.json\n  docs/decisions/0001-use-queue.md -> docs/anchored-docs/decisions/0001-use-queue.md\n  docs/decisions/index.md -> docs/anchored-docs/decisions/index.md\n  docs/flows/index.md -> docs/anchored-docs/flows/index.md\n  docs/flows/ingest.md -> docs/anchored-docs/flows/ingest.md\n  docs/flows/order-fulfillment.md -> docs/anchored-docs/flows/order-fulfillment.md\n  docs/index.md -> docs/anchored-docs/index.md\n  docs/log.md -> docs/anchored-docs/log.md\n  docs/overview.md -> docs/anchored-docs/overview.md\nlinks to rewrite: 5 markdown, 3 code back-links, in 5 file(s).\nstays in docs/ (2):\n  docs/guides/deploy.md\n  docs/tickets/scratch.md\ndry run: nothing changed. Run again with --apply.\n",
+      "stderr": ""
+    }
+  ],
+  "files": {}
+}

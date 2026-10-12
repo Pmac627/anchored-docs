@@ -45,7 +45,7 @@
       "meaning": "a configuration key that sets a function of the application on or off"
     },
     {
-      "term": "option",
+      "term": "settings class",
       "meaning": "a typed configuration class, or a command-line flag"
     },
     {

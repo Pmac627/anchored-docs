@@ -1,0 +1,62 @@
+{
+  "id": "dc-migrate-apply",
+  "tool": "docs_check",
+  "steps": [
+    {
+      "args": [
+        "migrate",
+        ".",
+        "--apply"
+      ],
+      "code": 0,
+      "stdout": "migrate: docs/ -> docs/anchored-docs/\nmoves (10):\n  docs/_glossary.json -> docs/anchored-docs/_glossary.json\n  docs/_map.json -> docs/anchored-docs/_map.json\n  docs/decisions/0001-use-queue.md -> docs/anchored-docs/decisions/0001-use-queue.md\n  docs/decisions/index.md -> docs/anchored-docs/decisions/index.md\n  docs/flows/index.md -> docs/anchored-docs/flows/index.md\n  docs/flows/ingest.md -> docs/anchored-docs/flows/ingest.md\n  docs/flows/order-fulfillment.md -> docs/anchored-docs/flows/order-fulfillment.md\n  docs/index.md -> docs/anchored-docs/index.md\n  docs/log.md -> docs/anchored-docs/log.md\n  docs/overview.md -> docs/anchored-docs/overview.md\nlinks to rewrite: 5 markdown, 3 code back-links, in 5 file(s).\nstays in docs/ (2):\n  docs/guides/deploy.md\n  docs/tickets/scratch.md\ngit: not a git work tree; files are renamed.\nmigrate: moved 10 file(s).\nmap: wrote docs/anchored-docs/_map.json (3 code paths)\nmigrate: references outside this repository (for example a global CLAUDE.md) still say docs/. Update them by hand.\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "okf",
+        "docs/anchored-docs"
+      ],
+      "code": 0,
+      "stdout": "okf: 4 concept docs, 0 findings\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "links",
+        "docs/anchored-docs",
+        "--repo",
+        "."
+      ],
+      "code": 0,
+      "stdout": "links: 8 docs, 3 code back-links, 0 findings\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "map",
+        "docs/anchored-docs",
+        "--check"
+      ],
+      "code": 0,
+      "stdout": "map: _map.json matches sources\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "migrate",
+        "."
+      ],
+      "code": 0,
+      "stdout": "migrate: nothing to move. The bundle is already in docs/anchored-docs/, or docs/ has none.\n",
+      "stderr": ""
+    }
+  ],
+  "files": {
+    "README.md": "# Repo\n\nRead [the ingest flow](docs/anchored-docs/flows/ingest.md), [the index](docs/anchored-docs/index.md), and [deploy](docs/guides/deploy.md).\n",
+    "docs/guides/deploy.md": "# Deploy\n\nSee [the ingest flow](../anchored-docs/flows/ingest.md), [the flows index](../anchored-docs/flows/index.md), and [the decisions](decisions/index.md).\n",
+    "docs/anchored-docs/flows/order-fulfillment.md": "---\ntype: Flow\ntitle: Order fulfillment\ndescription: How an order moves from the client to the warehouse.\ndiataxis: explanation\nstatus: stable\nsources:\n  - id: service\n    resource: src/Orders/OrderService.cs\ngenerated: { by: claude/1.0, at: 2026-01-10T10:00:00Z }\nverified:\n  - { by: human:pat, at: 2099-01-01T00:00:00Z }\n---\n# Order fulfillment\n\nThe client calls `Send` on `OrderService`. The service sends the order to the queue. The worker reads the queue. The worker sends the order to the warehouse.\n\nSee [the deploy guide](../../guides/deploy.md) and [the decision](../decisions/0001-use-queue.md).\n",
+    "src/tools/ingest.py": "def ingest(path):\n    \"\"\"Read a file into the store.\n\n    See also: docs/anchored-docs/flows/ingest.md\n    \"\"\"\n    return path\n\n# See: docs/anchored-docs/flows/ingest.md\n",
+    "src/Orders/OrderService.cs": "namespace Orders;\n\n/// <summary>Sends an order to the queue.</summary>\n/// <seealso href=\"docs/anchored-docs/flows/order-fulfillment.md\"/>\npublic class OrderService\n{\n    /// <summary>Sends the order to the queue.</summary>\n    public void Send(Order order) { }\n}\n"
+  }
+}

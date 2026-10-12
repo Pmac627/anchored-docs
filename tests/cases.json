@@ -525,5 +525,77 @@
     "env": {
       "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json"
     }
+  },
+  {
+    "id": "dc-migrate-usage",
+    "tool": "docs_check",
+    "fixture": "repo-legacy",
+    "steps": [
+      [
+        "migrate"
+      ]
+    ]
+  },
+  {
+    "id": "dc-migrate-dry-run",
+    "tool": "docs_check",
+    "fixture": "repo-legacy",
+    "steps": [
+      [
+        "migrate",
+        "."
+      ]
+    ]
+  },
+  {
+    "id": "dc-migrate-apply",
+    "tool": "docs_check",
+    "fixture": "repo-legacy",
+    "steps": [
+      [
+        "migrate",
+        ".",
+        "--apply"
+      ],
+      [
+        "okf",
+        "docs/anchored-docs"
+      ],
+      [
+        "links",
+        "docs/anchored-docs",
+        "--repo",
+        "."
+      ],
+      [
+        "map",
+        "docs/anchored-docs",
+        "--check"
+      ],
+      [
+        "migrate",
+        "."
+      ]
+    ],
+    "capture": [
+      "README.md",
+      "docs/guides/deploy.md",
+      "docs/anchored-docs/flows/order-fulfillment.md",
+      "src/tools/ingest.py",
+      "src/Orders/OrderService.cs"
+    ]
+  },
+  {
+    "id": "ste-glossary-report-legacy",
+    "tool": "ste_check",
+    "fixture": "repo-legacy",
+    "steps": [
+      [
+        "--glossary-report"
+      ]
+    ],
+    "env": {
+      "STE_ORG_GLOSSARY": "{FIXTURES}/glossary/org-glossary.json"
+    }
   }
 ]

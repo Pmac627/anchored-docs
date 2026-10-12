@@ -20,6 +20,7 @@ import { purePath } from './_fs.mjs';
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const ORG_GLOSSARY_DEFAULT = resolve(HERE, '..', 'references', 'org-glossary.json');
 export const PROJECT_GLOSSARY_NAME = '_glossary.json';
+export const BUNDLE_DIR_NAME = 'anchored-docs';
 const LEGACY_PROJECT_GLOSSARY_NAME = '_glossary.yaml';
 
 const WS = `[${WHITESPACE}]`;
@@ -387,7 +388,7 @@ function isDir(p) {
 }
 
 /**
- * The docs bundle that governs a path: the enclosing docs/ folder, or the docs/ folder beside a source tree.
+ * The docs bundle that governs a path: the enclosing docs/ folder, a docs/anchored-docs/ folder, or the docs/ folder beside a source tree.
  * Relative input stays relative, as in 1.x, because callers print the result.
  */
 export function findDocsRoot(start) {
@@ -400,11 +401,52 @@ export function findDocsRoot(start) {
     cand = parent;
   }
   const nameOf = (c) => (c === '.' ? '' : basename(c));
+  // A folder named anchored-docs under docs/ is a bundle even before its glossary exists.
+  const isNestedBundle = (c) => nameOf(c) === BUNDLE_DIR_NAME && nameOf(dirname(c)) === 'docs';
   for (const cand of chain) {
-    if (nameOf(cand) === 'docs' || existsSync(join(cand, PROJECT_GLOSSARY_NAME)) || (existsSync(join(cand, 'index.md')) && existsSync(join(cand, 'flows')))) return cand;
+    if (nameOf(cand) === 'docs' || isNestedBundle(cand) || existsSync(join(cand, PROJECT_GLOSSARY_NAME)) || (existsSync(join(cand, 'index.md')) && existsSync(join(cand, 'flows')))) return cand;
   }
+  // A source file finds the bundle beside its tree: docs/anchored-docs/ first, then the 2.0 place in docs/.
   for (const cand of chain) {
+    if (existsSync(join(cand, 'docs', BUNDLE_DIR_NAME, PROJECT_GLOSSARY_NAME))) return join(cand, 'docs', BUNDLE_DIR_NAME);
     if (existsSync(join(cand, 'docs', PROJECT_GLOSSARY_NAME))) return join(cand, 'docs');
   }
   return p;
+}
+
+/**
+ * True when a folder holds an OKF bundle: a project glossary or derived map, or a root index.md with okf_version.
+ * Used only to recognize a 2.0 bundle that still sits directly in docs/.
+ */
+export function isBundleFolder(dir) {
+  if (existsSync(join(dir, PROJECT_GLOSSARY_NAME)) || existsSync(join(dir, '_map.json'))) return true;
+  const idx = join(dir, 'index.md');
+  return existsSync(idx) && /^okf_version:/m.test(readText(idx));
+}
+
+/**
+ * The bundle folder for a repository. docs/anchored-docs/ is the default. A repository whose bundle still sits
+ * directly in docs/ (anchored-docs 2.0) keeps working until it runs `docs_check.mjs migrate`, so the upgrade
+ * never leaves two bundles. Returns { path, legacy }; legacy is true only for the old layout.
+ */
+export function resolveBundle(repo) {
+  const nested = join(repo, 'docs', BUNDLE_DIR_NAME);
+  const legacy = join(repo, 'docs');
+  if (isDir(nested)) return { path: nested, legacy: false };
+  if (isDir(legacy) && isBundleFolder(legacy)) return { path: legacy, legacy: true };
+  return { path: nested, legacy: false };
+}
+
+/** The notice printed when a 2.1 command finds the bundle in the 2.0 place. */
+export const LEGACY_BUNDLE_NOTICE = 'notice: the docs bundle is in docs/ (anchored-docs 2.0 layout). Run docs_check.mjs migrate <repo> --apply to move it to docs/anchored-docs/.';
+
+/** The frontmatter keys every concept doc of the skill carries. A doc with all of them is a skill-written doc. */
+export const CONCEPT_REQUIRED_KEYS = ['type', 'title', 'description', 'diataxis', 'sources', 'generated', 'verified', 'status'];
+
+/** A frontmatter value counts as set unless it is null, false, empty text, an empty list, or an empty mapping. */
+export function truthy(v) {
+  if (v === null || v === undefined || v === false || v === '') return false;
+  if (Array.isArray(v)) return v.length > 0;
+  if (v instanceof Map) return v.size > 0;
+  return true;
 }

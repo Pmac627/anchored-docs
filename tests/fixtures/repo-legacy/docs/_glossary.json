@@ -1,0 +1,13 @@
+{
+  "technical_nouns": [
+    {
+      "term": "queue",
+      "meaning": "a first-in first-out buffer of messages"
+    }
+  ],
+  "technical_verbs": [
+    {
+      "term": "ingest"
+    }
+  ]
+}

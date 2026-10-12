@@ -5,7 +5,7 @@
 import { readFileSync } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { expandUser, findDocsRoot, findOrgGlossary, loadGlossaries, parseGlossaryFile, readDoc, GlossaryError, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
+import { expandUser, findDocsRoot, findOrgGlossary, loadGlossaries, parseGlossaryFile, readDoc, resolveBundle, GlossaryError, LEGACY_BUNDLE_NOTICE, PROJECT_GLOSSARY_NAME } from './_fm.mjs';
 import { WHITESPACE, valueText, strip, stripChars, readText, splitlines, writeReport, replacePaths, escapeControls, FileReadError } from './_compat.mjs';
 import { comparePaths, exists, isDir, isFile, pathParts, purePath, fileSuffix, rglobAll, sortPaths } from './_fs.mjs';
 import { APPROVED_ING, FUNCTION_WORDS, IMPERATIVE_VERBS, PASSIVE_PARTICIPLES, PHRASAL, STEP_OK_STARTS, USAGE } from './_ste_data.mjs';
@@ -663,10 +663,10 @@ function lookup(lex, words) {
       const cat = lex.categories.get(q);
       if (cat) {
         print(`  not a dictionary word. Listed as an example in: ${catText(cat)}`);
-        print('  Permitted as a technical noun (1.5) or technical verb (1.12) in that category. Add it to docs/_glossary.json.');
+        print('  Permitted as a technical noun (1.5) or technical verb (1.12) in that category. Add it to the project glossary (_glossary.json in the docs bundle).');
       } else {
         print('  not in the dictionary. Permitted only as a technical noun (1.5) or technical verb (1.12).');
-        print('  If the project uses it, add it to docs/_glossary.json. Otherwise write an approved word.');
+        print('  If the project uses it, add it to the project glossary (_glossary.json in the docs bundle). Otherwise write an approved word.');
       }
       continue;
     }
@@ -702,7 +702,9 @@ function main(argv) {
     return 2;
   }
   if (argv[0] === '--glossary-report') {
-    glossaryReport(purePath(argv[1] ?? 'docs'));
+    const bundle = argv[1] === undefined ? resolveBundle('.') : { path: purePath(argv[1]), legacy: false };
+    if (bundle.legacy) print(LEGACY_BUNDLE_NOTICE);
+    glossaryReport(bundle.path);
     return 0;
   }
   if (argv[0] === '--status') {
